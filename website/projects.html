@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Projects — A&amp;M Masonry Inc</title>
+  <meta name="description" content="Browse the full portfolio of masonry, framing, brick, stone, and block projects completed by A&M Masonry Inc." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand" aria-label="A&amp;M Masonry — home">
+        <img src="../assets/img/am-logo.png" alt="A&amp;M Masonry" class="nav__logo" />
+      </a>
+
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav__links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html" class="is-current">Projects</a>
+        <a href="about.html">About</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a href="tel:4703700142" class="nav__phone">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (470) 370-0142
+        </a>
+        <a href="contact.html" class="btn btn--primary nav__cta">Request Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <span class="section-eyebrow">Our Portfolio</span>
+      <h1>All <span class="accent">Projects</span></h1>
+      <p>Every project in our portfolio — masonry, framing, brick, stone, and more.</p>
+    </div>
+  </section>
+
+  <!-- ============ ALL PROJECTS ============ -->
+  <section class="projects-section projects-section--full">
+    <div class="container">
+
+      <div class="proj-filters" role="tablist" aria-label="Filter projects by category">
+        <button class="proj-filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="proj-filter" data-filter="brick" role="tab" aria-selected="false">Brick</button>
+        <button class="proj-filter" data-filter="stone" role="tab" aria-selected="false">Stone</button>
+        <button class="proj-filter" data-filter="framing" role="tab" aria-selected="false">Framing</button>
+        <button class="proj-filter" data-filter="block" role="tab" aria-selected="false">Block</button>
+      </div>
+
+      <div class="proj-grid" id="proj-grid-all">
+
+        <div class="proj-card" data-category="brick">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Brick/brick-front-1.jpg" alt="Residential front brick exterior" loading="lazy" />
+            <span class="proj-card__badge">Brick</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Residential Front Exterior</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Lawrenceville, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="brick">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Brick/brick-front-2.jpg" alt="Brick entry facade" loading="lazy" />
+            <span class="proj-card__badge">Brick</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Brick Entry &amp; Facade</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Buford, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="brick">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Brick/brick-front-3.jpg" alt="Traditional brick exterior" loading="lazy" />
+            <span class="proj-card__badge">Brick</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Traditional Brick Exterior</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Suwanee, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="brick">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Brick/brick-side-wall.JPG" alt="Brick side wall panel" loading="lazy" />
+            <span class="proj-card__badge">Brick</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Brick Side Wall Panel</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Duluth, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="brick">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Brick/brick-black.jpg" alt="Contemporary dark brick feature" loading="lazy" />
+            <span class="proj-card__badge">Brick</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Contemporary Dark Brick</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Johns Creek, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="stone">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Stone/stone-pillar-1.jpg" alt="Stone entry pillar" loading="lazy" />
+            <span class="proj-card__badge">Stone</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Stone Entry Pillar</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Lawrenceville, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="stone">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Stone/stone-wall-1.jpg" alt="Natural stone wall" loading="lazy" />
+            <span class="proj-card__badge">Stone</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Natural Stone Wall</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Cumming, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="framing">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Framing/framing-done-1.jpg" alt="Completed frame structure" loading="lazy" />
+            <span class="proj-card__badge">Framing</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Completed Frame Structure</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Gwinnett County, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="framing">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Framing/framing-done-2.jpg" alt="Multi-story framing" loading="lazy" />
+            <span class="proj-card__badge">Framing</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Multi-Story Frame Build</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Lawrenceville, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="framing">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Framing/framing-done-3.jpg" alt="Residential frame build" loading="lazy" />
+            <span class="proj-card__badge">Framing</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Residential Addition Frame</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Snellville, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="framing">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Framing/framing-ground-1.jpg" alt="Ground floor framework" loading="lazy" />
+            <span class="proj-card__badge">Framing</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Ground Floor Framework</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Norcross, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="framing">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Framing/framing-ground-2.jpg" alt="Structural ground framing" loading="lazy" />
+            <span class="proj-card__badge">Framing</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Structural Ground Work</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Lawrenceville, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="framing">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Framing/framing-inside-1.jpg" alt="Interior framing layout" loading="lazy" />
+            <span class="proj-card__badge">Framing</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Interior Frame Layout</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Duluth, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="framing">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Framing/framing-inside-2.jpg" alt="Interior build-out framing" loading="lazy" />
+            <span class="proj-card__badge">Framing</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Interior Build-Out</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Buford, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="framing">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Framing/framing-top-1.JPG" alt="Roof frame structure" loading="lazy" />
+            <span class="proj-card__badge">Framing</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Roof Frame Structure</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Suwanee, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="framing">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Framing/framing-top-2.JPG" alt="Roof peak framing detail" loading="lazy" />
+            <span class="proj-card__badge">Framing</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">Roof Peak Framing</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Cumming, GA
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-category="block">
+          <div class="proj-card__img-wrap">
+            <img src="../assets/img/Block/block-1.jpg" alt="CMU block foundation" loading="lazy" />
+            <span class="proj-card__badge">Block</span>
+          </div>
+          <div class="proj-card__body">
+            <h3 class="proj-card__title">CMU Block Foundation</h3>
+            <p class="proj-card__meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Lawrenceville, GA
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <p id="gallery-empty" class="proj-empty" hidden>No projects in this category yet — check back soon.</p>
+    </div>
+  </section>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div id="gallery-lightbox" class="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Project image viewer" hidden>
+    <button class="gallery-lightbox__close" type="button" aria-label="Close image viewer">&times;</button>
+    <button class="gallery-lightbox__nav gallery-lightbox__nav--prev" type="button" aria-label="Previous image">&#8249;</button>
+    <figure class="gallery-lightbox__figure">
+      <img class="gallery-lightbox__image" src="" alt="" />
+      <figcaption class="gallery-lightbox__caption"></figcaption>
+    </figure>
+    <button class="gallery-lightbox__nav gallery-lightbox__nav--next" type="button" aria-label="Next image">&#8250;</button>
+  </div>
+
+  <!-- ============ CTA STRIP ============ -->
+  <section class="cta-strip">
+    <div class="container cta-strip__inner">
+      <div>
+        <h2 class="cta-strip__heading">Ready to start your project?</h2>
+        <p class="cta-strip__sub">Get a free quote — no obligation, just a conversation about what you need.</p>
+      </div>
+      <a href="contact.html" class="btn btn--primary btn--lg">Request Free Quote</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__col">
+        <h4>A&amp;M Masonry Inc</h4>
+        <p>Your trusted masonry partner in Lawrenceville, GA</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Contact Info</h4>
+        <ul class="footer__contact">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Lawrenceville, GA</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:4703700142">(470) 370-0142</a>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:jflores@ammasonry.net">jflores@ammasonry.net</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Services</h4>
+        <ul class="footer__links">
+          <li><a href="service.html?service=masonry-brickwork">Masonry &amp; Brickwork</a></li>
+          <li><a href="service.html?service=fireplaces-stoves">Fireplaces &amp; Stoves</a></li>
+          <li><a href="service.html?service=siding-installation">Siding Installation</a></li>
+          <li><a href="service.html?service=plaster-gypsum-board">Plaster &amp; Gypsum Board</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; <span id="year"></span> A&amp;M Masonry Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
