@@ -11,6 +11,11 @@
   let switching = false;
 
   if (vids[0] && vids[1]) {
+    vids.forEach(vid => {
+      const reveal = () => vid.classList.add('is-playing');
+      vid.addEventListener('playing', reveal, { once: true });
+      if (!vid.paused && vid.readyState >= 3) reveal();
+    });
     vids[0].play().catch(() => {});
     vids.forEach((vid, i) => {
       vid.addEventListener('timeupdate', () => {
