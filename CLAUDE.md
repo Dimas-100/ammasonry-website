@@ -16,9 +16,10 @@ ammasonry/
 │   ├── styles-v2.css     # Shared stylesheet for inner pages (services, projects, about, reviews, contact)
 │   ├── v2-common.js      # Shared JS for inner pages: reveal, accordion, filter, lightbox, form, data-year
 │   └── homepage.js       # Homepage-only JS: video crossfade, countup, project tabs, services accordion
-└── assets/
-    ├── img/              # All images (Brick/, Stone/, Framing/, Block/, owners.jpg, am-logo-nav.png)
-    └── video/            # Drone footage (West Point.MP4.mp4, West pine.MP4.mp4)
+│   └── assets/
+│       ├── img/          # All images (Brick/, Stone/, Framing/, Block/, owners.jpg, am-logo-nav.png)
+│       └── video/        # Drone footage (West Point.MP4.mp4, West pine.MP4.mp4)
+└── CLAUDE.md             # This file
 ```
 
 ## Design System
@@ -79,11 +80,18 @@ Every page shares the same nav and footer HTML markup. Nav pattern:
 - All CTA buttons link to `contact.html`
 - Nav links: Services | Projects | Reviews | About (no Home link — logo is the home link)
 
+## Deployment
+
+- **GitHub repo:** `github.com/Dimas-100/ammasonry-website`
+- **Hosting:** Vercel, connected to GitHub. Root directory set to `website/`.
+- **Deploy workflow:** edit files → `git commit` → `git push origin main` → Vercel auto-redeploys in ~60 seconds. No manual steps needed in Vercel.
+- **Domain:** `ammasonryinc.net` or `ammasonryinc.co` — pending client (uncle) payment confirmation. Once purchased, point DNS to Vercel via the Vercel dashboard.
+
 ## Workflow Rules
 - **Before any major push:** `git tag v0.x-description` to preserve a rollback point
 - **Page changes:** work page-by-page. Confirm design direction before implementing.
 - **No new dependencies:** pure HTML/CSS/JS. No npm, no bundlers.
-- **Images:** all in `assets/img/`. Paths from `website/` files use `../assets/img/`.
+- **Images:** all in `website/assets/img/`. Paths from HTML files use `assets/img/` (assets folder lives inside `website/` so Vercel deploys it).
 - **CSS edits (inner pages):** edit `styles-v2.css`. Add new section CSS before the final `@media` blocks.
 - **CSS edits (homepage):** edit the inline `<style>` block in `index.html`.
 - **Formspree endpoint:** `https://formspree.io/f/xnjwbjjo` (in contact.html form action)

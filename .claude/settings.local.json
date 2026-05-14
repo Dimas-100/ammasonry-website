@@ -4,7 +4,18 @@
       "Bash(gh auth *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(git tag *)",
+      "Bash(Remove-Item \"website\\\\styles.css\", \"website\\\\script.js\")",
+      "PowerShell(New-Item *)",
+      "Bash(git pull *)",
+      "Bash(git rm *)",
+      "WebFetch(domain:www.namecheap.com)",
+      "WebFetch(domain:instantdomainsearch.com)",
+      "PowerShell(git mv *)"
     ]
   }
 }
