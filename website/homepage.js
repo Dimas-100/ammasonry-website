@@ -1,22 +1,34 @@
 (function () {
   'use strict';
 
-  // ── Video crossfade ──────────────────────────────────────────────
+  // ── Hero video — mobile loops vid-0, desktop crossfades vid-0 ↔ vid-1 ──
   const FADE = 1.5;
   const vids = [
     document.getElementById('hero-vid-0'),
     document.getElementById('hero-vid-1'),
   ];
-  let active = 0;
-  let switching = false;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-  if (vids[0] && vids[1]) {
-    vids.forEach(vid => {
-      const reveal = () => vid.classList.add('is-playing');
-      vid.addEventListener('playing', reveal, { once: true });
-      if (!vid.paused && vid.readyState >= 3) reveal();
-    });
+  if (vids[0]) {
+    const reveal = () => vids[0].classList.add('is-playing');
+    vids[0].addEventListener('playing', reveal, { once: true });
+    if (!vids[0].paused && vids[0].readyState >= 3) reveal();
     vids[0].play().catch(() => {});
+  }
+
+  if (!isMobile && vids[0] && vids[1]) {
+    // Desktop only: set up the crossfade dance with vid-1
+    let active = 0;
+    let switching = false;
+
+    vids[1].addEventListener('playing', () => vids[1].classList.add('is-playing'), { once: true });
+
+    // Give vid-0 a head start, then quietly start downloading vid-1 in the background
+    setTimeout(() => {
+      vids[1].preload = 'auto';
+      vids[1].load();
+    }, 2000);
+
     vids.forEach((vid, i) => {
       vid.addEventListener('timeupdate', () => {
         if (switching || active !== i) return;
