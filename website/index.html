@@ -20,415 +20,108 @@
     <a href="index.html" class="nav-brand">
       <img src="assets/img/am-logo-nav.png" alt="A&amp;M Masonry" />
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="services.html">Services</a>
       <a href="projects.html">Projects</a>
       <a href="reviews.html">Reviews</a>
       <a href="about.html">About</a>
+      <div class="nav-mobile-cta">
+        <a href="contact.html" class="btn btn--primary">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="tel:4703700142" class="nav-mobile-phone">(470) 370-0142</a>
+      </div>
     </div>
     <a href="contact.html" class="nav-cta">Free Quote</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links" type="button">
+      <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
+    </button>
   </div>
 </nav>
 
-<!-- HERO + STATS -->
-<div class="hero-unit">
-  <section class="hero" id="top">
-    <img class="hero-poster" src="assets/img/West%20Pine-web.webp" alt="" aria-hidden="true" fetchpriority="high" decoding="async" />
-    <video id="hero-vid-0" class="hero-bg-img" muted playsinline loop preload="auto" poster="assets/img/West%20Pine-web.webp">
-      <source src="assets/video/West%20Point-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-      <source src="assets/video/West%20Point.MP4.mp4" type="video/mp4" />
-    </video>
-    <video id="hero-vid-1" class="hero-bg-img hero-bg-img--secondary" muted playsinline preload="none">
-      <source src="assets/video/West%20pine.MP4.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="wrap">
-      <div class="hero-center">
-        <div class="hero-eyebrow">Expert Craftsmanship. Timeless Results.</div>
-        <h1 class="hero-h">
-          <span style="white-space:nowrap">
-            <span class="word"><span style="animation-delay:.05s">Quality</span></span>
-            <span class="word"><span style="animation-delay:.18s">masonry,</span></span>
-          </span><br>
-          <span class="word"><span style="animation-delay:.32s">built</span></span>
-          <span class="word"><span class="accent" style="animation-delay:.46s">to last.</span></span>
-        </h1>
-        <p class="hero-sub">From fireplaces to full builds — trusted masonry, siding, and more for homes and businesses across the Southeast.</p>
-        <div class="hero-cta">
-          <a href="contact.html" class="btn btn--primary">Get Your Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a href="#projects" class="btn btn--ghost">View Our Work <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="stats-bar">
-    <div class="stats-bar-inner">
-      <div class="stats-track">
-        <div class="stat-item">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89l-1.53 7.26L12 19l5.32 2.15-1.53-7.26"/></svg>
-          </div>
-          <div class="v"><span data-countup="10" data-suffix="+">10+</span></div>
-          <div class="l">Years of Excellence</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18M9.5 7v5M14.5 7v5M7 12v5M17 12v5"/></svg>
-          </div>
-          <div class="v"><span data-countup="500" data-suffix="+">500+</span></div>
-          <div class="l">Projects Completed</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <div class="v"><span data-countup="100" data-suffix="%">100%</span></div>
-          <div class="l">Client Satisfaction</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div class="v"><span data-countup="5" data-suffix="">5</span></div>
-          <div class="l">States Served</div>
-        </div>
+<!-- HERO -->
+<section class="hero" id="top">
+  <img class="hero-poster" src="assets/img/West%20Pine-web.webp" alt="" aria-hidden="true" fetchpriority="high" decoding="async" />
+  <video id="hero-vid-0" class="hero-bg-img" muted playsinline loop preload="auto" poster="assets/img/West%20Pine-web.webp">
+    <source src="assets/video/West%20Point-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+    <source src="assets/video/West%20Point.MP4.mp4" type="video/mp4" />
+  </video>
+  <video id="hero-vid-1" class="hero-bg-img hero-bg-img--secondary" muted playsinline preload="none">
+    <source src="assets/video/West%20pine.MP4.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <div class="hero-center">
+      <div class="hero-eyebrow">Expert Craftsmanship. Timeless Results.</div>
+      <h1 class="hero-h">
+        <span style="white-space:nowrap">
+          <span class="word"><span style="animation-delay:.05s">Quality</span></span>
+          <span class="word"><span style="animation-delay:.18s">masonry,</span></span>
+        </span><br>
+        <span class="word"><span style="animation-delay:.32s">built</span></span>
+        <span class="word"><span class="accent" style="animation-delay:.46s">to last.</span></span>
+      </h1>
+      <p class="hero-sub">From fireplaces to full builds — trusted masonry, siding, and more for homes and businesses across the Southeast.</p>
+      <div class="hero-cta">
+        <a href="contact.html" class="btn btn--primary">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#projects" class="hero-link">View our projects <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- INTRO -->
+<section class="section intro-sec">
+  <div class="wrap">
+    <div class="intro-inner reveal">
+      <h2 class="intro-h">Built on craftsmanship.<br><span class="accent">Backed by experience.</span></h2>
+      <p class="intro-p">From fireplaces to full builds, A&amp;M Masonry has delivered work that holds up — and looks the part — for more than a decade. Family-owned, fully insured, and trusted across the Southeast.</p>
+    </div>
+  </div>
+</section>
 
 <!-- SERVICES -->
 <section class="section svc" id="services">
   <div class="wrap">
     <div class="svc-head reveal">
-      <span class="eyebrow">What We Offer</span>
+      <div class="eyebrow">01 — Services</div>
       <h2>Our <span class="accent">services.</span></h2>
       <p class="lede" style="margin:14px auto 0">From foundation to finish — expert trades built on years of field experience.</p>
     </div>
-    <div class="svc-list">
+    <div class="svc-grid">
 
-      <!-- 01 Masonry -->
-      <div class="svc-row reveal" data-delay="0">
-        <div class="svc-head-row">
-          <div class="svc-num">01</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 18l9 5 9-5"/></svg>
-          </div>
-          <h3 class="svc-title">Masonry</h3>
-          <div class="svc-tag">Masonry</div>
-          <div class="svc-toggle"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
+      <a href="services.html" class="svc-card reveal" data-delay="0">
+        <div class="svc-card-img">
+          <img src="assets/img/Brick/brick-front-1.jpg" alt="Masonry brickwork on a residential exterior" loading="lazy" />
         </div>
-        <div class="svc-body">
-          <div class="svc-detail">
-            <p>Brick, block, and stone work for new construction, additions, and exterior repairs. We match existing mortar and bond patterns when blending into older structures.</p>
-            <ul class="svc-list-li">
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Modular and oversized brick</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Stone veneer &amp; dry-stack</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Tuckpointing &amp; repair</li>
-            </ul>
-          </div>
-          <div class="svc-photo">
-            <img src="assets/img/Brick/brick-front-1.jpg" alt="Masonry" loading="lazy" />
-          </div>
+        <div class="svc-card-info">
+          <h3 class="svc-card-title">Masonry <span class="svc-card-hint" aria-hidden="true">→</span></h3>
+          <p class="svc-card-sub">Brick, stone, and block that age into character.</p>
         </div>
-      </div>
-
-      <!-- 02 Siding Installation -->
-      <div class="svc-row reveal" data-delay="40">
-        <div class="svc-head-row">
-          <div class="svc-num">02</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></svg>
-          </div>
-          <h3 class="svc-title">Siding Installation</h3>
-          <div class="svc-tag">Exterior</div>
-          <div class="svc-toggle"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
-        </div>
-        <div class="svc-body" style="grid-template-columns:1fr">
-          <div class="svc-detail">
-            <p>Exterior siding installation and replacement for lasting protection and curb appeal. Includes weather barrier, trim, and color-matched fasteners.</p>
-            <ul class="svc-list-li">
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Fiber cement &amp; vinyl</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Storm-damage replacement</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Custom trim &amp; fascia</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- 03 Framing & Carpentry -->
-      <div class="svc-row reveal" data-delay="80">
-        <div class="svc-head-row">
-          <div class="svc-num">03</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7a4 4 0 0 0 5 5l3 3-4 4-3-3a4 4 0 0 1-5-5L4 5l3-3 7 5z"/></svg>
-          </div>
-          <h3 class="svc-title">Framing &amp; Carpentry</h3>
-          <div class="svc-tag">Structural</div>
-          <div class="svc-toggle"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
-        </div>
-        <div class="svc-body">
-          <div class="svc-detail">
-            <p>Structural framing and rough carpentry for additions, remodels, and build-outs. Code-compliant assemblies, inspected and ready for the next trade.</p>
-            <ul class="svc-list-li">
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Light-frame additions</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Multi-family carpentry</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Inspection-ready</li>
-            </ul>
-          </div>
-          <div class="svc-photo">
-            <img src="assets/img/Framing/framing-done-2.jpg" alt="Framing &amp; Carpentry" loading="lazy" />
-          </div>
-        </div>
-      </div>
-
-      <!-- 04 Drywall & Sheetrock -->
-      <div class="svc-row reveal" data-delay="120">
-        <div class="svc-head-row">
-          <div class="svc-num">04</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18M9.5 7v5M14.5 7v5M7 12v5M17 12v5"/></svg>
-          </div>
-          <h3 class="svc-title">Drywall &amp; Sheetrock</h3>
-          <div class="svc-tag">Interior</div>
-          <div class="svc-toggle"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
-        </div>
-        <div class="svc-body">
-          <div class="svc-detail">
-            <p>Drywall and Sheetrock installation, patching, and surface prep for a clean, paint-ready finish. We hang, tape, mud, and finish to level-five on new builds and remodels.</p>
-            <ul class="svc-list-li">
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Drywall hang &amp; finish</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Sheetrock installation</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Acoustic &amp; moisture board</li>
-            </ul>
-          </div>
-          <div class="svc-photo">
-            <img src="assets/img/Framing/framing-inside-1.jpg" alt="Drywall &amp; Sheetrock" loading="lazy" />
-          </div>
-        </div>
-      </div>
-
-      <!-- 05 Painting & Coatings -->
-      <div class="svc-row reveal" data-delay="160">
-        <div class="svc-head-row">
-          <div class="svc-num">05</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20s2-4 6-4 4 2 4 2M14 4l6 6-7 7-3-3 4-10z"/></svg>
-          </div>
-          <h3 class="svc-title">Painting &amp; Coatings</h3>
-          <div class="svc-tag">Finishes</div>
-          <div class="svc-toggle"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
-        </div>
-        <div class="svc-body" style="grid-template-columns:1fr">
-          <div class="svc-detail">
-            <p>Interior and exterior painting for residential and commercial projects. Walls, trim, ceilings, and masonry surfaces — properly prepped and finished to a clean, lasting result.</p>
-            <ul class="svc-list-li">
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Elastomeric masonry coatings</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Interior &amp; exterior paint</li>
-              <li><span class="ck"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>Stain &amp; sealer</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div style="text-align:center;margin-top:56px">
-      <a class="btn btn--primary svc-cta" href="services.html">View All Services <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS RAIL -->
-<div class="proc-rail">
-  <div class="proc-inner">
-    <div class="proc-eyebrow reveal">Our Process — How a build comes together</div>
-    <div class="proc-track">
-      <div class="proc-step reveal" data-delay="0">
-        <div class="proc-circle">01</div>
-        <h4 class="proc-step-title">Free Estimate</h4>
-        <p class="proc-step-desc">We visit, review your project, and hand you a clear itemized quote. No pressure.</p>
-      </div>
-      <div class="proc-step reveal" data-delay="80">
-        <div class="proc-circle">02</div>
-        <h4 class="proc-step-title">Site Walk</h4>
-        <p class="proc-step-desc">We walk the site, confirm materials, and lock in a start date with you.</p>
-      </div>
-      <div class="proc-step reveal" data-delay="160">
-        <div class="proc-circle">03</div>
-        <h4 class="proc-step-title">We Build</h4>
-        <p class="proc-step-desc">Clean crew, on schedule, to the exact scope we agreed — every time.</p>
-      </div>
-      <div class="proc-step reveal" data-delay="240">
-        <div class="proc-circle">04</div>
-        <h4 class="proc-step-title">Done Right</h4>
-        <p class="proc-step-desc">Final walkthrough, clean site, and a finished build that holds up for years.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PROJECTS -->
-<section class="section proj-sec" id="projects">
-  <div class="wrap">
-    <div class="proj-head reveal">
-      <div>
-        <span class="eyebrow">Our Work</span>
-        <h2>Completed <span class="accent">projects.</span></h2>
-      </div>
-      <a href="projects.html" class="btn btn--out">View All Projects <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
-    <div class="proj-tabs">
-      <button class="proj-tab active">West Point</button>
-      <button class="proj-tab">West Pine</button>
-    </div>
-
-    <!-- Panel 0: West Point -->
-    <div class="proj-card" data-proj-panel="0">
-      <div class="proj-card-top">
-        <div class="proj-vid-col">
-          <video autoplay muted loop playsinline>
-            <source src="assets/video/West%20Point.MP4.mp4" type="video/mp4" />
-          </video>
-          <div class="proj-vid-badge">
-            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
-            Drone footage
-          </div>
-        </div>
-      </div>
-      <div class="proj-info-col">
-        <div class="proj-info-main">
-          <h3 class="proj-info-title">West Point · Brick Exterior</h3>
-          <div class="proj-info-meta">Brick masonry · Lawrenceville, GA · 2024</div>
-          <p class="proj-info-desc">Full exterior brick installation on a commercial property in Gwinnett County. Drone footage captures the complete scope of the build; detail photography shows coursing and mortar work up close.</p>
-        </div>
-        <div class="proj-foot">
-          <div class="proj-stats">
-            <span class="proj-stat">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-              Brick exterior
-            </span>
-            <span class="proj-stat">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              8 weeks
-            </span>
-          </div>
-          <a href="contact.html" class="proj-cta">Build Something Like This <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Panel 1: West Pine -->
-    <div class="proj-card" data-proj-panel="1" hidden>
-      <div class="proj-card-top">
-        <div class="proj-vid-col">
-          <video autoplay muted loop playsinline>
-            <source src="assets/video/West%20pine.MP4.mp4" type="video/mp4" />
-          </video>
-          <div class="proj-vid-badge">
-            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
-            Drone footage
-          </div>
-        </div>
-      </div>
-      <div class="proj-info-col">
-        <div class="proj-info-main">
-          <h3 class="proj-info-title">West Pine · Stone &amp; Block</h3>
-          <div class="proj-info-meta">Stone masonry · Buford, GA · 2024</div>
-          <p class="proj-info-desc">Stone and CMU block work across a large residential property in Buford. Aerial footage shows site scale; detail photography captures stone selection and finished joint quality.</p>
-        </div>
-        <div class="proj-foot">
-          <div class="proj-stats">
-            <span class="proj-stat">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-              Stone &amp; block
-            </span>
-            <span class="proj-stat">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              10 weeks
-            </span>
-          </div>
-          <a href="contact.html" class="proj-cta">Build Something Like This <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section testi-sec" id="reviews">
-  <div class="testi-grid-bg"></div>
-  <div class="wrap" style="position:relative">
-    <div class="testi-head reveal">
-      <span class="eyebrow">What Clients Say</span>
-      <h2>Trusted by <span class="accent">builders &amp; contractors.</span></h2>
-    </div>
-    <div class="rating reveal">
-      <span class="stars">★★★★★</span>
-      <b>4.9</b>
-      <span>Based on 60+ client reviews</span>
-    </div>
-
-    <!-- Featured testimonial -->
-    <div class="testi-main reveal" data-delay="60">
-      <div class="qm" aria-hidden="true">&ldquo;</div>
-      <div class="stars">★★★★★</div>
-      <blockquote>A&amp;M Masonry completely transformed the front of our home. The brickwork is flawless and the crew was professional from start to finish. They kept us updated every step of the way and finished right on schedule.</blockquote>
-      <div class="who">
-        <div class="av">MR</div>
-        <div>
-          <div class="nm">Michael R.</div>
-          <div class="lo">Lawrenceville, GA · Brick Exterior</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Reviews grid -->
-    <div class="testi-grid">
-      <div class="testi-card reveal" data-delay="0">
-        <div class="stars">★★★★★</div>
-        <p><em>We had a fireplace built from scratch</em> and the craftsmanship is outstanding. Everyone who visits asks about it. Solid quality and very fair pricing from start to finish.</p>
-        <div class="who">
-          <div class="av">ST</div>
-          <div>
-            <div class="nm">Sarah T.</div>
-            <div class="lo">Buford, GA · Fireplace</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal" data-delay="60">
-        <div class="stars">★★★★★</div>
-        <p><em>They handled the full framing</em> for our home addition and did it right. On-site every day, clean crew, and the structure passed inspection without a single issue.</p>
-        <div class="who">
-          <div class="av">JL</div>
-          <div>
-            <div class="nm">James L.</div>
-            <div class="lo">Duluth, GA · Rough Framing</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal" data-delay="120">
-        <div class="stars">★★★★★</div>
-        <p><em>Had them replace all our siding</em> after storm damage. They matched the existing style perfectly. Quick turnaround and very reasonable cost for the quality of work.</p>
-        <div class="who">
-          <div class="av">LK</div>
-          <div>
-            <div class="nm">Linda K.</div>
-            <div class="lo">Suwanee, GA · Siding</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Read all reviews link -->
-    <div class="testi-foot reveal">
-      <a href="reviews.html" class="testi-all">
-        Read all 60+ reviews
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-    </div>
 
+      <a href="services.html" class="svc-card reveal" data-delay="80">
+        <div class="svc-card-img">
+          <img src="assets/img/Framing/framing-done-2.jpg" alt="Completed framing on a residential build" loading="lazy" />
+        </div>
+        <div class="svc-card-info">
+          <h3 class="svc-card-title">Framing &amp; Carpentry <span class="svc-card-hint" aria-hidden="true">→</span></h3>
+          <p class="svc-card-sub">Structure that holds — square, plumb, and true.</p>
+        </div>
+      </a>
+
+      <a href="services.html" class="svc-card reveal" data-delay="160">
+        <div class="svc-card-img">
+          <img src="assets/img/Framing/framing-inside-1.jpg" alt="Interior framing prepped for drywall" loading="lazy" />
+        </div>
+        <div class="svc-card-info">
+          <h3 class="svc-card-title">Drywall &amp; Sheetrock <span class="svc-card-hint" aria-hidden="true">→</span></h3>
+          <p class="svc-card-sub">Clean walls, ready for the finish coat.</p>
+        </div>
+      </a>
+
+    </div>
+    <div class="svc-foot reveal">
+      <a class="btn btn--primary" href="services.html">View All Services <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
   </div>
 </section>
 
@@ -436,7 +129,7 @@
 <section class="section why-sec" id="why">
   <div class="wrap">
     <div class="why-head reveal">
-      <span class="eyebrow">Why A&amp;M Masonry</span>
+      <div class="eyebrow">02 — Why Us</div>
       <h2>What sets us <span class="accent">apart.</span></h2>
       <p class="lede">Every project runs on the same standard — skilled people, quality materials, and clear expectations from start to finish.</p>
     </div>
@@ -459,54 +152,78 @@
           <p>Brick, stone, block, and concrete selected for long-lasting performance.</p>
         </div>
         <div class="why-item reveal" data-delay="120">
-          <div class="why-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></div>
-          <h4>Clean Job Sites</h4>
-          <p>Respectful crews that keep work areas organized and professional.</p>
-        </div>
-        <div class="why-item reveal" data-delay="180">
           <div class="why-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg></div>
           <h4>Clear Communication</h4>
           <p>Straightforward estimates, timelines, and project updates.</p>
         </div>
-        <div class="why-item reveal" data-delay="240">
+        <div class="why-item reveal" data-delay="180">
           <div class="why-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></svg></div>
           <h4>Residential &amp; Commercial</h4>
           <p>Services for general contractors, builders, and property managers.</p>
-        </div>
-        <div class="why-item reveal" data-delay="300">
-          <div class="why-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5l3-1-1 5-5-1M20 12a8 8 0 0 1-14 5l-3 1 1-5 5 1"/></svg></div>
-          <h4>Repair &amp; Restoration</h4>
-          <p>Careful matching of existing brick, stone, and mortar whenever possible.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA STRIP -->
-<section class="ctas">
-  <div class="cta-deco" aria-hidden="true">
-    <svg viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2" y="2" width="60" height="13" rx="1"/>
-      <rect x="2" y="17" width="28" height="13" rx="1"/>
-      <rect x="34" y="17" width="28" height="13" rx="1"/>
-      <rect x="2" y="32" width="60" height="13" rx="1"/>
-      <line x1="32" y1="2" x2="32" y2="15"/>
-      <line x1="18" y1="32" x2="18" y2="45"/>
-      <line x1="46" y1="32" x2="46" y2="45"/>
-    </svg>
+<!-- PROJECTS -->
+<section class="section proj-sec" id="projects">
+  <div class="wrap">
+    <div class="proj-head reveal">
+      <div>
+        <div class="eyebrow">03 — Projects</div>
+        <h2>Completed <span class="accent">projects.</span></h2>
+      </div>
+      <a href="projects.html" class="btn btn--out">View All Projects <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="proj-grid">
+
+      <a href="projects.html" class="proj-card-mini reveal" data-delay="0">
+        <div class="proj-card-media">
+          <video autoplay muted loop playsinline>
+            <source src="assets/video/West%20Point.MP4.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="proj-card-meta">
+          <h3 class="proj-card-title">West Point <span class="proj-card-hint" aria-hidden="true">→</span></h3>
+          <span class="proj-card-tag">Brick Exterior · Lawrenceville, GA · 2024</span>
+        </div>
+      </a>
+
+      <a href="projects.html" class="proj-card-mini reveal" data-delay="80">
+        <div class="proj-card-media">
+          <video autoplay muted loop playsinline>
+            <source src="assets/video/West%20pine.MP4.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="proj-card-meta">
+          <h3 class="proj-card-title">West Pine <span class="proj-card-hint" aria-hidden="true">→</span></h3>
+          <span class="proj-card-tag">Stone &amp; Block · Buford, GA · 2024</span>
+        </div>
+      </a>
+
+      <a href="projects.html" class="proj-card-mini reveal" data-delay="160">
+        <div class="proj-card-media">
+          <img src="assets/img/Brick/brick-front-3.jpg" alt="Custom residential brick exterior" loading="lazy" />
+        </div>
+        <div class="proj-card-meta">
+          <h3 class="proj-card-title">Custom Brickwork <span class="proj-card-hint" aria-hidden="true">→</span></h3>
+          <span class="proj-card-tag">Residential · Lawrenceville, GA · 2024</span>
+        </div>
+      </a>
+
+    </div>
+
   </div>
-  <div class="wrap cta-inner">
-    <span class="eyebrow cta-eyebrow reveal">Let's Build</span>
-    <h3 class="reveal" data-delay="80">Ready to build something <span class="it">that lasts?</span></h3>
-    <p class="cta-sub reveal" data-delay="160">Get a free, no-obligation estimate within 24 hours. Honest pricing, no pressure, no surprises.</p>
-    <div class="cta-actions reveal" data-delay="240">
-      <a class="btn btn--cta" href="contact.html">
-        Get My Free Estimate <svg class="arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="cta-secondary" href="mailto:jflores@ammasonry.net">
-        or email <span>jflores@ammasonry.net</span>
-      </a>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="section close-sec">
+  <div class="wrap">
+    <div class="close-inner reveal">
+      <h2 class="close-h">Have a project <span class="accent">in mind?</span></h2>
+      <p class="close-p">We'd love to hear about it. Free estimates, honest pricing, and a real person on the phone.</p>
+      <a class="btn btn--primary close-btn" href="contact.html">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
@@ -561,6 +278,7 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
 <script src="v2-common.js"></script>
 <script src="homepage.js"></script>
 </body>

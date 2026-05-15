@@ -1,6 +1,60 @@
 /* A&M Masonry — V2 Inner-page shared JS */
 
 (function () {
+  'use strict';
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Lenis smooth scroll ──────────────────────────────────────────
+  let lenis = null;
+  if (!reduceMotion && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.1,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+
+  // ── Smooth anchor links ──────────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const id = anchor.getAttribute('href');
+      if (!id || id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, { offset: -90 });
+      else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ── Sticky nav scroll state ──────────────────────────────────────
+  const nav = document.querySelector('.v2-nav');
+  if (nav) {
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position:absolute;top:80px;left:0;width:1px;height:1px;pointer-events:none;';
+    document.body.prepend(sentinel);
+    const navIO = new IntersectionObserver(([entry]) => {
+      nav.classList.toggle('is-scrolled', !entry.isIntersecting);
+    });
+    navIO.observe(sentinel);
+  }
+
+  // ── Image lazy fade-in ───────────────────────────────────────────
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    if (img.complete && img.naturalHeight !== 0) {
+      img.classList.add('is-loaded');
+    } else {
+      img.addEventListener('load',  () => img.classList.add('is-loaded'), { once: true });
+      img.addEventListener('error', () => img.classList.add('is-loaded'), { once: true });
+    }
+  });
+
   // ── Year ──────────────────────────────────────────────────────────
   document.querySelectorAll('[data-year]').forEach(el => {
     el.textContent = new Date().getFullYear();
@@ -14,6 +68,7 @@
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.setAttribute('aria-label', 'Open menu');
       navLinks.classList.remove('is-open');
+      document.body.classList.remove('nav-open');
       document.body.style.overflow = '';
     };
     navToggle.addEventListener('click', () => {
@@ -21,6 +76,7 @@
       navLinks.classList.toggle('is-open', open);
       navToggle.setAttribute('aria-expanded', String(open));
       navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.classList.toggle('nav-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     });
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
@@ -44,40 +100,6 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  // ── Services accordion ────────────────────────────────────────────
-  document.querySelectorAll('.svc-acc-trigger').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const row = trigger.closest('.svc-acc-row');
-      const isOpen = row.classList.contains('open');
-      document.querySelectorAll('.svc-acc-row.open').forEach(r => {
-        r.classList.remove('open');
-        r.querySelector('.svc-acc-trigger')?.setAttribute('aria-expanded', 'false');
-      });
-      if (!isOpen) {
-        row.classList.add('open');
-        trigger.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-
-  // ── Project filter ────────────────────────────────────────────────
-  const filterBtns = document.querySelectorAll('.proj-filter-v2');
-  const projCells = document.querySelectorAll('.proj-cell[data-cat]');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      const cat = btn.dataset.filter;
-      projCells.forEach(cell => {
-        if (cat === 'all' || cell.dataset.cat === cat) {
-          cell.classList.remove('hidden');
-        } else {
-          cell.classList.add('hidden');
-        }
-      });
-    });
-  });
 
   // ── Featured project tabs (projects page) ─────────────────────────
   const featTabs   = document.querySelectorAll('.pfeat-tab');

@@ -1,6 +1,92 @@
 (function () {
   'use strict';
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Lenis smooth scroll ──────────────────────────────────────────
+  // Adds momentum/inertia to wheel scrolling on desktop. Mobile falls back
+  // to native touch scroll automatically. Disabled if user prefers reduced motion.
+  let lenis = null;
+  if (!reduceMotion && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.1,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+
+  // ── Smooth anchor links (uses Lenis if present, native otherwise) ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const id = anchor.getAttribute('href');
+      if (!id || id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, { offset: -90 });
+      else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ── Sticky nav scroll state ──────────────────────────────────────
+  // Toggle .is-scrolled on the nav once user scrolls past a sentinel
+  // placed below the top of the page. Uses IntersectionObserver so
+  // there are no scroll-event listeners on the main thread.
+  const nav = document.querySelector('.nav');
+  if (nav) {
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position:absolute;top:80px;left:0;width:1px;height:1px;pointer-events:none;';
+    document.body.prepend(sentinel);
+    const navIO = new IntersectionObserver(([entry]) => {
+      nav.classList.toggle('is-scrolled', !entry.isIntersecting);
+    });
+    navIO.observe(sentinel);
+  }
+
+  // ── Image lazy fade-in ───────────────────────────────────────────
+  // Lazy-loaded images fade in when they finish loading instead of popping.
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    if (img.complete && img.naturalHeight !== 0) {
+      img.classList.add('is-loaded');
+    } else {
+      img.addEventListener('load',  () => img.classList.add('is-loaded'), { once: true });
+      img.addEventListener('error', () => img.classList.add('is-loaded'), { once: true });
+    }
+  });
+
+  // ── Mobile nav toggle ────────────────────────────────────────────
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks  = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    const closeNav = () => {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+      navLinks.classList.remove('is-open');
+      document.body.classList.remove('nav-open');
+      document.body.style.overflow = '';
+    };
+    navToggle.addEventListener('click', () => {
+      const open = !navLinks.classList.contains('is-open');
+      navLinks.classList.toggle('is-open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.classList.toggle('nav-open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && navLinks.classList.contains('is-open')) closeNav();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 760 && navLinks.classList.contains('is-open')) closeNav();
+    });
+  }
+
   // ── Hero video — mobile loops vid-0, desktop crossfades vid-0 ↔ vid-1 ──
   const FADE = 1.5;
   const vids = [
@@ -46,59 +132,5 @@
       });
     });
   }
-
-  // ── CountUp ──────────────────────────────────────────────────────
-  const countEls = document.querySelectorAll('[data-countup]');
-  if (countEls.length) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const el = e.target;
-        const to     = parseInt(el.dataset.countup, 10);
-        const suffix = el.dataset.suffix || '';
-        const dur    = 1500;
-        const t0     = performance.now();
-        (function tick(t) {
-          const p = Math.min(1, (t - t0) / dur);
-          el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + suffix;
-          if (p < 1) requestAnimationFrame(tick);
-        })(t0);
-        io.unobserve(el);
-      });
-    }, { threshold: 0.4 });
-    countEls.forEach(el => io.observe(el));
-  }
-
-  // ── Project tab switching ────────────────────────────────────────
-  const projTabs   = document.querySelectorAll('.proj-tab');
-  const projPanels = document.querySelectorAll('[data-proj-panel]');
-  let activePanel  = 0;
-
-  projTabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => {
-      if (i === activePanel) return;
-      projTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const cur  = projPanels[activePanel];
-      const next = projPanels[i];
-      cur.classList.add('fading');
-      setTimeout(() => {
-        cur.hidden = true;
-        cur.classList.remove('fading');
-        next.hidden = false;
-        activePanel = i;
-      }, 300);
-    });
-  });
-
-  // ── Services accordion (homepage uses .svc-head-row / .svc-row) ──
-  document.querySelectorAll('.svc-head-row').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const row    = trigger.closest('.svc-row');
-      const isOpen = row.classList.contains('open');
-      document.querySelectorAll('.svc-row.open').forEach(r => r.classList.remove('open'));
-      if (!isOpen) row.classList.add('open');
-    });
-  });
 
 })();
