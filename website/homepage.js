@@ -12,8 +12,8 @@
       duration: 1.1,
       easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 0.75,
+      touchMultiplier: 1.5,
     });
     const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
@@ -131,6 +131,36 @@
         setTimeout(() => { switching = false; }, (FADE + 0.5) * 1000);
       });
     });
+  }
+
+  // ── Project card video crossfade (West Pine wide card) ──────────────
+  // Two clips of the same project dissolve into each other. Desktop only —
+  // on mobile the second clip never downloads and clip 1 just loops.
+  const pcGroup = document.querySelector('[data-pcv-group]');
+  if (!isMobile && !reduceMotion && pcGroup) {
+    const pcVids = Array.from(pcGroup.querySelectorAll('video.pcv'));
+    if (pcVids.length === 2) {
+      let pcActive = 0;
+      let pcSwitching = false;
+
+      // Defer downloading clip 2 so it doesn't compete with the first paint
+      setTimeout(() => { pcVids[1].preload = 'auto'; pcVids[1].load(); }, 2500);
+
+      pcVids.forEach((vid, i) => {
+        vid.addEventListener('timeupdate', () => {
+          if (pcSwitching || pcActive !== i) return;
+          if (!vid.duration || vid.currentTime < vid.duration - FADE) return;
+          pcSwitching = true;
+          const next = 1 - i;
+          pcVids[next].currentTime = 0;
+          pcVids[next].play().catch(() => {});
+          pcVids[i].classList.remove('is-active');
+          pcVids[next].classList.add('is-active');
+          pcActive = next;
+          setTimeout(() => { pcSwitching = false; }, (FADE + 0.5) * 1000);
+        });
+      });
+    }
   }
 
 })();
