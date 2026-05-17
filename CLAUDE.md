@@ -13,12 +13,17 @@ ammasonry/
 │   ├── about.html        # Company story, values, stats
 │   ├── reviews.html      # Full testimonials page
 │   ├── contact.html      # Quote request form + contact info sidebar
+│   ├── homepage.css      # Homepage-only stylesheet (linked by index.html)
 │   ├── styles-v2.css     # Shared stylesheet for inner pages (services, projects, about, reviews, contact)
+│   ├── homepage.js       # Homepage-only JS: video crossfade, countup, project tabs, services accordion
 │   ├── v2-common.js      # Shared JS for inner pages: reveal, accordion, filter, lightbox, form, data-year
-│   └── homepage.js       # Homepage-only JS: video crossfade, countup, project tabs, services accordion
+│   ├── vercel.json       # Vercel config (cleanUrls, trailingSlash)
 │   └── assets/
-│       ├── img/          # All images (Brick/, Stone/, Framing/, Block/, owners.jpg, am-logo-nav.png)
-│       └── video/        # Drone footage (West Point.MP4.mp4, West pine.MP4.mp4)
+│       ├── img/          # Project photos (Brick/, Stone/, Framing/, Block/), am-logo-nav-h.png, favicon-black.png
+│       ├── video/        # Drone footage (West Point*/West pine .mp4) + video/projects/ card clips
+│       └── lenis.min.js  # Vendored smooth-scroll library (no npm)
+├── .gitignore
+├── README.md
 └── CLAUDE.md             # This file
 ```
 
@@ -50,7 +55,7 @@ ammasonry/
 
 ## CSS Architecture
 
-**index.html** has all homepage CSS inline in a `<style>` block. This is intentional — the homepage has unique sections (hero video, stats bar, process rail, project tabs, testimonials grid, why-us grid) not shared with inner pages.
+**homepage.css** is the homepage-only stylesheet, linked from `index.html` via `<link rel="stylesheet" href="homepage.css">`. It is kept separate because the homepage has unique sections (hero video, stats bar, process rail, project tabs, testimonials grid, why-us grid) not shared with inner pages.
 
 **styles-v2.css** covers inner pages only: nav (`.v2-nav`), page heroes (`.page-hero-v2`), buttons (`.btn-v2`), services accordion (`.svc-acc-*`), projects bento (`.proj-bento`), reviews grid (`.reviews-grid-v2`), about layout (`.about-*`), contact layout (`.contact-*`), footer (`.v2-footer`), lightbox (`.v2-lb`), and shared utilities (`.reveal`, `.eyebrow`, `.section`).
 
@@ -93,5 +98,5 @@ Every page shares the same nav and footer HTML markup. Nav pattern:
 - **No new dependencies:** pure HTML/CSS/JS. No npm, no bundlers.
 - **Images:** all in `website/assets/img/`. Paths from HTML files use `assets/img/` (assets folder lives inside `website/` so Vercel deploys it).
 - **CSS edits (inner pages):** edit `styles-v2.css`. Add new section CSS before the final `@media` blocks.
-- **CSS edits (homepage):** edit the inline `<style>` block in `index.html`.
+- **CSS edits (homepage):** edit `homepage.css`.
 - **Formspree endpoint:** `https://formspree.io/f/xnjwbjjo` (in contact.html form action)
