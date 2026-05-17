@@ -3,9 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<script>document.documentElement.classList.add('js');</script>
 <title>Request a Quote | A&amp;M Masonry Inc</title>
 <meta name="description" content="Request a free quote from A&M Masonry Inc. Tell us about your project and we'll get back to you shortly." />
-<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Request a Quote | A&amp;M Masonry Inc" />
+<meta property="og:description" content="Request a free quote from A&M Masonry Inc. Tell us about your project and we'll get back to you shortly." />
+<meta property="og:image" content="assets/img/West%20Pine-web.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="assets/img/favicon-black.png" />
 <link rel="stylesheet" href="styles-v2.css" />
 </head>
 <body>
@@ -14,7 +20,7 @@
 <nav class="v2-nav">
   <div class="v2-nav-inner">
     <a href="index.html" class="v2-nav-brand">
-      <img src="assets/img/am-logo-nav.png" alt="A&amp;M Masonry" />
+      <img src="assets/img/am-logo-nav-h.png" alt="A&amp;M Masonry" />
     </a>
     <div class="v2-nav-links" id="v2-nav-links">
       <a href="services.html">Services</a>
@@ -22,9 +28,7 @@
       <a href="reviews.html">Reviews</a>
       <a href="about.html">About</a>
       <div class="v2-nav-mobile-cta">
-        <a href="contact.html" class="btn-v2 btn-v2--primary">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a href="tel:4703700142" class="v2-nav-mobile-phone">(470) 370-0142</a>
-      </div>
+        <a href="contact.html" class="btn-v2 btn-v2--primary">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>      </div>
     </div>
     <a href="contact.html" class="v2-nav-cta is-current">Free Quote</a>
     <button class="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="v2-nav-links" type="button">
@@ -44,7 +48,7 @@
         <h1 class="reveal" data-delay="60">Request a <span class="accent">Quote</span></h1>
         <p class="lede reveal" data-delay="120">Tell us about your project and we'll get back to you within one business day.</p>
 
-        <form id="quote-form" class="contact-form reveal" data-delay="160" action="https://formspree.io/f/xnjwbjjo" method="POST" novalidate>
+        <form id="quote-form" class="contact-form reveal" data-delay="160" action="https://formspree.io/f/xnjwbjjo" method="POST">
           <input type="hidden" name="_subject" value="New quote request from A&M Masonry website" />
           <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
@@ -85,7 +89,7 @@
           </div>
 
           <button type="submit" class="form-submit">
-            Send Request
+            <span class="form-submit-label">Send Request</span>
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
 
@@ -96,19 +100,10 @@
       <!-- INFO COLUMN -->
       <div class="reveal" data-delay="200">
         <div class="contact-info-box">
-          <h3>Get in Touch</h3>
-          <p class="sub">Prefer to reach us directly? We're available by phone or email.</p>
+          <h2>Get in Touch</h2>
+          <p class="sub">Prefer to reach us directly? Send us an email anytime.</p>
 
           <ul class="cinfo-list">
-            <li class="cinfo-item">
-              <div class="cinfo-icon">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              </div>
-              <div>
-                <div class="cinfo-label">Phone</div>
-                <div class="cinfo-val"><a href="tel:4703700142">(470) 370-0142</a></div>
-              </div>
-            </li>
             <li class="cinfo-item">
               <div class="cinfo-icon">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -150,49 +145,26 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="v2-footer">
+<footer class="site-footer">
   <div class="wrap">
-    <div class="v2-foot">
-      <div class="v2-foot-brand">
-        <div class="mark"><span class="d"></span>A&amp;M Masonry</div>
-        <p>Masonry, framing, siding, and finishes. Serving the Southeast since 2014.</p>
-        <div class="trust-badge">
-          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-          Licensed · Insured
-        </div>
-      </div>
-      <div>
-        <h5>Navigate</h5>
-        <a href="index.html">Home</a>
+    <div class="sf-top">
+      <a href="index.html" class="sf-brand"><span class="sf-dot"></span>A&amp;M Masonry</a>
+      <nav class="sf-nav" aria-label="Footer">
         <a href="services.html">Services</a>
         <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
         <a href="reviews.html">Reviews</a>
-      </div>
-      <div>
-        <h5>Services</h5>
-        <a href="services.html">Masonry</a>
-        <a href="services.html">Fireplaces &amp; Stoves</a>
-        <a href="services.html">Siding Installation</a>
-        <a href="services.html">Framing &amp; Carpentry</a>
-        <a href="services.html">Drywall &amp; Sheetrock</a>
-        <a href="services.html">Painting &amp; Coatings</a>
-      </div>
-      <div>
-        <h5>Contact</h5>
-        <a href="tel:4703700142">(470) 370-0142</a>
-        <a href="mailto:jflores@ammasonry.net">jflores@ammasonry.net</a>
-        <a href="contact.html">Request a Quote</a>
-      </div>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-    <div class="v2-foot-bottom">
+    <div class="sf-base">
       <span>&copy; <span data-year></span> A&amp;M Masonry Inc. All rights reserved.</span>
-      <span>Lawrenceville, GA</span>
+      <span class="sf-meta"><a href="mailto:jflores@ammasonry.net">jflores@ammasonry.net</a> · Lawrenceville, GA</span>
     </div>
   </div>
 </footer>
 
-<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/lenis.min.js"></script>
 <script src="v2-common.js"></script>
 </body>
 </html>

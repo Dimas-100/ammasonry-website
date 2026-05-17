@@ -178,83 +178,16 @@
     });
   }
 
-  // ── Lightbox (projects page) ─────────────────────────────────────
-  const lb = document.getElementById('v2-lightbox');
-  if (lb) {
-    const lbImg = lb.querySelector('.lb-img');
-    const lbCap = lb.querySelector('.lb-cap');
-    let lbItems = [];
-    let lbIdx   = 0;
-
-    function openLb(items, idx) {
-      lbItems = items;
-      lbIdx   = idx;
-      renderLb();
-      lb.hidden = false;
-      document.body.style.overflow = 'hidden';
-    }
-    function renderLb() {
-      const item = lbItems[lbIdx];
-      lbImg.src = item.src;
-      lbImg.alt = item.alt;
-      lbCap.textContent = item.cap;
-      // hide arrows when only one image
-      lb.querySelector('.lb-prev').style.visibility = lbItems.length > 1 ? '' : 'hidden';
-      lb.querySelector('.lb-next').style.visibility = lbItems.length > 1 ? '' : 'hidden';
-    }
-    function closeLb() {
-      lb.hidden = true;
-      document.body.style.overflow = '';
-    }
-    function navigate(dir) {
-      lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
-      renderLb();
-    }
-
-    // ── Featured project thumbnails — grouped by project ──────────
-    const thumbGroups = {};
-    document.querySelectorAll('.fpc-thumb').forEach(el => {
-      const proj = el.dataset.project;
-      const idx  = parseInt(el.dataset.idx, 10);
-      if (!thumbGroups[proj]) thumbGroups[proj] = [];
-      thumbGroups[proj][idx] = {
-        src: el.querySelector('img').src,
-        alt: el.querySelector('img').alt,
-        cap: el.querySelector('.fpc-thumb-cap')?.textContent?.trim() || '',
-      };
-      el.addEventListener('click', () => openLb(thumbGroups[proj], idx));
-    });
-
-    // ── Bento gallery cells — navigate as one group ───────────────
-    const cells = Array.from(document.querySelectorAll('.proj-cell'));
-    const cellItems = cells.map(cell => ({
-      src: cell.querySelector('img').src,
-      alt: cell.querySelector('img').alt,
-      cap: cell.querySelector('.loc')?.textContent?.trim() || '',
-    }));
-    cells.forEach((cell, i) => cell.addEventListener('click', () => openLb(cellItems, i)));
-
-    lb.querySelector('.lb-close').addEventListener('click', closeLb);
-    lb.querySelector('.lb-prev').addEventListener('click', () => navigate(-1));
-    lb.querySelector('.lb-next').addEventListener('click', () => navigate(1));
-    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-    document.addEventListener('keydown', e => {
-      if (lb.hidden) return;
-      if (e.key === 'Escape') closeLb();
-      if (e.key === 'ArrowLeft') navigate(-1);
-      if (e.key === 'ArrowRight') navigate(1);
-    });
-  }
-
   // ── Contact form ──────────────────────────────────────────────────
   const form = document.getElementById('quote-form');
   if (form) {
     const status = document.getElementById('form-status');
+    const btn = form.querySelector('[type="submit"]');
+    const btnLabel = btn.querySelector('.form-submit-label');
     form.addEventListener('submit', async e => {
       e.preventDefault();
-      const btn = form.querySelector('[type="submit"]');
       btn.disabled = true;
-      btn.textContent = 'Sending…';
+      btnLabel.textContent = 'Sending…';
       try {
         const res = await fetch(form.action, {
           method: 'POST',
@@ -273,7 +206,7 @@
         status.className = 'form-status err';
       }
       btn.disabled = false;
-      btn.textContent = 'Send Request';
+      btnLabel.textContent = 'Send Request';
     });
   }
 })();

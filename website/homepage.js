@@ -59,6 +59,23 @@
     }
   });
 
+  // ── Footer year ──────────────────────────────────────────────────
+  document.querySelectorAll('[data-year]').forEach(el => {
+    el.textContent = new Date().getFullYear();
+  });
+
+  // ── Reveal on scroll ─────────────────────────────────────────────
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const delay = parseInt(e.target.dataset.delay || '0', 10);
+        setTimeout(() => e.target.classList.add('in'), delay);
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
   // ── Mobile nav toggle ────────────────────────────────────────────
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks  = document.querySelector('.nav-links');
