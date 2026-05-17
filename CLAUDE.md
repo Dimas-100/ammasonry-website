@@ -36,6 +36,8 @@ ammasonry/
 - `--ink-2: #1B1F26` — stats bar, process rail, project cards
 - `--paper: #F4F1EB` — body background, light sections
 - `--paper-2: #EAE4D8` — slightly darker light background (projects section)
+- `--line: rgba(20,23,28,0.10)` — hairline borders/dividers on light backgrounds
+- `--line-d: rgba(244,241,235,0.10)` — hairline borders/dividers on dark backgrounds
 - `--muted: #5F6573` — body text, descriptions
 - `--muted-d: rgba(244,241,235,0.62)` — muted text on dark backgrounds
 
