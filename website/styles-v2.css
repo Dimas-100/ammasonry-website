@@ -533,6 +533,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .svp-row:nth-child(even) .svp-photo { order: 2; }
 .svp-row:nth-child(even) .svp-content { order: 1; }
 .svp-photo {
+  position: relative;
   aspect-ratio: 5/4;
   overflow: hidden;
   border-radius: 12px;
@@ -548,6 +549,24 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   height: 100%;
   object-fit: cover;
   display: block;
+}
+.coming-soon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--paper-2);
+  color: var(--muted);
+}
+.coming-soon svg { opacity: 0.55; }
+.coming-soon span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 .svp-content { min-width: 0; max-width: 46ch; }
 .svp-row:nth-child(even) .svp-content { justify-self: end; }

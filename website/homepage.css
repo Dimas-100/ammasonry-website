@@ -175,6 +175,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .svc-card-img { aspect-ratio: 3/2; position: relative; overflow: hidden; border-radius: 10px; background: var(--paper-2); box-shadow: 0 1px 2px rgba(20,23,28,0.04), 0 14px 32px -16px rgba(20,23,28,0.18); transition: box-shadow .55s cubic-bezier(.22,.61,.36,1); }
 .svc-card:hover .svc-card-img { box-shadow: 0 2px 8px rgba(20,23,28,0.07), 0 26px 50px -20px rgba(20,23,28,0.30); }
 .svc-card-img img { position: absolute; inset: -2px; width: calc(100% + 4px); height: calc(100% + 4px); object-fit: cover; display: block; }
+.coming-soon { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: var(--paper-2); color: var(--muted); }
+.coming-soon svg { opacity: 0.55; }
+.coming-soon span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; }
+.coming-soon--dark { background: #0E1014; color: rgba(244,241,235,0.55); }
 .svc-card-info { padding: 0 2px; }
 .svc-card-title { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 6px; }
 .svc-card-sub { font-family: var(--body); font-size: 14px; line-height: 1.55; color: var(--muted); margin: 0; max-width: 34ch; }
