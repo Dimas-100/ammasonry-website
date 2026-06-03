@@ -18,8 +18,10 @@ ammasonry/
 │   ├── homepage.js       # Homepage-only JS: video crossfade, countup, project tabs, services accordion
 │   ├── v2-common.js      # Shared JS for inner pages: reveal, accordion, filter, lightbox, form, data-year
 │   ├── vercel.json       # Vercel config (cleanUrls, trailingSlash)
+│   ├── robots.txt        # Allow all + Sitemap: line
+│   ├── sitemap.xml       # 6 absolute page URLs (https://ammasonryinc.co)
 │   └── assets/
-│       ├── img/          # Project photos (Brick/, Stone/, Framing/, Block/), am-logo-nav-h.png, favicon-black.png
+│       ├── img/          # Project photos (Brick/, Stone/, Framing/, Block/), am-logo-nav-h.png, favicon-black.png, og-cover.jpg (1200×630 social share)
 │       ├── video/        # Drone footage (West Point*/West pine .mp4) + video/projects/ card clips
 │       └── lenis.min.js  # Vendored smooth-scroll library (no npm)
 ├── .gitignore
@@ -69,8 +71,8 @@ ammasonry/
 - `data-year` — fills current year
 - `.reveal` — IntersectionObserver scroll reveal (supports `data-delay`)
 - `.svc-acc-trigger` / `.svc-acc-row` — services accordion
-- `.proj-filter-v2` / `.proj-cell[data-cat]` — gallery filter
-- `#v2-lightbox` + `.fpc-thumb` + `.proj-cell` — lightbox with keyboard nav
+- `.proj-filter-btn[data-filter]` / `.proj-cell[data-cat]` — gallery filter (toggles `.proj-cell.hidden`)
+- `#v2-lightbox` (`.v2-lb` styles) — lightbox; click any `.proj-cell` to open, prev/next/Esc, caption from `alt`, cycles only the currently-filtered photos
 - `#quote-form` — Formspree form submit
 
 **homepage.js** (index.html only):
@@ -87,12 +89,17 @@ Every page shares the same nav and footer HTML markup. Nav pattern:
 - All CTA buttons link to `contact.html`
 - Nav links: Services | Projects | Reviews | About (no Home link — logo is the home link)
 
+## SEO
+- Every page `<head>` carries: a self-referencing `<link rel="canonical">`, Open Graph + Twitter tags (`og:image` → absolute `assets/img/og-cover.jpg`), and one **identical** LocalBusiness JSON-LD block (`@type: GeneralContractor`). When editing head meta, replicate across all 6 pages — only the canonical/`og:url` path differs.
+- `aggregateRating` is intentionally **omitted** from the JSON-LD — Google disallows self-collected review stars in rich results. Don't re-add it.
+- Every content `<img>` has explicit `width`/`height`; page bodies are wrapped in a single `<main>` landmark.
+
 ## Deployment
 
 - **GitHub repo:** `github.com/Dimas-100/ammasonry-website`
 - **Hosting:** Vercel, connected to GitHub. Root directory set to `website/`.
 - **Deploy workflow:** edit files → `git commit` → `git push origin main` → Vercel auto-redeploys in ~60 seconds. No manual steps needed in Vercel.
-- **Domain:** `ammasonryinc.net` or `ammasonryinc.co` — pending client (uncle) payment confirmation. Once purchased, point DNS to Vercel via the Vercel dashboard.
+- **Domain:** `ammasonryinc.co` chosen (still pending client payment). It is **hardcoded** in all SEO tags — if the final domain differs, find-and-replace `https://ammasonryinc.co` across `website/*.html`, `robots.txt`, and `sitemap.xml`. Once purchased, point DNS to Vercel via the Vercel dashboard.
 
 ## Workflow Rules
 - **Before any major push:** `git tag v0.x-description` to preserve a rollback point
@@ -102,3 +109,5 @@ Every page shares the same nav and footer HTML markup. Nav pattern:
 - **CSS edits (inner pages):** edit `styles-v2.css`. Add new section CSS before the final `@media` blocks.
 - **CSS edits (homepage):** edit `homepage.css`.
 - **Formspree endpoint:** `https://formspree.io/f/xnjwbjjo` (in contact.html form action)
+- **Local preview:** `python -m http.server` from `website/`, then open pages as `*.html` (cleanUrls only resolve on Vercel, not a plain static server). Playwright MCP works for verifying JS behavior in-browser.
+- **Asset tooling:** ImageMagick/ffmpeg are NOT installed. On Windows `convert` is the disk-volume tool — do NOT run it on images. Resize raster images via PowerShell `System.Drawing`; video re-encoding needs ffmpeg on a machine that has it.
