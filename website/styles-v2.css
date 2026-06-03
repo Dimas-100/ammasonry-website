@@ -1325,7 +1325,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .form-field input:focus,
 .form-field select:focus,
-.form-field textarea:focus { border-color: var(--crimson); }
+.form-field textarea:focus {
+  border-color: var(--crimson);
+  box-shadow: 0 0 0 3px rgba(200,16,46,0.18);
+}
 .form-honeypot { display: none; }
 .form-submit {
   display: inline-flex;
