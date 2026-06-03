@@ -209,4 +209,85 @@
       btnLabel.textContent = 'Send Request';
     });
   }
+
+  // ── Gallery filter + lightbox (projects page) ─────────────────────
+  const projGrid = document.querySelector('.proj-grid');
+  const lb = document.getElementById('v2-lightbox');
+  if (projGrid && lb) {
+    const cells      = Array.from(projGrid.querySelectorAll('.proj-cell'));
+    const filterBtns = Array.from(document.querySelectorAll('.proj-filter-btn'));
+    const lbImg   = lb.querySelector('.lb-img');
+    const lbCap   = lb.querySelector('.lb-cap');
+    const btnClose = lb.querySelector('.lb-close');
+    const btnPrev  = lb.querySelector('.lb-prev');
+    const btnNext  = lb.querySelector('.lb-next');
+    let visible = cells.slice();  // cells currently shown
+    let current = 0;              // index into `visible`
+    let lastFocused = null;
+
+    // Make each cell behave like a button for keyboard users
+    cells.forEach(cell => {
+      const img = cell.querySelector('img');
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.setAttribute('aria-label', 'View ' + (img ? img.alt : 'project photo'));
+      cell.addEventListener('click', () => openAt(cell));
+      cell.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openAt(cell); }
+      });
+    });
+
+    // ── Filter ──
+    const applyFilter = cat => {
+      cells.forEach(c => c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat));
+      visible = cells.filter(c => !c.classList.contains('hidden'));
+      filterBtns.forEach(b => {
+        const on = b.dataset.filter === cat;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+    };
+    filterBtns.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+
+    // ── Lightbox ──
+    const render = () => {
+      const img = visible[current].querySelector('img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCap.textContent = img.alt;
+      const multi = visible.length > 1;
+      btnPrev.style.display = multi ? '' : 'none';
+      btnNext.style.display = multi ? '' : 'none';
+    };
+    function openAt(cell) {
+      if (cell.classList.contains('hidden')) return;
+      current = visible.indexOf(cell);
+      if (current < 0) return;
+      lastFocused = cell;
+      render();
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+    }
+    const close = () => {
+      lb.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    };
+    const step = dir => {
+      if (visible.length < 2) return;
+      current = (current + dir + visible.length) % visible.length;
+      render();
+    };
+    btnClose.addEventListener('click', close);
+    btnPrev.addEventListener('click', () => step(-1));
+    btnNext.addEventListener('click', () => step(1));
+    lb.addEventListener('click', e => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', e => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') step(-1);
+      else if (e.key === 'ArrowRight') step(1);
+    });
+  }
 })();

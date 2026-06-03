@@ -1527,3 +1527,29 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .lb-prev:hover,
 .lb-next:hover { color: #fff; }
+/* reset native button chrome on lightbox controls */
+.lb-close, .lb-prev, .lb-next { background: none; border: 0; font-family: inherit; }
+.lb-figure { margin: 0; }
+.lb-close:focus-visible, .lb-prev:focus-visible, .lb-next:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ── GALLERY FILTER ───────────────────────────────────────── */
+.pgal-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.proj-filter { display: flex; gap: 8px; flex-wrap: wrap; }
+.proj-filter-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.proj-filter-btn:hover { color: var(--ink); border-color: var(--ink); }
+.proj-filter-btn.is-active { color: #fff; background: var(--crimson); border-color: var(--crimson); }
+.proj-filter-btn:focus-visible { outline: 2px solid var(--crimson); outline-offset: 2px; }
+.proj-cell { cursor: pointer; }
+.proj-cell:focus-visible { outline: 3px solid var(--crimson); outline-offset: 3px; }

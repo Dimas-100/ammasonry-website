@@ -163,6 +163,11 @@
       <div>
         <h2 class="pgal-h2">More from our <span class="accent">portfolio.</span></h2>
       </div>
+      <div class="proj-filter" role="group" aria-label="Filter projects by category">
+        <button type="button" class="proj-filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="proj-filter-btn" data-filter="brick" aria-pressed="false">Brick</button>
+        <button type="button" class="proj-filter-btn" data-filter="framing" aria-pressed="false">Framing</button>
+      </div>
     </div>
 
     <div class="proj-grid reveal">
@@ -184,6 +189,17 @@
     </div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div id="v2-lightbox" class="v2-lb" hidden role="dialog" aria-modal="true" aria-label="Project photo viewer">
+  <button type="button" class="lb-close" aria-label="Close viewer">&times;</button>
+  <button type="button" class="lb-prev" aria-label="Previous photo">&#8249;</button>
+  <figure class="lb-figure">
+    <img class="lb-img" src="" alt="" />
+    <figcaption class="lb-cap"></figcaption>
+  </figure>
+  <button type="button" class="lb-next" aria-label="Next photo">&#8250;</button>
+</div>
 
 </main>
 
