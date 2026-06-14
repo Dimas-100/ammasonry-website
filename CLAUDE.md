@@ -7,16 +7,16 @@ Static marketing website for A&M Masonry Inc, a masonry and construction company
 ```
 ammasonry/
 ├── website/
-│   ├── index.html        # Homepage (hero, stats, services, process, projects, reviews, why us, CTA, footer)
+│   ├── index.html        # Homepage (hero, intro, services, projects [dark video rows], closing CTA, footer)
 │   ├── services.html     # Full services accordion (all 5 services)
-│   ├── projects.html     # Full project gallery — bento grid with filter + lightbox + featured video cards
+│   ├── projects.html     # Featured projects as alternating video + description rows (no photo gallery)
 │   ├── about.html        # Company story, values, stats
 │   ├── reviews.html      # Full testimonials page
 │   ├── contact.html      # Quote request form + contact info sidebar
 │   ├── homepage.css      # Homepage-only stylesheet (linked by index.html)
 │   ├── styles-v2.css     # Shared stylesheet for inner pages (services, projects, about, reviews, contact)
-│   ├── homepage.js       # Homepage-only JS: video crossfade, countup, project tabs, services accordion
-│   ├── v2-common.js      # Shared JS for inner pages: reveal, accordion, filter, lightbox, form, data-year
+│   ├── homepage.js       # Homepage-only JS: hero video crossfade + project feature-row video crossfade
+│   ├── v2-common.js      # Shared JS for inner pages: reveal, accordion, form, data-year, mobile nav
 │   ├── vercel.json       # Vercel config (cleanUrls, trailingSlash)
 │   ├── robots.txt        # Allow all + Sitemap: line
 │   ├── sitemap.xml       # 6 absolute page URLs (https://ammasonryinc.co)
@@ -59,9 +59,9 @@ ammasonry/
 
 ## CSS Architecture
 
-**homepage.css** is the homepage-only stylesheet, linked from `index.html` via `<link rel="stylesheet" href="homepage.css">`. It is kept separate because the homepage has unique sections (hero video, stats bar, process rail, project tabs, testimonials grid, why-us grid) not shared with inner pages.
+**homepage.css** is the homepage-only stylesheet, linked from `index.html` via `<link rel="stylesheet" href="homepage.css">`. It is kept separate because the homepage has unique sections (hero video, dark project video rows `.proj-rows`/`.pfrow`) not shared with inner pages.
 
-**styles-v2.css** covers inner pages only: nav (`.v2-nav`), page heroes (`.page-hero-v2`), buttons (`.btn-v2`), services accordion (`.svc-acc-*`), projects bento (`.proj-bento`), reviews grid (`.reviews-grid-v2`), about layout (`.about-*`), contact layout (`.contact-*`), footer (`.v2-footer`), lightbox (`.v2-lb`), and shared utilities (`.reveal`, `.eyebrow`, `.section`).
+**styles-v2.css** covers inner pages only: nav (`.v2-nav`), page heroes (`.page-hero-v2`), buttons (`.btn-v2`), services accordion (`.svc-acc-*`), featured project rows (`.fpc`, alternating via `:nth-child(even)`), reviews grid (`.reviews-grid-v2`), about layout (`.about-*`), contact layout (`.contact-*`), footer (`.v2-footer`), and shared utilities (`.reveal`, `.eyebrow`, `.section`).
 
 **Note:** The homepage uses different class names than inner pages for shared components (nav: `.nav` vs `.v2-nav`, buttons: `.btn` vs `.btn-v2`). This is a known inconsistency to resolve in a future CSS consolidation pass.
 
@@ -71,15 +71,12 @@ ammasonry/
 - `data-year` — fills current year
 - `.reveal` — IntersectionObserver scroll reveal (supports `data-delay`)
 - `.svc-acc-trigger` / `.svc-acc-row` — services accordion
-- `.proj-filter-btn[data-filter]` / `.proj-cell[data-cat]` — gallery filter (toggles `.proj-cell.hidden`)
-- `#v2-lightbox` (`.v2-lb` styles) — lightbox; click any `.proj-cell` to open, prev/next/Esc, caption from `alt`, cycles only the currently-filtered photos
+- Mobile nav toggle (`.v2-nav-toggle` / `.v2-nav-links`)
 - `#quote-form` — Formspree form submit
 
 **homepage.js** (index.html only):
 - Hero video crossfade — `#hero-vid-0` / `#hero-vid-1` with 1.5s opacity transition
-- CountUp — `[data-countup]` with `data-suffix` attribute, triggered by IntersectionObserver
-- Project tab switching — `.proj-tab` / `[data-proj-panel]` with fade
-- `.svc-head-row` / `.svc-row` — services accordion (homepage class names differ from inner pages)
+- Project feature-row video crossfade — each `[data-pcv-group]` dissolves its two `.pcv` clips (desktop only, disabled under reduced motion)
 
 ## Pages & Nav
 
