@@ -150,13 +150,14 @@
     });
   }
 
-  // ── Project card video crossfade (West Pine wide card) ──────────────
-  // Two clips of the same project dissolve into each other. Desktop only —
-  // on mobile the second clip never downloads and clip 1 just loops.
-  const pcGroup = document.querySelector('[data-pcv-group]');
-  if (!isMobile && !reduceMotion && pcGroup) {
-    const pcVids = Array.from(pcGroup.querySelectorAll('video.pcv'));
-    if (pcVids.length === 2) {
+  // ── Project feature-row video crossfade ─────────────────────────────
+  // Each [data-pcv-group] holds two clips of one project that dissolve into
+  // each other. Desktop only — on mobile the second clip never downloads and
+  // clip 1 just loops. Iterates all groups so future project rows work too.
+  if (!isMobile && !reduceMotion) {
+    document.querySelectorAll('[data-pcv-group]').forEach(group => {
+      const pcVids = Array.from(group.querySelectorAll('video.pcv'));
+      if (pcVids.length !== 2) return;
       let pcActive = 0;
       let pcSwitching = false;
 
@@ -177,7 +178,7 @@
           setTimeout(() => { pcSwitching = false; }, (FADE + 0.5) * 1000);
         });
       });
-    }
+    });
   }
 
 })();
