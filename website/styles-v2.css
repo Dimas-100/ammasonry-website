@@ -798,7 +798,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   }
   .fpc-video-wrap {
     min-height: 0;
-    aspect-ratio: 16/9;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 — robust in all engines; avoids empty-box aspect-ratio collapse (iOS Safari) */
   }
 }
 @media (max-width: 380px) {

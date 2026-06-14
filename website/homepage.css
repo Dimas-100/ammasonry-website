@@ -216,7 +216,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 @media (max-width: 860px) {
   .pfrow, .pfrow:nth-child(even) { grid-template-columns: 1fr; grid-template-areas: "media" "info"; row-gap: 24px; }
-  .pfrow-media { aspect-ratio: 16/9; }
+  .pfrow-media { aspect-ratio: auto; height: 0; padding-bottom: 56.25%; } /* 16:9 via padding — avoids empty-box aspect-ratio collapse (iOS Safari) */
 }
 
 /* ── CLOSING CTA ────────────────────────────────────────── */
