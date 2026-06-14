@@ -89,7 +89,7 @@
 <section class="page-hero-v2">
   <div class="wrap">
     <h1 class="reveal" data-delay="0">Work we're <span class="accent">proud of.</span></h1>
-    <p class="reveal" data-delay="100">Named projects with drone footage and detail photography, plus our full photo gallery below.</p>
+    <p class="reveal" data-delay="100">Named projects with drone footage from the field.</p>
   </div>
 </section>
 
@@ -97,13 +97,8 @@
 <section class="proj-featured">
   <div class="wrap">
 
-    <div class="pfeat-tabs reveal" role="tablist" aria-label="Featured projects">
-      <button class="pfeat-tab is-active" id="tab-west-point" role="tab" aria-selected="true" aria-controls="west-point" type="button">West Point</button>
-      <button class="pfeat-tab" id="tab-west-pine" role="tab" aria-selected="false" aria-controls="west-pine" tabindex="-1" type="button">West Pine</button>
-    </div>
-
     <!-- ─ West Point ─ -->
-    <article class="fpc" id="west-point" data-proj-panel="0" role="tabpanel" aria-labelledby="tab-west-point">
+    <article class="fpc reveal" id="west-point">
       <div class="fpc-video-wrap">
         <video class="fpc-vid" autoplay muted loop playsinline>
           <source src="assets/video/West%20Point.MP4.mp4" type="video/mp4">
@@ -113,7 +108,7 @@
       <div class="fpc-info">
         <h2 class="fpc-title">West Point · Brick Exterior</h2>
         <div class="fpc-trade">Brick masonry · Lawrenceville, GA · 2024</div>
-        <p class="fpc-desc">Full exterior brick installation on a commercial property in Gwinnett County. Drone footage captures the complete scope; detail photography shows coursing and mortar work up close.</p>
+        <p class="fpc-desc">Full exterior brick installation on a commercial property in Gwinnett County. Drone footage captures the complete scope of the build, from the first courses to the finished facade.</p>
         <div class="fpc-divider" aria-hidden="true"></div>
         <dl class="fpc-stats">
           <div><dt>Sq Ft</dt><dd>38,000</dd></div>
@@ -128,9 +123,9 @@
     </article>
 
     <!-- ─ West Pine ─ -->
-    <article class="fpc" id="west-pine" data-proj-panel="1" role="tabpanel" aria-labelledby="tab-west-pine" hidden>
+    <article class="fpc reveal" id="west-pine">
       <div class="fpc-video-wrap">
-        <video class="fpc-vid" muted loop playsinline preload="none">
+        <video class="fpc-vid" autoplay muted loop playsinline>
           <source src="assets/video/West%20pine.MP4.mp4" type="video/mp4">
         </video>
         <span class="fpc-count" aria-hidden="true">02<span class="fpc-count-rule"></span>02</span>
@@ -138,7 +133,7 @@
       <div class="fpc-info">
         <h2 class="fpc-title">West Pine · Stone &amp; Block</h2>
         <div class="fpc-trade">Stone masonry · Buford, GA · 2024</div>
-        <p class="fpc-desc">Stone and CMU block work across a large residential property in Buford. Aerial footage shows site scale; detail photography captures stone selection and finished joint quality.</p>
+        <p class="fpc-desc">Stone and CMU block work across a large residential property in Buford. Aerial footage shows the full site scale and the finished stone and joint work.</p>
         <div class="fpc-divider" aria-hidden="true"></div>
         <dl class="fpc-stats">
           <div><dt>Sq Ft</dt><dd>22,000</dd></div>
@@ -154,52 +149,6 @@
 
   </div>
 </section>
-
-<!-- ─── PHOTO GALLERY ─────────────────────────────────────────── -->
-<section class="proj-gallery">
-  <div class="wrap">
-
-    <div class="pgal-head reveal">
-      <div>
-        <h2 class="pgal-h2">More from our <span class="accent">portfolio.</span></h2>
-      </div>
-      <div class="proj-filter" role="group" aria-label="Filter projects by category">
-        <button type="button" class="proj-filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="proj-filter-btn" data-filter="brick" aria-pressed="false">Brick</button>
-        <button type="button" class="proj-filter-btn" data-filter="framing" aria-pressed="false">Framing</button>
-      </div>
-    </div>
-
-    <div class="proj-grid reveal">
-      <div class="proj-cell" data-cat="brick">
-        <img src="assets/img/Brick/brick-front-3.jpg" alt="Traditional brick exterior" width="300" height="300" loading="lazy" />
-      </div>
-      <div class="proj-cell" data-cat="framing">
-        <img src="assets/img/Framing/framing-done-1.jpg" alt="Completed frame structure" width="300" height="300" loading="lazy" />
-      </div>
-      <div class="proj-cell" data-cat="framing">
-        <img src="assets/img/Framing/framing-done-2.jpg" alt="Multi-story framing" width="300" height="300" loading="lazy" />
-      </div>
-      <div class="proj-cell" data-cat="framing">
-        <img src="assets/img/Framing/framing-ground-1.jpg" alt="Ground floor framework" width="640" height="480" loading="lazy" />
-      </div>
-      <div class="proj-cell" data-cat="framing">
-        <img src="assets/img/Framing/framing-top-1.JPG" alt="Roof frame structure" width="640" height="360" loading="lazy" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div id="v2-lightbox" class="v2-lb" hidden role="dialog" aria-modal="true" aria-label="Project photo viewer">
-  <button type="button" class="lb-close" aria-label="Close viewer">&times;</button>
-  <button type="button" class="lb-prev" aria-label="Previous photo">&#8249;</button>
-  <figure class="lb-figure">
-    <img class="lb-img" src="" alt="" />
-    <figcaption class="lb-cap"></figcaption>
-  </figure>
-  <button type="button" class="lb-next" aria-label="Next photo">&#8250;</button>
-</div>
 
 </main>
 
