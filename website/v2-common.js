@@ -133,26 +133,62 @@
     });
   }
 
-  // ── Lazy-play project videos ────────────────────────────────────────
-  // Featured-project videos use preload="none" and only download + play once
-  // their row scrolls near the viewport, then pause when scrolled away. This
-  // keeps the initial page load light no matter how many (or how large) the
-  // clips are.
-  const fpcMedia = document.querySelectorAll('.fpc-video-wrap');
-  if (fpcMedia.length && 'IntersectionObserver' in window) {
-    const vidObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const vid = entry.target.querySelector('video');
+  // ── Lazy-load + focus-play project videos ───────────────────────────
+  // Videos use preload="none" (nothing downloads until needed); each clip
+  // buffers as its row approaches (preloadIO). A clip plays only while it sits
+  // in the central band of the viewport (focusIO, negative rootMargin) and
+  // pauses the moment you scroll on to the next — so one plays at a time.
+  const fpcMedia = Array.from(document.querySelectorAll('.fpc-video-wrap'));
+  if (fpcMedia.length) {
+    // Play only the video nearest the viewport center (and overlapping the
+    // central band); pause all others. Recompute the whole set on every
+    // change so a dropped exit event can't leave a stray video playing.
+    let ticking = false, settleTimer = 0;
+    const applyFocus = () => {
+      ticking = false;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const lo = vh * 0.35, hi = vh * 0.65, mid = vh / 2;
+      let best = null, bestDist = Infinity;
+      fpcMedia.forEach(w => {
+        const r = w.getBoundingClientRect();
+        if (r.top < hi && r.bottom > lo) {
+          const d = Math.abs((r.top + r.bottom) / 2 - mid);
+          if (d < bestDist) { bestDist = d; best = w; }
+        }
+      });
+      fpcMedia.forEach(w => {
+        const vid = w.querySelector('video');
         if (!vid) return;
-        if (entry.isIntersecting) {
+        if (w === best) {
           if (vid.preload !== 'auto') vid.preload = 'auto';
           const p = vid.play();
           if (p && p.catch) p.catch(() => {});
-        } else {
+        } else if (!vid.paused) {
           vid.pause();
         }
       });
-    }, { rootMargin: '300px 0px', threshold: 0.1 });
-    fpcMedia.forEach(m => vidObserver.observe(m));
+    };
+    const schedule = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(applyFocus); }
+      if (settleTimer) clearTimeout(settleTimer);
+      settleTimer = setTimeout(applyFocus, 200); // backstop for the settled position
+    };
+
+    if ('IntersectionObserver' in window) {
+      const preloadIO = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const vid = entry.target.querySelector('video');
+          if (vid && vid.preload !== 'auto') { vid.preload = 'auto'; vid.load(); }
+          obs.unobserve(entry.target);
+        });
+      }, { rootMargin: '500px 0px' });
+      const focusIO = new IntersectionObserver(schedule, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+      fpcMedia.forEach(m => { preloadIO.observe(m); focusIO.observe(m); });
+    }
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    if (lenis && typeof lenis.on === 'function') lenis.on('scroll', schedule);
+    applyFocus();
   }
 })();
