@@ -669,29 +669,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   height: calc(100% + 4px);
   object-fit: cover;
 }
-.fpc-count {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 6px 11px;
-  border-radius: 7px;
-  background: rgba(20,23,28,0.55);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .16em;
-  color: rgba(244,241,235,0.92);
-}
-.fpc-count-rule {
-  width: 18px;
-  height: 1px;
-  background: rgba(244,241,235,0.45);
-}
 .fpc-info {
   grid-area: info;
   padding: 0;
@@ -788,31 +765,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   margin: 0;
 }
 
-.fpc-cta {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 11px 18px;
-  border: 1.5px solid var(--ink);
-  border-radius: 999px;
-  background: transparent;
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  text-decoration: none;
-  transition: background .25s, border-color .25s, color .25s;
-}
-.fpc-cta:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
-}
-.fpc-cta .arr { transition: transform .25s; }
-.fpc-cta:hover .arr { transform: translateX(3px); }
-
 @media (max-width: 960px) {
   .fpc,
   .fpc:nth-child(even) {
@@ -825,7 +777,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   .fpc-video-wrap {
     min-height: 0;
     height: 0;
-    padding-bottom: 56.25%; /* 16:9 — robust in all engines; avoids empty-box aspect-ratio collapse (iOS Safari) */
+    padding-bottom: 75%; /* 4:3 — taller video on mobile; robust padding ratio (no empty-box aspect-ratio) */
   }
 }
 @media (max-width: 380px) {
