@@ -649,7 +649,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .fpc[hidden] { display: none; }
 .fpc.fading { opacity: 0; pointer-events: none; }
-.fpc + .fpc { margin-top: clamp(56px,7vw,104px); }
+.fpc + .fpc { margin-top: clamp(120px,14vw,220px); }
 .fpc:nth-child(even) { grid-template-columns: 1fr 1.22fr; grid-template-areas: "info video"; }
 
 .fpc-video-wrap {
