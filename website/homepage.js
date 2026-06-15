@@ -150,35 +150,27 @@
     });
   }
 
-  // ── Project feature-row video crossfade ─────────────────────────────
-  // Each [data-pcv-group] holds two clips of one project that dissolve into
-  // each other. Desktop only — on mobile the second clip never downloads and
-  // clip 1 just loops. Iterates all groups so future project rows work too.
-  if (!isMobile && !reduceMotion) {
-    document.querySelectorAll('[data-pcv-group]').forEach(group => {
-      const pcVids = Array.from(group.querySelectorAll('video.pcv'));
-      if (pcVids.length !== 2) return;
-      let pcActive = 0;
-      let pcSwitching = false;
-
-      // Defer downloading clip 2 so it doesn't compete with the first paint
-      setTimeout(() => { pcVids[1].preload = 'auto'; pcVids[1].load(); }, 2500);
-
-      pcVids.forEach((vid, i) => {
-        vid.addEventListener('timeupdate', () => {
-          if (pcSwitching || pcActive !== i) return;
-          if (!vid.duration || vid.currentTime < vid.duration - FADE) return;
-          pcSwitching = true;
-          const next = 1 - i;
-          pcVids[next].currentTime = 0;
-          pcVids[next].play().catch(() => {});
-          pcVids[i].classList.remove('is-active');
-          pcVids[next].classList.add('is-active');
-          pcActive = next;
-          setTimeout(() => { pcSwitching = false; }, (FADE + 0.5) * 1000);
-        });
+  // ── Lazy-play project videos ────────────────────────────────────────
+  // Project-row videos use preload="none" and only download + play once their
+  // row scrolls near the viewport, then pause when scrolled away. This keeps
+  // the initial page load light no matter how many (or how large) the clips
+  // are — nothing downloads until you reach the Projects section.
+  const projMedia = document.querySelectorAll('.pfrow-media');
+  if (projMedia.length && 'IntersectionObserver' in window) {
+    const vidObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const vid = entry.target.querySelector('video');
+        if (!vid) return;
+        if (entry.isIntersecting) {
+          if (vid.preload !== 'auto') vid.preload = 'auto';
+          const p = vid.play();
+          if (p && p.catch) p.catch(() => {});
+        } else {
+          vid.pause();
+        }
       });
-    });
+    }, { rootMargin: '300px 0px', threshold: 0.1 });
+    projMedia.forEach(m => vidObserver.observe(m));
   }
 
 })();

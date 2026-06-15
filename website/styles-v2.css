@@ -637,7 +637,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   background: var(--paper-2);
   padding: clamp(80px,10vw,128px) 0 clamp(124px,15vw,200px);
 }
-#west-point, #west-pine { scroll-margin-top: 90px; }
+#west-point, #west-pine, #douglas, #overlook { scroll-margin-top: 90px; }
 
 .fpc {
   display: grid;

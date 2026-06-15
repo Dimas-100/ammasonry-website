@@ -132,4 +132,27 @@
       btnLabel.textContent = 'Send Request';
     });
   }
+
+  // ── Lazy-play project videos ────────────────────────────────────────
+  // Featured-project videos use preload="none" and only download + play once
+  // their row scrolls near the viewport, then pause when scrolled away. This
+  // keeps the initial page load light no matter how many (or how large) the
+  // clips are.
+  const fpcMedia = document.querySelectorAll('.fpc-video-wrap');
+  if (fpcMedia.length && 'IntersectionObserver' in window) {
+    const vidObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const vid = entry.target.querySelector('video');
+        if (!vid) return;
+        if (entry.isIntersecting) {
+          if (vid.preload !== 'auto') vid.preload = 'auto';
+          const p = vid.play();
+          if (p && p.catch) p.catch(() => {});
+        } else {
+          vid.pause();
+        }
+      });
+    }, { rootMargin: '300px 0px', threshold: 0.1 });
+    fpcMedia.forEach(m => vidObserver.observe(m));
+  }
 })();

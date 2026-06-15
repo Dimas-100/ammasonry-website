@@ -202,8 +202,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 .pfrow-media { grid-area: media; position: relative; overflow: hidden; border-radius: 6px; aspect-ratio: 16/10; background: #0E1014; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 30px 60px -30px rgba(0,0,0,0.6); }
 .pfrow-media video { position: absolute; inset: -2px; width: calc(100% + 4px); height: calc(100% + 4px); object-fit: cover; display: block; }
-.pfrow-media video.pcv { opacity: 0; transition: opacity 1.5s ease; }
-.pfrow-media video.pcv.is-active { opacity: 1; }
 
 .pfrow-info { grid-area: info; min-width: 0; }
 .pfrow-title { font-family: var(--display); font-weight: 800; font-size: clamp(30px,3.6vw,48px); letter-spacing: -0.025em; line-height: 1.05; color: #fff; margin: 0 0 12px; }
