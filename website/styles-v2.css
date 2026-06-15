@@ -644,7 +644,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   grid-template-columns: 1.22fr 1fr;
   grid-template-areas: "video info";
   column-gap: clamp(36px,4.5vw,68px);
-  align-items: stretch;
+  align-items: center;
   transition: opacity .3s ease;
 }
 .fpc[hidden] { display: none; }
@@ -657,7 +657,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   position: relative;
   overflow: hidden;
   background: var(--paper-2);
-  min-height: 320px;
+  min-height: 400px;
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(20,23,28,0.05), 0 20px 44px -22px rgba(20,23,28,0.30);
   clip-path: inset(0 round 6px);
