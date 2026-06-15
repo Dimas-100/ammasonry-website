@@ -17,7 +17,7 @@ ammasonry/
 │   ├── styles-v2.css     # Shared stylesheet for inner pages (services, projects, about, reviews, contact)
 │   ├── homepage.js       # Homepage-only JS: hero video crossfade + project feature-row video crossfade
 │   ├── v2-common.js      # Shared JS for inner pages: reveal, accordion, form, data-year, mobile nav
-│   ├── vercel.json       # Vercel config (cleanUrls, trailingSlash)
+│   ├── vercel.json       # Vercel config (cleanUrls, trailingSlash, Cache-Control: must-revalidate so deploys aren't served stale)
 │   ├── robots.txt        # Allow all + Sitemap: line
 │   ├── sitemap.xml       # 6 absolute page URLs (https://ammasonryinc.co)
 │   └── assets/
