@@ -725,46 +725,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   background: var(--crimson);
   border-radius: 1px;
 }
-.fpc-divider {
-  height: 1px;
-  background: var(--line);
-  margin: clamp(24px,3vw,34px) 0;
-}
-
-/* metrics — borderless, spacing-led */
-.fpc-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(32px,4vw,60px);
-  margin: 0 0 30px;
-  padding: 0;
-  border: 0;
-}
-.fpc-stats > div {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 6px;
-  padding: 0;
-  border: 0;
-}
-.fpc-stats dt {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0;
-}
-.fpc-stats dd {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(30px,3.4vw,44px);
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  line-height: 1;
-  margin: 0;
-}
-
 @media (max-width: 960px) {
   .fpc,
   .fpc:nth-child(even) {
@@ -779,10 +739,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
     height: 0;
     padding-bottom: 75%; /* 4:3 — taller video on mobile; robust padding ratio (no empty-box aspect-ratio) */
   }
-}
-@media (max-width: 380px) {
-  .fpc-stats { gap: 22px; }
-  .fpc-stats dd { font-size: 22px; }
 }
 
 
