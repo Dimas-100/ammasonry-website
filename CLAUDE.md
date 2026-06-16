@@ -60,7 +60,7 @@ ammasonry/
 
 **homepage.css** is the homepage-only stylesheet, linked from `index.html` via `<link rel="stylesheet" href="homepage.css">`. It is kept separate because the homepage has unique sections (hero video, dark project video rows `.proj-rows`/`.pfrow`) not shared with inner pages.
 
-**styles-v2.css** covers inner pages only: nav (`.v2-nav`), page heroes (`.page-hero-v2`), buttons (`.btn-v2`), services accordion (`.svc-acc-*`), featured project rows (`.fpc`, alternating via `:nth-child(even)`), reviews grid (`.reviews-grid-v2` / `.review-*` — dead CSS, the reviews page was removed), about layout (`.about-*`), contact layout (`.contact-*`), footer (`.v2-footer`), and shared utilities (`.reveal`, `.eyebrow`, `.section`).
+**styles-v2.css** covers inner pages only: nav (`.v2-nav`), page heroes (`.page-hero-v2`), buttons (`.btn-v2`), services accordion (`.svc-acc-*`), featured project rows (`.fpc`, alternating via `:nth-child(even)`), about layout (`.about-*`), contact layout (`.contact-*`), footer (`.v2-footer`), and shared utilities (`.reveal`, `.eyebrow`, `.section`).
 
 **Note:** The homepage uses different class names than inner pages for shared components (nav: `.nav` vs `.v2-nav`, buttons: `.btn` vs `.btn-v2`). This is a known inconsistency to resolve in a future CSS consolidation pass.
 
