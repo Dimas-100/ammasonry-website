@@ -42,7 +42,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); display: flex; align-items: center; height: 68px; gap: 32px; color: #fff; transition: height .3s ease; }
 .nav.is-scrolled .nav-inner { height: 60px; }
 .nav-brand { display: flex; align-items: center; flex-shrink: 0; }
-.nav-brand img { height: 40px; width: auto; display: block; }
+.nav-brand img { height: 34px; width: auto; display: block; }
 .nav-links { display: flex; align-items: center; gap: 4px; flex: 1; }
 .nav-links a { padding: 8px 14px; border-radius: 4px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.68); transition: color .2s; }
 .nav-links a:hover { color: #fff; }

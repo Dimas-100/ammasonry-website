@@ -94,7 +94,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   flex-shrink: 0;
 }
 .v2-nav-brand img {
-  height: 40px;
+  height: 34px;
   width: auto;
   display: block;
 }
