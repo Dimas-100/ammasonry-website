@@ -11,15 +11,14 @@ ammasonry/
 │   ├── services.html     # Full services accordion (all 5 services)
 │   ├── projects.html     # Featured projects as alternating video + description rows (no photo gallery)
 │   ├── about.html        # Company story, values, stats
-│   ├── reviews.html      # Full testimonials page
 │   ├── contact.html      # Quote request form + contact info sidebar
 │   ├── homepage.css      # Homepage-only stylesheet (linked by index.html)
-│   ├── styles-v2.css     # Shared stylesheet for inner pages (services, projects, about, reviews, contact)
+│   ├── styles-v2.css     # Shared stylesheet for inner pages (services, projects, about, contact)
 │   ├── homepage.js       # Homepage-only JS: hero video crossfade + project feature-row video crossfade
 │   ├── v2-common.js      # Shared JS for inner pages: reveal, accordion, form, data-year, mobile nav
 │   ├── vercel.json       # Vercel config (cleanUrls, trailingSlash, Cache-Control: must-revalidate so deploys aren't served stale)
 │   ├── robots.txt        # Allow all + Sitemap: line
-│   ├── sitemap.xml       # 6 absolute page URLs (https://ammasonryinc.co)
+│   ├── sitemap.xml       # 5 absolute page URLs (https://ammasonryinc.co)
 │   └── assets/
 │       ├── img/          # Project photos (Brick/, Stone/, Framing/, Block/), am-logo-nav-h.png, favicon-black.png, og-cover.jpg (1200×630 social share)
 │       ├── video/        # Drone footage (West Point*/West pine .mp4) + video/projects/ card clips
@@ -61,7 +60,7 @@ ammasonry/
 
 **homepage.css** is the homepage-only stylesheet, linked from `index.html` via `<link rel="stylesheet" href="homepage.css">`. It is kept separate because the homepage has unique sections (hero video, dark project video rows `.proj-rows`/`.pfrow`) not shared with inner pages.
 
-**styles-v2.css** covers inner pages only: nav (`.v2-nav`), page heroes (`.page-hero-v2`), buttons (`.btn-v2`), services accordion (`.svc-acc-*`), featured project rows (`.fpc`, alternating via `:nth-child(even)`), reviews grid (`.reviews-grid-v2`), about layout (`.about-*`), contact layout (`.contact-*`), footer (`.v2-footer`), and shared utilities (`.reveal`, `.eyebrow`, `.section`).
+**styles-v2.css** covers inner pages only: nav (`.v2-nav`), page heroes (`.page-hero-v2`), buttons (`.btn-v2`), services accordion (`.svc-acc-*`), featured project rows (`.fpc`, alternating via `:nth-child(even)`), reviews grid (`.reviews-grid-v2` / `.review-*` — dead CSS, the reviews page was removed), about layout (`.about-*`), contact layout (`.contact-*`), footer (`.v2-footer`), and shared utilities (`.reveal`, `.eyebrow`, `.section`).
 
 **Note:** The homepage uses different class names than inner pages for shared components (nav: `.nav` vs `.v2-nav`, buttons: `.btn` vs `.btn-v2`). This is a known inconsistency to resolve in a future CSS consolidation pass.
 
@@ -84,10 +83,10 @@ Every page shares the same nav and footer HTML markup. Nav pattern:
 - Logo → centered links → "Free Quote" CTA button
 - Active page gets `class="is-current"` on its nav link
 - All CTA buttons link to `contact.html`
-- Nav links: Services | Projects | Reviews | About (no Home link — logo is the home link)
+- Nav links: Services | Projects | About (no Home link — logo is the home link)
 
 ## SEO
-- Every page `<head>` carries: a self-referencing `<link rel="canonical">`, Open Graph + Twitter tags (`og:image` → absolute `assets/img/og-cover.jpg`), and one **identical** LocalBusiness JSON-LD block (`@type: GeneralContractor`). When editing head meta, replicate across all 6 pages — only the canonical/`og:url` path differs.
+- Every page `<head>` carries: a self-referencing `<link rel="canonical">`, Open Graph + Twitter tags (`og:image` → absolute `assets/img/og-cover.jpg`), and one **identical** LocalBusiness JSON-LD block (`@type: GeneralContractor`). When editing head meta, replicate across all 5 pages — only the canonical/`og:url` path differs.
 - `aggregateRating` is intentionally **omitted** from the JSON-LD — Google disallows self-collected review stars in rich results. Don't re-add it.
 - Every content `<img>` has explicit `width`/`height`; page bodies are wrapped in a single `<main>` landmark.
 
