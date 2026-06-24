@@ -771,7 +771,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 /* ── FEATURED NAMED PROJECTS ─────────────────────────────── */
 .proj-featured {
   background: var(--paper-2);
-  padding: clamp(80px,10vw,128px) 0 clamp(124px,15vw,200px);
+  padding: clamp(80px,10vw,128px) 0 clamp(56px,7vw,88px);
 }
 #west-point, #west-pine, #douglas { scroll-margin-top: 90px; }
 
@@ -1685,4 +1685,8 @@ button:focus-visible,
   .contact-steps { margin-top: clamp(40px, 9vw, 60px); padding-top: clamp(32px, 7vw, 48px); }
   .contact-area { margin-top: clamp(36px, 8vw, 56px); }
 }
+
+/* Projects closing CTA: continues the projects' warm tone and tucks up close
+   to the gallery for a seamless finish (placed last so it wins on mobile). */
+.ctas-v2--continue { background: var(--paper-2); padding-top: clamp(28px, 4vw, 56px); }
 
