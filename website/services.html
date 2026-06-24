@@ -60,6 +60,7 @@
 <link rel="stylesheet" href="styles-v2.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav class="v2-nav">
@@ -68,7 +69,7 @@
       <img src="assets/img/am-logo-nav-h.png" alt="A&amp;M Masonry" width="462" height="160" />
     </a>
     <div class="v2-nav-links" id="v2-nav-links">
-      <a href="/services" class="is-current">Services</a>
+      <a href="/services" class="is-current" aria-current="page">Services</a>
       <div class="nav-dd">
         <button class="nav-dd-toggle" type="button" aria-expanded="false" aria-controls="v2-nav-dd-menu">
           Projects
@@ -82,14 +83,18 @@
         </div>
       </div>
       <a href="/contact">Contact</a>
+      <div class="v2-nav-mobile-cta">
+        <a href="/contact" class="btn-v2 btn-v2--primary">Free Quote</a>
+      </div>
     </div>
+    <a href="/contact" class="v2-nav-cta">Free Quote</a>
     <button class="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="v2-nav-links" type="button">
       <span class="v2-nav-toggle-bars"><span></span><span></span><span></span></span>
     </button>
   </div>
 </nav>
 
-<main>
+<main id="main" tabindex="-1">
 
 <!-- PAGE HERO -->
 <section class="page-hero-v2">
@@ -100,7 +105,7 @@
       <span class="page-hero-v2-eyebrow reveal" data-delay="0">Our Services</span>
       <span class="page-hero-v2-rule reveal" data-delay="60" aria-hidden="true"></span>
       <h1 class="reveal" data-delay="120">Everything <span class="accent">we build.</span></h1>
-      <p class="reveal" data-delay="220">Six trades under one crew: masonry, framing, siding, finishing, and more.</p>
+      <p class="reveal" data-delay="220">Every trade under one crew — masonry, framing, siding, and finishing, self-performed start to finish.</p>
     </div>
   </div>
 </section>
@@ -116,9 +121,9 @@
     </div>
     <div class="svp-rows">
 
-      <article class="svp-row reveal">
+      <article class="svp-row reveal" id="masonry">
         <div class="svp-photo">
-          <img src="assets/img/Brick/brick-front-3.jpg" alt="Custom residential brick exterior" width="300" height="300" loading="lazy" />
+          <img src="assets/img/Brick/brick-front-3.jpg" alt="Custom residential brick exterior by A&amp;M Masonry" width="300" height="300" loading="lazy" />
         </div>
         <div class="svp-content">
           <span class="svp-cat">Exterior · Structural</span>
@@ -127,33 +132,17 @@
           <div class="svp-list-label">What's Included</div>
           <ul class="svp-list">
             <li>Brick exteriors, columns &amp; entry features</li>
+            <li>Natural &amp; manufactured stone veneer</li>
             <li>Block walls, foundations &amp; structural masonry</li>
+            <li>New construction, additions &amp; exterior repairs</li>
+            <li>Material matching to blend with existing structures</li>
           </ul>
         </div>
       </article>
 
-      <article class="svp-row reveal">
+      <article class="svp-row reveal" id="framing">
         <div class="svp-photo">
-          <div class="coming-soon">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Photos coming soon</span>
-          </div>
-        </div>
-        <div class="svp-content">
-          <span class="svp-cat">Exterior</span>
-          <h2 class="svp-h">Siding Installation</h2>
-          <p class="svp-desc">Exterior siding installation and replacement for lasting weather protection, trim details, and curb appeal. We match existing styles and work to your schedule.</p>
-          <div class="svp-list-label">What's Included</div>
-          <ul class="svp-list">
-            <li>Full siding replacement &amp; installation</li>
-            <li>Trim, corner &amp; transition finishing</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="svp-row reveal">
-        <div class="svp-photo">
-          <img src="assets/img/Framing/framing-done-1.jpg" alt="Residential framing" width="300" height="300" loading="lazy" />
+          <img src="assets/img/Framing/framing-done-1.jpg" alt="Residential framing by A&amp;M Masonry" width="300" height="300" loading="lazy" />
         </div>
         <div class="svp-content">
           <span class="svp-cat">Structural</span>
@@ -162,49 +151,133 @@
           <div class="svp-list-label">What's Included</div>
           <ul class="svp-list">
             <li>Structural framing for additions &amp; remodels</li>
-            <li>Interior build-outs &amp; rough carpentry</li>
+            <li>Rough carpentry &amp; load-bearing work</li>
+            <li>Interior build-outs &amp; partitions</li>
+            <li>Framing support for masonry projects</li>
           </ul>
         </div>
       </article>
 
-      <article class="svp-row reveal">
-        <div class="svp-photo">
-          <div class="coming-soon">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Photos coming soon</span>
+    </div>
+
+    <!-- Additional trades — self-performed finishing/exterior work shown as
+         intentional cards (dedicated photography pending). -->
+    <div class="svp-also">
+      <div class="svp-also-head reveal">
+        <span class="eyebrow">Also Offered</span>
+        <h3>More of what <span class="accent">we do.</span></h3>
+      </div>
+      <div class="svp-also-grid">
+
+        <a class="svp-card reveal" id="siding" data-delay="0" href="/contact" aria-label="Request a free quote for siding installation">
+          <div class="svp-card-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="3.4" rx="1"/><rect x="3" y="10.3" width="18" height="3.4" rx="1"/><rect x="3" y="15.6" width="18" height="3.4" rx="1"/></svg>
           </div>
-        </div>
-        <div class="svp-content">
-          <span class="svp-cat">Interior</span>
-          <h2 class="svp-h">Drywall &amp; Sheetrock</h2>
-          <p class="svp-desc">Drywall and Sheetrock installation, patching, and surface prep for a clean, paint-ready finish. Hung, taped, mudded, and finished to level-five on new builds and remodels.</p>
-          <div class="svp-list-label">What's Included</div>
-          <ul class="svp-list">
+          <span class="svp-card-cat">Exterior</span>
+          <h4>Siding Installation</h4>
+          <p>Exterior siding installation and replacement for lasting weather protection, trim detail, and curb appeal. We match existing styles and work to your schedule.</p>
+          <ul>
+            <li>Full siding replacement &amp; installation</li>
+            <li>Trim, corner &amp; transition finishing</li>
+          </ul>
+        </a>
+
+        <a class="svp-card reveal" id="drywall" data-delay="90" href="/contact" aria-label="Request a free quote for drywall and sheetrock">
+          <div class="svp-card-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v6M15 9v6M9 15v6"/></svg>
+          </div>
+          <span class="svp-card-cat">Interior</span>
+          <h4>Drywall &amp; Sheetrock</h4>
+          <p>Drywall and Sheetrock installation, patching, and surface prep for a clean, paint-ready finish — hung, taped, mudded, and finished on new builds and remodels.</p>
+          <ul>
             <li>Drywall hang &amp; finish</li>
             <li>Sheetrock installation &amp; patching</li>
           </ul>
-        </div>
-      </article>
+        </a>
 
-      <article class="svp-row reveal">
-        <div class="svp-photo">
-          <div class="coming-soon">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Photos coming soon</span>
+        <a class="svp-card reveal" id="painting" data-delay="180" href="/contact" aria-label="Request a free quote for painting and coatings">
+          <div class="svp-card-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="14" height="6" rx="1.5"/><path d="M17 7h2a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-7v2"/><rect x="9" y="16" width="4" height="5" rx="1"/></svg>
           </div>
-        </div>
-        <div class="svp-content">
-          <span class="svp-cat">Finishing</span>
-          <h2 class="svp-h">Painting &amp; Coatings</h2>
-          <p class="svp-desc">Interior and exterior painting for residential and commercial projects. Walls, trim, ceilings, and masonry surfaces, all properly prepped and finished to a clean, lasting result.</p>
-          <div class="svp-list-label">What's Included</div>
-          <ul class="svp-list">
+          <span class="svp-card-cat">Finishing</span>
+          <h4>Painting &amp; Coatings</h4>
+          <p>Interior and exterior painting for residential and commercial projects — walls, trim, ceilings, and masonry surfaces, properly prepped and finished to a clean, lasting result.</p>
+          <ul>
             <li>Exterior masonry &amp; siding coatings</li>
             <li>Interior wall &amp; trim painting</li>
           </ul>
-        </div>
-      </article>
+        </a>
 
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="svc-process-sec section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How We Work</span>
+      <h2>From first call to <span class="accent">final walkthrough.</span></h2>
+      <p>A straightforward process with one accountable crew the whole way through.</p>
+    </div>
+    <div class="svc-process-grid">
+      <div class="svc-step reveal" data-delay="0">
+        <span class="svc-step-num">01</span>
+        <h3>Free Estimate</h3>
+        <p>Tell us about your project and we assess the scope — no cost, no obligation.</p>
+      </div>
+      <div class="svc-step reveal" data-delay="90">
+        <span class="svc-step-num">02</span>
+        <h3>Quote &amp; Schedule</h3>
+        <p>You get an honest, itemized quote and a clear timeline before any work begins.</p>
+      </div>
+      <div class="svc-step reveal" data-delay="180">
+        <span class="svc-step-num">03</span>
+        <h3>We Build It</h3>
+        <p>Our in-house crew self-performs every trade, keeping quality and schedule tight.</p>
+      </div>
+      <div class="svc-step reveal" data-delay="270">
+        <span class="svc-step-num">04</span>
+        <h3>Final Walkthrough</h3>
+        <p>We walk the finished work with you and aren't done until you're satisfied.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-sec section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Questions</span>
+      <h2>Good to <span class="accent">know.</span></h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Do you offer free estimates?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes. Every quote is free and no-obligation — share your project details and we'll assess the scope and get back to you, typically within one business day.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">What areas do you serve?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>We're based in Lawrenceville, GA and work throughout the surrounding metro Atlanta area and across the Southeast. Not sure if you're in range? Just ask.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Are you licensed and insured?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes — A&amp;M Masonry is licensed and insured, so your project and your property are protected from the first day to the final coat.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Do you handle the whole project, or only masonry?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>We self-perform every trade in-house — masonry, framing, siding, drywall, and painting — so one accountable crew can take a job from the foundation to the finishing touches.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Do you take on residential and commercial work?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Both. From homes and additions to multi-building commercial sites, we bring the same standards and the same crew to the job.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">How do I get started?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Send your project details through the <a href="/contact">quote form</a> or by email. We'll follow up within one business day to talk through scope, timeline, and next steps.</p></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -228,17 +301,41 @@
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="wrap">
-    <div class="sf-top">
-      <a href="/" class="sf-brand"><span class="sf-dot"></span>A&amp;M Masonry</a>
-      <nav class="sf-nav" aria-label="Footer">
-        <a href="/services">Services</a>
-        <a href="/projects">Projects</a>
-        <a href="/contact">Contact</a>
-      </nav>
+    <div class="sf-cols">
+      <div class="sf-col sf-col-brand">
+        <a href="/" class="sf-brand"><span class="sf-dot"></span>A&amp;M Masonry</a>
+        <p class="sf-blurb">Family-owned masonry and construction in Lawrenceville, GA — brick, stone, framing, and finishing, self-performed in-house and built to last.</p>
+      </div>
+      <div class="sf-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/services#masonry">Masonry</a></li>
+          <li><a href="/services#framing">Framing &amp; Carpentry</a></li>
+          <li><a href="/services#siding">Siding Installation</a></li>
+          <li><a href="/services#drywall">Drywall &amp; Sheetrock</a></li>
+          <li><a href="/services#painting">Painting &amp; Coatings</a></li>
+        </ul>
+      </div>
+      <div class="sf-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="sf-col">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="mailto:jflores@ammasonry.net">jflores@ammasonry.net</a></li>
+          <li><span class="sf-static">Lawrenceville, GA</span></li>
+          <li><a href="/contact">Request a Free Quote</a></li>
+        </ul>
+      </div>
     </div>
     <div class="sf-base">
       <span>&copy; <span data-year></span> A&amp;M Masonry Inc. All rights reserved.</span>
-      <span class="sf-meta"><a href="mailto:jflores@ammasonry.net">jflores@ammasonry.net</a> · Lawrenceville, GA</span>
+      <span class="sf-meta">Family-Owned Since 2014 · Licensed &amp; Insured · Serving the Southeast</span>
     </div>
   </div>
 </footer>

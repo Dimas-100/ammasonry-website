@@ -128,12 +128,38 @@
           throw new Error('bad response');
         }
       } catch {
-        status.textContent = 'Something went wrong. Please call or email us directly.';
+        status.textContent = 'Something went wrong. Please email us directly at jflores@ammasonry.net.';
         status.className = 'form-status err';
       }
       btn.disabled = false;
       btnLabel.textContent = 'Send Request';
     });
+  }
+
+  // ── FAQ accordion ────────────────────────────────────────────────
+  // Each question toggles its answer panel via max-height (animated in CSS).
+  const faqQs = Array.from(document.querySelectorAll('.faq-q'));
+  if (faqQs.length) {
+    const setOpen = (q, open) => {
+      const panel = q.nextElementSibling;
+      q.setAttribute('aria-expanded', String(open));
+      panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0px';
+    };
+    faqQs.forEach((q) => {
+      q.addEventListener('click', () => setOpen(q, q.getAttribute('aria-expanded') !== 'true'));
+    });
+    // re-measure any open panel when the viewport reflows (text re-wraps)
+    let faqRAF = 0;
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(faqRAF);
+      faqRAF = requestAnimationFrame(() => {
+        faqQs.forEach((q) => {
+          if (q.getAttribute('aria-expanded') === 'true') {
+            q.nextElementSibling.style.maxHeight = q.nextElementSibling.scrollHeight + 'px';
+          }
+        });
+      });
+    }, { passive: true });
   }
 
   // ── Lazy-load + focus-play project videos ───────────────────────────

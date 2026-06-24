@@ -60,6 +60,7 @@
 <link rel="stylesheet" href="styles-v2.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav class="v2-nav">
@@ -81,15 +82,19 @@
           <a href="/projects#douglas">Douglas</a>
         </div>
       </div>
-      <a href="/contact" class="is-current">Contact</a>
+      <a href="/contact" class="is-current" aria-current="page">Contact</a>
+      <div class="v2-nav-mobile-cta">
+        <a href="/contact" class="btn-v2 btn-v2--primary">Free Quote</a>
+      </div>
     </div>
+    <a href="/contact" class="v2-nav-cta">Free Quote</a>
     <button class="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="v2-nav-links" type="button">
       <span class="v2-nav-toggle-bars"><span></span><span></span><span></span></span>
     </button>
   </div>
 </nav>
 
-<main>
+<main id="main" tabindex="-1">
 
 <!-- PAGE HERO -->
 <section class="page-hero-v2">
@@ -107,7 +112,7 @@
 
 <!-- CONTACT SECTION -->
 <section class="contact-page">
-  <div class="wrap" style="width:100%;">
+  <div class="wrap">
     <div class="contact-layout">
 
       <!-- FORM COLUMN -->
@@ -132,8 +137,8 @@
 
           <div class="form-row">
             <div class="form-field">
-              <label for="phone">Phone Number <span class="req">*</span></label>
-              <input type="tel" id="phone" name="phone" required />
+              <label for="phone">Phone Number <span class="opt">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" />
             </div>
             <div class="form-field">
               <label for="service">Service Type <span class="req">*</span></label>
@@ -208,6 +213,12 @@
 
     </div>
 
+    <!-- SERVICE AREA -->
+    <div class="contact-area reveal">
+      <span class="eyebrow">Service Area</span>
+      <p class="contact-area-line">Proudly serving <strong>Lawrenceville</strong>, Gwinnett County &amp; metro Atlanta — and taking on projects across Georgia, the Carolinas, Tennessee &amp; Alabama.</p>
+    </div>
+
     <!-- WHAT HAPPENS NEXT -->
     <div class="contact-steps">
       <div class="contact-step reveal" data-delay="0">
@@ -234,17 +245,41 @@
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="wrap">
-    <div class="sf-top">
-      <a href="/" class="sf-brand"><span class="sf-dot"></span>A&amp;M Masonry</a>
-      <nav class="sf-nav" aria-label="Footer">
-        <a href="/services">Services</a>
-        <a href="/projects">Projects</a>
-        <a href="/contact">Contact</a>
-      </nav>
+    <div class="sf-cols">
+      <div class="sf-col sf-col-brand">
+        <a href="/" class="sf-brand"><span class="sf-dot"></span>A&amp;M Masonry</a>
+        <p class="sf-blurb">Family-owned masonry and construction in Lawrenceville, GA — brick, stone, framing, and finishing, self-performed in-house and built to last.</p>
+      </div>
+      <div class="sf-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/services#masonry">Masonry</a></li>
+          <li><a href="/services#framing">Framing &amp; Carpentry</a></li>
+          <li><a href="/services#siding">Siding Installation</a></li>
+          <li><a href="/services#drywall">Drywall &amp; Sheetrock</a></li>
+          <li><a href="/services#painting">Painting &amp; Coatings</a></li>
+        </ul>
+      </div>
+      <div class="sf-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="sf-col">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="mailto:jflores@ammasonry.net">jflores@ammasonry.net</a></li>
+          <li><span class="sf-static">Lawrenceville, GA</span></li>
+          <li><a href="/contact">Request a Free Quote</a></li>
+        </ul>
+      </div>
     </div>
     <div class="sf-base">
       <span>&copy; <span data-year></span> A&amp;M Masonry Inc. All rights reserved.</span>
-      <span class="sf-meta"><a href="mailto:jflores@ammasonry.net">jflores@ammasonry.net</a> · Lawrenceville, GA</span>
+      <span class="sf-meta">Family-Owned Since 2014 · Licensed &amp; Insured · Serving the Southeast</span>
     </div>
   </div>
 </footer>

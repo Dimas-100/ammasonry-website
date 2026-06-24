@@ -134,9 +134,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .v2-nav-links > a.is-current {
   color: #fff;
 }
-/* Active page: crimson underline instead of crimson text */
-.v2-nav-links > a.is-current::after,
-.nav-dd-toggle.is-current::after {
+/* Crimson underline: animates in on hover (left→right), stays solid on the
+   active page. */
+.v2-nav-links > a::after,
+.nav-dd-toggle::after {
   content: "";
   position: absolute;
   left: 14px;
@@ -145,6 +146,16 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   height: 2px;
   background: var(--crimson);
   border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .28s cubic-bezier(.4,0,.2,1);
+}
+.v2-nav-links > a:hover::after,
+.nav-dd-toggle:hover::after,
+.v2-nav-links > a.is-current::after,
+.nav-dd-toggle.is-current::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .v2-nav-links > a::after, .nav-dd-toggle::after { transition: none; }
 }
 
 /* Projects dropdown */
@@ -178,9 +189,14 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   font-size: 13.5px;
   border-radius: 4px;
   flex-shrink: 0;
-  transition: background .2s, opacity .2s;
+  transition: background .2s ease, opacity .2s ease, transform .2s ease, box-shadow .2s ease;
 }
-.v2-nav-cta:hover { background: var(--crimson-deep); }
+.v2-nav-cta:hover {
+  background: var(--crimson-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -8px rgba(200,16,46,0.6);
+}
+@media (prefers-reduced-motion: reduce) { .v2-nav-cta:hover { transform: none; } }
 .v2-nav-mobile-cta { display: none; }
 .v2-nav-mobile-phone { display: none; }
 
@@ -266,7 +282,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   }
   .v2-nav-links > a:hover, .nav-dd-toggle:hover { color: #fff; }
   .v2-nav-links > a.is-current, .nav-dd-toggle.is-current { color: #fff; border-bottom-color: var(--crimson); }
-  .v2-nav-links > a.is-current::after, .nav-dd-toggle.is-current::after { display: none; }
+  .v2-nav-links > a::after, .nav-dd-toggle::after { display: none; }
   .nav-dd { width: 100%; }
   .nav-dd-toggle { width: 100%; justify-content: space-between; }
   .nav-dd-menu {
@@ -1197,6 +1213,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   font-weight: 500;
 }
 .form-field label .req { color: var(--crimson); }
+.form-field label .opt { text-transform: none; letter-spacing: 0; color: var(--muted); opacity: .75; font-weight: 400; }
 .form-field input,
 .form-field select,
 .form-field textarea {
@@ -1308,6 +1325,25 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   .contact-info-box { position: static; }
   .form-row { grid-template-columns: 1fr; }
 }
+
+/* Service-area reassurance — answers "do you work in my area?" and fills
+   the space between the form and the steps strip. */
+.contact-area {
+  text-align: center;
+  max-width: 760px;
+  margin: clamp(44px,5.5vw,72px) auto 0;
+}
+.contact-area .eyebrow { display: block; margin-bottom: 14px; }
+.contact-area-line {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(18px,2vw,24px);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+.contact-area-line strong { color: var(--crimson); font-weight: 700; }
 
 /* What-happens-next: a genuine 1-2-3 sequence, so numbered markers fit.
    Fills the space below the form and sets expectations. */
@@ -1461,5 +1497,176 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 @media (max-width: 600px) {
   .lightbox-nav { width: 42px; height: 42px; }
   .lightbox-img { max-width: 94vw; max-height: 78vh; }
+}
+
+/* ── ACCESSIBILITY: skip link + keyboard focus ───────────────
+   Primary controls had no visible focus indicator (WCAG 2.4.7).
+   Scoped to interactive elements so custom input focus rings stay. */
+.skip-link {
+  position: absolute; left: 12px; top: -64px; z-index: 2000;
+  background: var(--crimson); color: #fff; padding: 11px 18px; border-radius: 6px;
+  font-family: var(--display); font-weight: 700; font-size: 14px;
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 12px; outline: none; }
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* nav sits on dark (hero photo + scrolled ink bar): a light ring reads better */
+.v2-nav a:focus-visible,
+.v2-nav button:focus-visible { outline-color: #fff; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ── SERVICES: "Also Offered" trade cards ────────────────────
+   The trades without photography (siding/drywall/painting) render as
+   intentional icon cards instead of empty "photos coming soon" wells. */
+#masonry, #framing, #siding, #drywall, #painting { scroll-margin-top: 90px; }
+.svp-also { margin-top: clamp(80px, 10vw, 140px); }
+.svp-also-head { text-align: center; margin: 0 auto clamp(40px, 5vw, 60px); max-width: 640px; }
+.svp-also-head .eyebrow { display: block; }
+.svp-also-head h3 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(28px, 3.4vw, 44px); letter-spacing: -0.02em; line-height: 1.05;
+  color: var(--ink); margin: 10px 0 0;
+}
+.svp-also-head h3 .accent { font-family: var(--serif); font-style: italic; font-weight: 600; }
+.svp-also-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.2vw, 30px);
+}
+.svp-card {
+  display: flex; flex-direction: column;
+  padding: clamp(28px, 3vw, 40px);
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+  transition: transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s ease, border-color .3s ease, background .3s ease;
+}
+/* contents transition so they invert smoothly on the crimson hover fill */
+.svp-card-icon, .svp-card-cat, .svp-card h4, .svp-card p,
+.svp-card ul, .svp-card li, .svp-card li::before {
+  transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+}
+.svp-card:hover {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  transform: translateY(-5px);
+  box-shadow: 0 26px 50px -22px rgba(200,16,46,0.55);
+}
+.svp-card:hover .svp-card-cat { color: rgba(255,255,255,0.82); }
+.svp-card:hover h4 { color: #fff; }
+.svp-card:hover p { color: rgba(255,255,255,0.92); }
+.svp-card:hover .svp-card-icon { background: rgba(255,255,255,0.18); color: #fff; }
+.svp-card:hover ul { border-top-color: rgba(255,255,255,0.28); }
+.svp-card:hover li { color: #fff; }
+.svp-card:hover li::before { background: #fff; }
+.svp-card-icon {
+  width: 52px; height: 52px; border-radius: 13px;
+  display: grid; place-items: center;
+  background: rgba(200,16,46,0.08); color: var(--crimson);
+  margin-bottom: 24px;
+}
+.svp-card-cat {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--crimson); margin: 0 0 10px;
+}
+.svp-card h4 {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(20px, 1.7vw, 24px); letter-spacing: -0.01em; line-height: 1.1;
+  color: var(--ink); margin: 0 0 12px;
+}
+.svp-card p {
+  font-family: var(--body); font-size: 14.5px; line-height: 1.65; color: var(--muted);
+  margin: 0 0 20px;
+}
+.svp-card ul { list-style: none; margin: auto 0 0; padding: 16px 0 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 11px; }
+.svp-card li {
+  font-family: var(--body); font-weight: 500; font-size: 14px; line-height: 1.45;
+  color: var(--ink); padding-left: 20px; position: relative;
+}
+.svp-card li::before {
+  content: ""; position: absolute; left: 0; top: 0.62em;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--crimson); transform: translateY(-50%);
+}
+@media (max-width: 860px) {
+  .svp-also-grid { grid-template-columns: 1fr; gap: 18px; }
+  .svp-card { padding: 26px 24px; }
+}
+
+/* ── EXPANDED FOOTER (shared) ────────────────────────────────
+   Top-tier construction footers double as a sitemap + credibility band. */
+.sf-cols {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: clamp(32px, 4vw, 56px);
+}
+.sf-col-brand .sf-brand { margin-bottom: 16px; }
+.sf-blurb {
+  font-family: var(--body); font-size: 13.5px; line-height: 1.7;
+  color: var(--muted-d); margin: 0; max-width: 34ch;
+}
+.sf-col h4 {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(244,241,235,0.5); font-weight: 500; margin: 0 0 16px;
+}
+.sf-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+.sf-col li { line-height: 1.4; }
+.sf-col a, .sf-static {
+  font-family: var(--body); font-size: 14px; color: rgba(244,241,235,0.72);
+  transition: color .2s ease;
+}
+.sf-col a:hover { color: var(--crimson); }
+.sf-static { color: rgba(244,241,235,0.6); }
+@media (max-width: 860px) {
+  .sf-cols { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
+  .sf-col-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 460px) {
+  .sf-cols { grid-template-columns: 1fr; gap: 30px; }
+}
+
+/* ── SERVICES: how-we-work process rail ─────────────────────── */
+.svc-process-sec { background: var(--paper-2); }
+.svc-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3vw, 44px);
+}
+.svc-step { position: relative; padding-top: 28px; border-top: 2px solid rgba(20,23,28,0.12); }
+.svc-step::before { content: ""; position: absolute; top: -2px; left: 0; width: 44px; height: 2px; background: var(--crimson); }
+.svc-step-num { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .16em; color: var(--crimson); margin-bottom: 14px; }
+.svc-step h3 { font-family: var(--display); font-weight: 700; font-size: clamp(18px,1.6vw,21px); letter-spacing: -0.01em; color: var(--ink); margin: 0 0 10px; }
+.svc-step p { font-family: var(--body); font-size: 14.5px; line-height: 1.6; color: var(--muted); margin: 0; max-width: 30ch; }
+@media (max-width: 820px) { .svc-process-grid { grid-template-columns: 1fr 1fr; gap: 32px 28px; } }
+@media (max-width: 480px) { .svc-process-grid { grid-template-columns: 1fr; } }
+
+/* ── FAQ accordion ──────────────────────────────────────────── */
+.faq-sec { background: var(--paper); }
+.faq-list { max-width: 820px; margin: 0 auto; border-top: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-q {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 24px 4px; text-align: left; cursor: pointer; background: none; border: 0;
+  font-family: var(--display); font-weight: 700; font-size: clamp(16px,1.5vw,19px);
+  letter-spacing: -0.01em; color: var(--ink); transition: color .2s ease;
+}
+.faq-q:hover { color: var(--crimson); }
+.faq-icon { flex-shrink: 0; width: 22px; height: 22px; position: relative; color: var(--crimson); }
+.faq-icon::before, .faq-icon::after {
+  content: ""; position: absolute; top: 50%; left: 50%; background: currentColor; border-radius: 2px;
+  transition: transform .3s ease, opacity .2s ease;
+}
+.faq-icon::before { width: 14px; height: 2px; transform: translate(-50%,-50%); }
+.faq-icon::after  { width: 2px; height: 14px; transform: translate(-50%,-50%); }
+.faq-q[aria-expanded="true"] .faq-icon::after { transform: translate(-50%,-50%) scaleY(0); opacity: 0; }
+.faq-a { overflow: hidden; max-height: 0; transition: max-height .35s ease; }
+.faq-a-inner { padding: 0 4px 26px; }
+.faq-a p { font-family: var(--body); font-size: 15px; line-height: 1.7; color: var(--muted); margin: 0; max-width: 64ch; }
+@media (prefers-reduced-motion: reduce) {
+  .faq-a { transition: none; }
+  .faq-icon::before, .faq-icon::after { transition: none; }
 }
 

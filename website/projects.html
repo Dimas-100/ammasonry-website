@@ -60,6 +60,7 @@
 <link rel="stylesheet" href="styles-v2.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav class="v2-nav">
@@ -70,7 +71,7 @@
     <div class="v2-nav-links" id="v2-nav-links">
       <a href="/services">Services</a>
       <div class="nav-dd">
-        <button class="nav-dd-toggle is-current" type="button" aria-expanded="false" aria-controls="v2-nav-dd-menu">
+        <button class="nav-dd-toggle is-current" type="button" aria-current="page" aria-expanded="false" aria-controls="v2-nav-dd-menu">
           Projects
           <svg class="nav-dd-caret" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
@@ -82,14 +83,18 @@
         </div>
       </div>
       <a href="/contact">Contact</a>
+      <div class="v2-nav-mobile-cta">
+        <a href="/contact" class="btn-v2 btn-v2--primary">Free Quote</a>
+      </div>
     </div>
+    <a href="/contact" class="v2-nav-cta">Free Quote</a>
     <button class="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="v2-nav-links" type="button">
       <span class="v2-nav-toggle-bars"><span></span><span></span><span></span></span>
     </button>
   </div>
 </nav>
 
-<main>
+<main id="main" tabindex="-1">
 
 <!-- PAGE HERO -->
 <section class="page-hero-v2">
@@ -124,7 +129,7 @@
         <img class="pshow-img" src="assets/img/Project/westpoint.jpg" alt="West Point brick masonry build in Lawrenceville, GA" width="1500" height="814" loading="lazy" />
       </div>
       <div class="pcase-grid">
-        <div class="pcase-tile"><img src="assets/img/Project/westpoint-hero.jpg" alt="Aerial view of the West Point build" width="1873" height="1016" loading="lazy" /></div>
+        <div class="pcase-tile reveal"><img src="assets/img/Project/westpoint-hero.jpg" alt="Aerial view of the West Point build" width="1873" height="1016" loading="lazy" /></div>
       </div>
     </article>
 
@@ -143,9 +148,9 @@
         <img class="pshow-img" src="assets/img/Project/westpine1.jpg" alt="West Pine stone and block masonry build in Buford, GA" width="1600" height="897" loading="lazy" />
       </div>
       <div class="pcase-grid">
-        <div class="pcase-tile"><img src="assets/img/Project/westpine.jpg" alt="West Pine build, side elevation" width="1500" height="841" loading="lazy" /></div>
-        <div class="pcase-tile"><img src="assets/img/Project/westpine2.jpg" alt="West Pine build, front elevation" width="1600" height="896" loading="lazy" /></div>
-        <div class="pcase-tile"><img src="assets/img/Project/westpine-wide.jpg" alt="Aerial overview of the West Pine development" width="1600" height="1200" loading="lazy" /></div>
+        <div class="pcase-tile reveal" data-delay="0"><img src="assets/img/Project/westpine.jpg" alt="West Pine build, side elevation" width="1500" height="841" loading="lazy" /></div>
+        <div class="pcase-tile reveal" data-delay="100"><img src="assets/img/Project/westpine2.jpg" alt="West Pine build, front elevation" width="1600" height="896" loading="lazy" /></div>
+        <div class="pcase-tile reveal" data-delay="200"><img src="assets/img/Project/westpine-wide.jpg" alt="Aerial overview of the West Pine development" width="1600" height="1200" loading="lazy" /></div>
       </div>
     </article>
 
@@ -164,9 +169,9 @@
         <img class="pshow-img" src="assets/img/Project/douglas.jpg" alt="Douglas multi-building masonry project in Georgia" width="1500" height="928" loading="lazy" />
       </div>
       <div class="pcase-grid">
-        <div class="pcase-tile"><img src="assets/img/Project/douglas3.jpg" alt="Douglas development during framing" width="1600" height="932" loading="lazy" /></div>
-        <div class="pcase-tile"><img src="assets/img/Project/pinecrest.jpg" alt="Douglas building during exterior wrap" width="1500" height="804" loading="lazy" /></div>
-        <div class="pcase-tile"><img src="assets/img/Project/pinecrest1.jpg" alt="Douglas building, aerial during construction" width="1600" height="858" loading="lazy" /></div>
+        <div class="pcase-tile reveal" data-delay="0"><img src="assets/img/Project/douglas3.jpg" alt="Douglas development during framing" width="1600" height="932" loading="lazy" /></div>
+        <div class="pcase-tile reveal" data-delay="100"><img src="assets/img/Project/pinecrest.jpg" alt="Douglas building during exterior wrap" width="1500" height="804" loading="lazy" /></div>
+        <div class="pcase-tile reveal" data-delay="200"><img src="assets/img/Project/pinecrest1.jpg" alt="Douglas building, aerial during construction" width="1600" height="858" loading="lazy" /></div>
       </div>
     </article>
 
@@ -207,17 +212,41 @@
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="wrap">
-    <div class="sf-top">
-      <a href="/" class="sf-brand"><span class="sf-dot"></span>A&amp;M Masonry</a>
-      <nav class="sf-nav" aria-label="Footer">
-        <a href="/services">Services</a>
-        <a href="/projects">Projects</a>
-        <a href="/contact">Contact</a>
-      </nav>
+    <div class="sf-cols">
+      <div class="sf-col sf-col-brand">
+        <a href="/" class="sf-brand"><span class="sf-dot"></span>A&amp;M Masonry</a>
+        <p class="sf-blurb">Family-owned masonry and construction in Lawrenceville, GA — brick, stone, framing, and finishing, self-performed in-house and built to last.</p>
+      </div>
+      <div class="sf-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/services#masonry">Masonry</a></li>
+          <li><a href="/services#framing">Framing &amp; Carpentry</a></li>
+          <li><a href="/services#siding">Siding Installation</a></li>
+          <li><a href="/services#drywall">Drywall &amp; Sheetrock</a></li>
+          <li><a href="/services#painting">Painting &amp; Coatings</a></li>
+        </ul>
+      </div>
+      <div class="sf-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="sf-col">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="mailto:jflores@ammasonry.net">jflores@ammasonry.net</a></li>
+          <li><span class="sf-static">Lawrenceville, GA</span></li>
+          <li><a href="/contact">Request a Free Quote</a></li>
+        </ul>
+      </div>
     </div>
     <div class="sf-base">
       <span>&copy; <span data-year></span> A&amp;M Masonry Inc. All rights reserved.</span>
-      <span class="sf-meta"><a href="mailto:jflores@ammasonry.net">jflores@ammasonry.net</a> · Lawrenceville, GA</span>
+      <span class="sf-meta">Family-Owned Since 2014 · Licensed &amp; Insured · Serving the Southeast</span>
     </div>
   </div>
 </footer>
