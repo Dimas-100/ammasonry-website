@@ -1410,3 +1410,12 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   .svc-detail-photo { position: static; aspect-ratio: 16/9; }
 }
 
+/* ── Mobile polish (touch targets + iOS input zoom) ──────── */
+@media (max-width: 760px) {
+  /* 16px fields stop iOS Safari from zooming in on focus */
+  .form-field input, .form-field select, .form-field textarea { font-size: 16px; }
+  /* roomier footer links + a 44px nav toggle */
+  .sf-nav a { padding: 6px 0; }
+  .v2-nav-toggle { width: 44px; height: 44px; }
+}
+
