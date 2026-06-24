@@ -268,7 +268,9 @@ html.intro-armed.intro-reduced .am-intro.is-lifting {
 .hero-link:hover { color: #fff; border-color: #fff; gap: 12px; }
 
 @media (max-width: 760px) {
-  .hero-overlay { background: linear-gradient(to bottom, rgba(20,23,28,0.62) 0%, rgba(20,23,28,0.46) 42%, rgba(20,23,28,0.72) 100%); }
+  /* Stronger, darker scrim on mobile so the headline + subcopy read cleanly
+     over the busy drone footage (the old mid-stop was too light). */
+  .hero-overlay { background: linear-gradient(to bottom, rgba(20,23,28,0.55) 0%, rgba(20,23,28,0.74) 45%, rgba(20,23,28,0.9) 100%); }
 }
 
 /* ── ABOUT STRIP (short intro, dark) ─────────────────────── */
@@ -416,9 +418,15 @@ html.intro-armed.intro-reduced .am-intro.is-lifting {
 .featured-foot { display: flex; justify-content: center; margin-top: clamp(40px,5vw,68px); }
 
 @media (max-width: 760px) {
-  .cz-slide { flex-basis: clamp(260px, 84%, 460px); }
-  .cz-cap { width: calc(100% - 28px); margin-top: -54px; }
-  .cz-arrow { width: 44px; height: 44px; top: 38%; }
+  /* Bigger image, smaller caption: the photo should lead, the card support it.
+     The caption is inset narrower than the image so it reads as a compact card. */
+  .cz-slide { flex-basis: clamp(280px, 90%, 460px); }
+  .cz-cap { width: calc(100% - 40px); margin-top: -44px; padding: 16px 18px; }
+  .cz-title { font-size: 20px; }
+  .cz-tag { margin-top: 6px; }
+  .cz-desc { font-size: 13.5px; line-height: 1.5; margin-top: 8px; }
+  .cz-link { margin-top: 12px; font-size: 13.5px; }
+  .cz-arrow { width: 44px; height: 44px; top: 30%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cz-track, .cz-slide, .cz-cap, .cz-arrow { transition: none; }
