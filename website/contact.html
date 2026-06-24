@@ -69,12 +69,20 @@
     </a>
     <div class="v2-nav-links" id="v2-nav-links">
       <a href="/services">Services</a>
-      <a href="/projects">Projects</a>
-      <a href="/about">About</a>
-      <div class="v2-nav-mobile-cta">
-        <a href="/contact" class="btn-v2 btn-v2--primary">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" type="button" aria-expanded="false" aria-controls="v2-nav-dd-menu">
+          Projects
+          <svg class="nav-dd-caret" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dd-menu" id="v2-nav-dd-menu">
+          <a href="/projects">All Projects</a>
+          <a href="/projects#west-point">West Point</a>
+          <a href="/projects#west-pine">West Pine</a>
+          <a href="/projects#douglas">Douglas</a>
+        </div>
+      </div>
+      <a href="/contact" class="is-current">Contact</a>
     </div>
-    <a href="/contact" class="v2-nav-cta is-current">Free Quote</a>
     <button class="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="v2-nav-links" type="button">
       <span class="v2-nav-toggle-bars"><span></span><span></span><span></span></span>
     </button>
@@ -83,6 +91,20 @@
 
 <main>
 
+<!-- PAGE HERO -->
+<section class="page-hero-v2">
+  <img class="page-hero-v2-img" src="assets/img/Project/westpoint-hero.jpg" alt="" aria-hidden="true" width="1873" height="1016" fetchpriority="high" />
+  <div class="page-hero-v2-overlay"></div>
+  <div class="wrap">
+    <div class="page-hero-v2-inner">
+      <span class="page-hero-v2-eyebrow reveal" data-delay="0">Free Estimate</span>
+      <span class="page-hero-v2-rule reveal" data-delay="60" aria-hidden="true"></span>
+      <h1 class="reveal" data-delay="120">Request a <span class="accent">quote.</span></h1>
+      <p class="reveal" data-delay="220">Tell us about your project and we'll get back to you within one business day.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT SECTION -->
 <section class="contact-page">
   <div class="wrap" style="width:100%;">
@@ -90,9 +112,8 @@
 
       <!-- FORM COLUMN -->
       <div class="contact-col-left">
-        <span class="eyebrow reveal">Free Estimate</span>
-        <h1 class="reveal" data-delay="60">Request a <span class="accent">Quote</span></h1>
-        <p class="lede reveal" data-delay="120">Tell us about your project and we'll get back to you within one business day.</p>
+        <span class="eyebrow reveal">Project Details</span>
+        <h2 class="contact-form-h reveal" data-delay="60">Tell us what you need</h2>
 
         <form id="quote-form" class="contact-form reveal" data-delay="160" action="https://formspree.io/f/xnjwbjjo" method="POST">
           <input type="hidden" name="_subject" value="New quote request from A&M Masonry website" />
@@ -186,6 +207,25 @@
       </div>
 
     </div>
+
+    <!-- WHAT HAPPENS NEXT -->
+    <div class="contact-steps">
+      <div class="contact-step reveal" data-delay="0">
+        <span class="contact-step-num">01</span>
+        <h3>Tell us about it</h3>
+        <p>Share your project details and timeline using the form.</p>
+      </div>
+      <div class="contact-step reveal" data-delay="100">
+        <span class="contact-step-num">02</span>
+        <h3>We'll be in touch</h3>
+        <p>Expect a call or email within one business day.</p>
+      </div>
+      <div class="contact-step reveal" data-delay="200">
+        <span class="contact-step-num">03</span>
+        <h3>Free estimate</h3>
+        <p>We assess the scope and give you an honest, no-obligation quote.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -199,7 +239,6 @@
       <nav class="sf-nav" aria-label="Footer">
         <a href="/services">Services</a>
         <a href="/projects">Projects</a>
-        <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </nav>
     </div>
@@ -210,7 +249,6 @@
   </div>
 </footer>
 
-<script src="assets/lenis.min.js"></script>
 <script src="v2-common.js"></script>
 </body>
 </html>

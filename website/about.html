@@ -69,12 +69,21 @@
     </a>
     <div class="v2-nav-links" id="v2-nav-links">
       <a href="/services">Services</a>
-      <a href="/projects">Projects</a>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" type="button" aria-expanded="false" aria-controls="v2-nav-dd-menu">
+          Projects
+          <svg class="nav-dd-caret" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dd-menu" id="v2-nav-dd-menu">
+          <a href="/projects">All Projects</a>
+          <a href="/projects#west-point">West Point</a>
+          <a href="/projects#west-pine">West Pine</a>
+          <a href="/projects#douglas">Douglas</a>
+        </div>
+      </div>
       <a href="/about" class="is-current">About</a>
-      <div class="v2-nav-mobile-cta">
-        <a href="/contact" class="btn-v2 btn-v2--primary">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>      </div>
+      <a href="/contact">Contact</a>
     </div>
-    <a href="/contact" class="v2-nav-cta">Free Quote</a>
     <button class="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="v2-nav-links" type="button">
       <span class="v2-nav-toggle-bars"><span></span><span></span><span></span></span>
     </button>
@@ -128,16 +137,12 @@
         <div class="l">Years in Business</div>
       </div>
       <div class="about-stat">
-        <div class="v">500<span class="plus">+</span></div>
-        <div class="l">Projects Completed</div>
-      </div>
-      <div class="about-stat">
         <div class="v">5</div>
         <div class="l">States Served</div>
       </div>
       <div class="about-stat">
-        <div class="v">4.9</div>
-        <div class="l">Average Rating</div>
+        <div class="v">100<span class="plus">%</span></div>
+        <div class="l">Family-Owned</div>
       </div>
     </div>
   </div>
@@ -220,7 +225,6 @@
   </div>
 </footer>
 
-<script src="assets/lenis.min.js"></script>
 <script src="v2-common.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ ammasonry/
 │   ├── index.html        # Homepage (hero, intro, services, projects [dark video rows], closing CTA, footer)
 │   ├── services.html     # Full services accordion (all 5 services)
 │   ├── projects.html     # Featured projects as alternating video + description rows (no photo gallery)
-│   ├── about.html        # Company story, values, stats
+│   ├── about.html        # Company story, values, stats (RETAINED but unlinked — not in nav/footer/sitemap)
 │   ├── contact.html      # Quote request form + contact info sidebar
 │   ├── homepage.css      # Homepage-only stylesheet (linked by index.html)
 │   ├── styles-v2.css     # Shared stylesheet for inner pages (services, projects, about, contact)
@@ -60,7 +60,9 @@ ammasonry/
 
 **homepage.css** is the homepage-only stylesheet, linked from `index.html` via `<link rel="stylesheet" href="homepage.css">`. It is kept separate because the homepage has unique sections (hero video, dark project video rows `.proj-rows`/`.pfrow`) not shared with inner pages.
 
-**styles-v2.css** covers inner pages only: nav (`.v2-nav`), page heroes (`.page-hero-v2`), buttons (`.btn-v2`), services accordion (`.svc-acc-*`), featured project rows (`.fpc`, alternating via `:nth-child(even)`), about layout (`.about-*`), contact layout (`.contact-*`), footer (`.v2-footer`), and shared utilities (`.reveal`, `.eyebrow`, `.section`).
+**styles-v2.css** covers inner pages only: nav (`.v2-nav`), **image-backed page heroes** (`.page-hero-v2` + `.page-hero-v2-img`/`.page-hero-v2-overlay`/`.page-hero-v2-eyebrow`/`.page-hero-v2-rule`, mirroring the landing hero — dark photo + left-weighted scrim + serif-accent headline), buttons (`.btn-v2`), services editorial spreads (`.svp-row`, alternating, with a category eyebrow `.svp-cat`, crimson-dot bullets, and scroll **parallax** + hover-lift on the photos; placeholder trades use the branded dark `.coming-soon` panel), featured project **case studies** (`.pcase` — an editorial header `.pcase-head` (`.pcase-meta` / `.pcase-title` / inline `.pcase-scope`), then a large feature media `.pshow-media` (16:9, scroll parallax on `.pshow-img`, hover-lift; the `.pshow-vid` markup + scroll-focus autoplay in `v2-common.js` also supports a video feature, currently unused — the Overlook video was removed), then a `.pcase-grid` gallery of the project's other images as `.pcase-tile`s (hover-lift). Each project shows all its photos, not just one; deliberately *not* the side-by-side service layout), CTA strip (`.ctas-v2`), about layout (`.about-*`), contact layout (`.contact-*` — image hero, two-column form + dark `.contact-info-box`, and a numbered "what happens next" `.contact-steps` strip below), footer (`.site-footer`/`.sf-*`, shared with the homepage), and shared utilities (`.reveal`, `.eyebrow`, `.section`).
+
+The inner pages (services, projects, contact) were redesigned to match the landing page: each opens with an image hero (services → `Stone/stone-wall-1.jpg`, projects → `Project/douglas1-hero.jpg`, contact → `Project/westpoint-hero.jpg`), and the body sections carry landing-style scroll reveals + hover effects. The subtle image **parallax** (transform-only, `requestAnimationFrame`-throttled, reduced-motion-safe) lives in `v2-common.js` and targets `.svp-photo img, .pshow-media img`; the scroll-focus video autoplay there targets `.pshow-media`. Projects gallery images were optimized from large source PNGs (`Douglas3.png`, `WestPine1/2.png`, `PineCrest1.png`, `West Pine-web.jpg`, each ~3 MB) into ~250–400 KB JPEGs (`douglas3.jpg`, `westpine1/2.jpg`, `pinecrest1.jpg`, `westpine-wide.jpg`) via PowerShell `System.Drawing` (resize to 1600px, quality 82); the original PNGs remain on disk unused (safe to delete to slim the Vercel deploy). Per the user, the **Pine Crest** photos belong to the **Douglas** project, so they appear in Douglas's gallery.
 
 **Note:** The homepage uses different class names than inner pages for shared components (nav: `.nav` vs `.v2-nav`, buttons: `.btn` vs `.btn-v2`). This is a known inconsistency to resolve in a future CSS consolidation pass.
 
@@ -83,7 +85,8 @@ Every page shares the same nav and footer HTML markup. Nav pattern:
 - Logo → centered links → "Free Quote" CTA button
 - Active page gets `class="is-current"` on its nav link
 - All CTA buttons link to `contact.html`
-- Nav links: Services | Projects | About (no Home link — logo is the home link)
+- Nav links: Services | Projects | Contact (no Home link — logo is the home link)
+- **About page is currently unlinked:** `about.html` is retained in the repo (and still deploys/resolves at `/about`) but is intentionally removed from the nav, footer, and `sitemap.xml` so it isn't part of the live site. To reintroduce it, re-add the `<a href="/about">About</a>` link to the nav + footer on `index/services/projects/contact.html` and restore its `<url>` entry in `sitemap.xml`.
 
 ## SEO
 - Every page `<head>` carries: a self-referencing `<link rel="canonical">`, Open Graph + Twitter tags (`og:image` → absolute `assets/img/og-cover.jpg`), and one **identical** LocalBusiness JSON-LD block (`@type: GeneralContractor`). When editing head meta, replicate across all 5 pages — only the canonical/`og:url` path differs.

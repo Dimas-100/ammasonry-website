@@ -69,12 +69,20 @@
     </a>
     <div class="v2-nav-links" id="v2-nav-links">
       <a href="/services" class="is-current">Services</a>
-      <a href="/projects">Projects</a>
-      <a href="/about">About</a>
-      <div class="v2-nav-mobile-cta">
-        <a href="/contact" class="btn-v2 btn-v2--primary">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" type="button" aria-expanded="false" aria-controls="v2-nav-dd-menu">
+          Projects
+          <svg class="nav-dd-caret" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dd-menu" id="v2-nav-dd-menu">
+          <a href="/projects">All Projects</a>
+          <a href="/projects#west-point">West Point</a>
+          <a href="/projects#west-pine">West Pine</a>
+          <a href="/projects#douglas">Douglas</a>
+        </div>
+      </div>
+      <a href="/contact">Contact</a>
     </div>
-    <a href="/contact" class="v2-nav-cta">Free Quote</a>
     <button class="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="v2-nav-links" type="button">
       <span class="v2-nav-toggle-bars"><span></span><span></span><span></span></span>
     </button>
@@ -85,9 +93,15 @@
 
 <!-- PAGE HERO -->
 <section class="page-hero-v2">
+  <img class="page-hero-v2-img" src="assets/img/Stone/stone-wall-1.jpg" alt="" aria-hidden="true" width="640" height="480" fetchpriority="high" />
+  <div class="page-hero-v2-overlay"></div>
   <div class="wrap">
-    <h1 class="reveal" data-delay="0">Everything <span class="accent">we build.</span></h1>
-    <p class="reveal" data-delay="100">Six trades under one crew: masonry, framing, siding, finishing, and more.</p>
+    <div class="page-hero-v2-inner">
+      <span class="page-hero-v2-eyebrow reveal" data-delay="0">Our Services</span>
+      <span class="page-hero-v2-rule reveal" data-delay="60" aria-hidden="true"></span>
+      <h1 class="reveal" data-delay="120">Everything <span class="accent">we build.</span></h1>
+      <p class="reveal" data-delay="220">Six trades under one crew: masonry, framing, siding, finishing, and more.</p>
+    </div>
   </div>
 </section>
 
@@ -95,6 +109,11 @@
 <!-- SERVICES SPREADS -->
 <section class="svc-page section">
   <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our Trades</span>
+      <h2>One team, <span class="accent">start to finish.</span></h2>
+      <p>We self-perform every trade in-house — tighter schedules, one point of accountability, and consistent quality from the foundation to the final coat.</p>
+    </div>
     <div class="svp-rows">
 
       <article class="svp-row reveal">
@@ -102,6 +121,7 @@
           <img src="assets/img/Brick/brick-front-3.jpg" alt="Custom residential brick exterior" width="300" height="300" loading="lazy" />
         </div>
         <div class="svp-content">
+          <span class="svp-cat">Exterior · Structural</span>
           <h2 class="svp-h">Masonry</h2>
           <p class="svp-desc">Brick, stone, and block work for new construction, additions, and exterior repairs. We match existing materials when blending into older structures.</p>
           <div class="svp-list-label">What's Included</div>
@@ -116,10 +136,11 @@
         <div class="svp-photo">
           <div class="coming-soon">
             <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Coming Soon</span>
+            <span>Photos coming soon</span>
           </div>
         </div>
         <div class="svp-content">
+          <span class="svp-cat">Exterior</span>
           <h2 class="svp-h">Siding Installation</h2>
           <p class="svp-desc">Exterior siding installation and replacement for lasting weather protection, trim details, and curb appeal. We match existing styles and work to your schedule.</p>
           <div class="svp-list-label">What's Included</div>
@@ -135,6 +156,7 @@
           <img src="assets/img/Framing/framing-done-1.jpg" alt="Residential framing" width="300" height="300" loading="lazy" />
         </div>
         <div class="svp-content">
+          <span class="svp-cat">Structural</span>
           <h2 class="svp-h">Framing &amp; Carpentry</h2>
           <p class="svp-desc">Structural framing and rough carpentry for additions, remodels, build-outs, and masonry project support.</p>
           <div class="svp-list-label">What's Included</div>
@@ -149,10 +171,11 @@
         <div class="svp-photo">
           <div class="coming-soon">
             <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Coming Soon</span>
+            <span>Photos coming soon</span>
           </div>
         </div>
         <div class="svp-content">
+          <span class="svp-cat">Interior</span>
           <h2 class="svp-h">Drywall &amp; Sheetrock</h2>
           <p class="svp-desc">Drywall and Sheetrock installation, patching, and surface prep for a clean, paint-ready finish. Hung, taped, mudded, and finished to level-five on new builds and remodels.</p>
           <div class="svp-list-label">What's Included</div>
@@ -167,10 +190,11 @@
         <div class="svp-photo">
           <div class="coming-soon">
             <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Coming Soon</span>
+            <span>Photos coming soon</span>
           </div>
         </div>
         <div class="svp-content">
+          <span class="svp-cat">Finishing</span>
           <h2 class="svp-h">Painting &amp; Coatings</h2>
           <p class="svp-desc">Interior and exterior painting for residential and commercial projects. Walls, trim, ceilings, and masonry surfaces, all properly prepped and finished to a clean, lasting result.</p>
           <div class="svp-list-label">What's Included</div>
@@ -209,7 +233,6 @@
       <nav class="sf-nav" aria-label="Footer">
         <a href="/services">Services</a>
         <a href="/projects">Projects</a>
-        <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </nav>
     </div>
@@ -220,7 +243,6 @@
   </div>
 </footer>
 
-<script src="assets/lenis.min.js"></script>
 <script src="v2-common.js"></script>
 </body>
 </html>

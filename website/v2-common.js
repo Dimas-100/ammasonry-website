@@ -3,21 +3,9 @@
 (function () {
   'use strict';
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // ── Lenis smooth scroll ──────────────────────────────────────────
-  let lenis = null;
-  if (!reduceMotion && typeof Lenis !== 'undefined') {
-    lenis = new Lenis({
-      duration: 1.1,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 0.75,
-      touchMultiplier: 1.5,
-    });
-    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
-    requestAnimationFrame(raf);
-  }
+  // Native scrolling. The momentum smooth-scroll (Lenis) was removed to eliminate
+  // scroll jitter from it competing with video and the nav backdrop-blur.
+  const lenis = null;
 
   // ── Smooth anchor links ──────────────────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -88,6 +76,21 @@
     });
   }
 
+  // ── Nav dropdown (Projects) ──────────────────────────────────────
+  document.querySelectorAll('.nav-dd').forEach((dd) => {
+    const toggle = dd.querySelector('.nav-dd-toggle');
+    if (!toggle) return;
+    const close = () => { dd.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); };
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = !dd.classList.contains('is-open');
+      dd.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', (e) => { if (!dd.contains(e.target)) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  });
+
   // ── Reveal on scroll ─────────────────────────────────────────────
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -138,8 +141,8 @@
   // buffers as its row approaches (preloadIO). A clip plays only while it sits
   // in the central band of the viewport (focusIO, negative rootMargin) and
   // pauses the moment you scroll on to the next — so one plays at a time.
-  const fpcMedia = Array.from(document.querySelectorAll('.fpc-video-wrap'));
-  if (fpcMedia.length) {
+  const projectMedia = Array.from(document.querySelectorAll('.pshow-media'));
+  if (projectMedia.length) {
     // Play only the video nearest the viewport center (and overlapping the
     // central band); pause all others. Recompute the whole set on every
     // change so a dropped exit event can't leave a stray video playing.
@@ -149,14 +152,14 @@
       const vh = window.innerHeight || document.documentElement.clientHeight;
       const lo = vh * 0.35, hi = vh * 0.65, mid = vh / 2;
       let best = null, bestDist = Infinity;
-      fpcMedia.forEach(w => {
+      projectMedia.forEach(w => {
         const r = w.getBoundingClientRect();
         if (r.top < hi && r.bottom > lo) {
           const d = Math.abs((r.top + r.bottom) / 2 - mid);
           if (d < bestDist) { bestDist = d; best = w; }
         }
       });
-      fpcMedia.forEach(w => {
+      projectMedia.forEach(w => {
         const vid = w.querySelector('video');
         if (!vid) return;
         if (w === best) {
@@ -184,11 +187,38 @@
         });
       }, { rootMargin: '500px 0px' });
       const focusIO = new IntersectionObserver(schedule, { threshold: [0, 0.25, 0.5, 0.75, 1] });
-      fpcMedia.forEach(m => { preloadIO.observe(m); focusIO.observe(m); });
+      projectMedia.forEach(m => { preloadIO.observe(m); focusIO.observe(m); });
     }
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule, { passive: true });
     if (lenis && typeof lenis.on === 'function') lenis.on('scroll', schedule);
     applyFocus();
+  }
+
+  // ── Subtle parallax on service-page spread photos ────────────────
+  // Each photo's image drifts a few percent of its height as the row moves
+  // through the viewport — depth that responds continuously to scrolling
+  // (touch included), replacing the old hover-zoom. Transform-only + rAF,
+  // and skipped entirely under reduced motion.
+  const parallaxImgs = Array.from(document.querySelectorAll('.svp-photo img, .pshow-media img'));
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (parallaxImgs.length && !reduceMotion) {
+    const FACTOR = 0.07; // max drift as a fraction of the frame's height
+    let pTick = false;
+    const drawParallax = () => {
+      pTick = false;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      parallaxImgs.forEach((img) => {
+        const r = img.parentElement.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return; // skip offscreen
+        let p = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+        p = p < -1 ? -1 : p > 1 ? 1 : p;        // clamp to -1..1
+        img.style.transform = `translate3d(0, ${(p * r.height * FACTOR).toFixed(1)}px, 0)`;
+      });
+    };
+    const queueParallax = () => { if (!pTick) { pTick = true; requestAnimationFrame(drawParallax); } };
+    window.addEventListener('scroll', queueParallax, { passive: true });
+    window.addEventListener('resize', queueParallax, { passive: true });
+    drawParallax();
   }
 })();

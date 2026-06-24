@@ -1,23 +1,57 @@
 (function () {
   'use strict';
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Native scrolling. The momentum smooth-scroll (Lenis) was removed to eliminate
+  // scroll jitter from it competing with the hero video and the nav backdrop-blur.
+  const lenis = null;
 
-  // ── Lenis smooth scroll ──────────────────────────────────────────
-  // Adds momentum/inertia to wheel scrolling on desktop. Mobile falls back
-  // to native touch scroll automatically. Disabled if user prefers reduced motion.
-  let lenis = null;
-  if (!reduceMotion && typeof Lenis !== 'undefined') {
-    lenis = new Lenis({
-      duration: 1.1,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 0.75,
-      touchMultiplier: 1.5,
-    });
-    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
-    requestAnimationFrame(raf);
-  }
+  // ── Intro splash (homepage only; armed by the inline <head> gate) ──
+  // Entrance beats are CSS; this drives the lift, the skip, and gating the
+  // lift on the hero video being ready so the hero is in motion the instant
+  // the curtain rises.
+  (function intro() {
+    const root = document.documentElement;
+    if (!root.classList.contains('intro-armed')) return;
+    const overlay = document.querySelector('.am-intro');
+    if (!overlay) return;
+
+    const reduced = root.classList.contains('intro-reduced');
+    const hero = document.querySelector('.hero-img'); // the <video>
+    let lifted = false;
+
+    function lift() {
+      if (lifted) return;
+      lifted = true;
+      root.classList.add('intro-done');               // releases scroll lock
+      overlay.classList.add('is-lifting');
+      const done = () => overlay.classList.add('is-done');
+      overlay.addEventListener('transitionend', done, { once: true });
+      setTimeout(done, 800);                            // safety if transitionend doesn't fire
+    }
+
+    // Skip: any key / pointer / touch lifts immediately.
+    window.addEventListener('keydown', lift, { once: true });
+    overlay.addEventListener('pointerdown', lift, { once: true });
+    overlay.addEventListener('touchstart', lift, { once: true, passive: true });
+
+    if (reduced) {
+      setTimeout(lift, 900);                            // static hold, then fade
+      return;
+    }
+
+    // Normal path: pre-warm the hero video and gate the lift on it being ready.
+    if (hero && hero.paused) { const p = hero.play(); if (p && p.catch) p.catch(() => {}); }
+    const ready = () => hero && hero.readyState >= 3;
+    setTimeout(() => {
+      if (ready()) { lift(); return; }
+      const onReady = () => lift();
+      if (hero) {
+        hero.addEventListener('canplay', onReady, { once: true });
+        hero.addEventListener('loadeddata', onReady, { once: true });
+      }
+    }, 1900);                                           // minimum on-screen time
+    setTimeout(lift, 3500);                             // hard fallback (poster covers a stalled video)
+  })();
 
   // ── Smooth anchor links (uses Lenis if present, native otherwise) ──
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -104,109 +138,135 @@
     });
   }
 
-  // ── Hero video — mobile loops vid-0, desktop crossfades vid-0 ↔ vid-1 ──
-  const FADE = 1.5;
-  const vids = [
-    document.getElementById('hero-vid-0'),
-    document.getElementById('hero-vid-1'),
-  ];
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  // ── Nav dropdown (Projects) ──────────────────────────────────────
+  document.querySelectorAll('.nav-dd').forEach((dd) => {
+    const toggle = dd.querySelector('.nav-dd-toggle');
+    if (!toggle) return;
+    const close = () => { dd.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); };
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = !dd.classList.contains('is-open');
+      dd.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', (e) => { if (!dd.contains(e.target)) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  });
 
-  if (vids[0]) {
-    const reveal = () => vids[0].classList.add('is-playing');
-    vids[0].addEventListener('playing', reveal, { once: true });
-    if (!vids[0].paused && vids[0].readyState >= 3) reveal();
-    vids[0].play().catch(() => {});
-  }
-
-  if (!isMobile && vids[0] && vids[1]) {
-    // Desktop only: set up the crossfade dance with vid-1
-    let active = 0;
-    let switching = false;
-
-    vids[1].addEventListener('playing', () => vids[1].classList.add('is-playing'), { once: true });
-
-    // Give vid-0 a head start, then quietly start downloading vid-1 in the background
-    setTimeout(() => {
-      vids[1].preload = 'auto';
-      vids[1].load();
-    }, 2000);
-
-    vids.forEach((vid, i) => {
-      vid.addEventListener('timeupdate', () => {
-        if (switching || active !== i) return;
-        if (!vid.duration || vid.currentTime < vid.duration - FADE) return;
-        switching = true;
-        const next = 1 - i;
-        vids[next].currentTime = 0;
-        vids[next].play().catch(() => {});
-        vids[i].style.transition  = `opacity ${FADE}s ease`;
-        vids[next].style.transition = `opacity ${FADE}s ease`;
-        vids[i].style.opacity   = '0';
-        vids[next].style.opacity  = '1';
-        active = next;
-        setTimeout(() => { switching = false; }, (FADE + 0.5) * 1000);
-      });
+  // ── Quote form (Formspree) ───────────────────────────────────────
+  const quoteForm = document.getElementById('quote-form');
+  if (quoteForm) {
+    const status = document.getElementById('form-status');
+    const submitBtn = quoteForm.querySelector('[type="submit"]');
+    const submitLabel = submitBtn ? submitBtn.querySelector('.form-submit-label') : null;
+    quoteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitLabel) submitLabel.textContent = 'Sending…';
+      if (status) { status.textContent = ''; status.className = 'form-status'; }
+      try {
+        const res = await fetch(quoteForm.action, { method: 'POST', body: new FormData(quoteForm), headers: { Accept: 'application/json' } });
+        if (res.ok) {
+          if (status) { status.textContent = "Request sent! We'll be in touch within one business day."; status.className = 'form-status ok'; }
+          quoteForm.reset();
+        } else { throw new Error('bad response'); }
+      } catch {
+        if (status) { status.textContent = 'Something went wrong. Please email us directly at jflores@ammasonry.net.'; status.className = 'form-status err'; }
+      }
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitLabel) submitLabel.textContent = 'Send Request';
     });
   }
 
-  // ── Lazy-load + focus-play project videos ───────────────────────────
-  // Videos use preload="none" (nothing downloads until needed); each clip
-  // buffers as its row approaches (preloadIO). A clip plays only while it sits
-  // in the central band of the viewport (focusIO, negative rootMargin) and
-  // pauses the moment you scroll on to the next — so one plays at a time.
-  const projMedia = Array.from(document.querySelectorAll('.pfrow-media'));
-  if (projMedia.length) {
-    // Play only the video nearest the viewport center (and overlapping the
-    // central band); pause all others. Recompute the whole set on every
-    // change so a dropped exit event can't leave a stray video playing.
-    let ticking = false, settleTimer = 0;
-    const applyFocus = () => {
-      ticking = false;
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const lo = vh * 0.35, hi = vh * 0.65, mid = vh / 2;
-      let best = null, bestDist = Infinity;
-      projMedia.forEach(w => {
-        const r = w.getBoundingClientRect();
-        if (r.top < hi && r.bottom > lo) {
-          const d = Math.abs((r.top + r.bottom) / 2 - mid);
-          if (d < bestDist) { bestDist = d; best = w; }
-        }
-      });
-      projMedia.forEach(w => {
-        const vid = w.querySelector('video');
-        if (!vid) return;
-        if (w === best) {
-          if (vid.preload !== 'auto') vid.preload = 'auto';
-          const p = vid.play();
-          if (p && p.catch) p.catch(() => {});
-        } else if (!vid.paused) {
-          vid.pause();
-        }
-      });
-    };
-    const schedule = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(applyFocus); }
-      if (settleTimer) clearTimeout(settleTimer);
-      settleTimer = setTimeout(applyFocus, 200); // backstop for the settled position
+  // ── Featured projects carousel ───────────────────────────────────
+  // Center-focus slider: the active slide sits scaled-up in the middle,
+  // neighbours peek in dimmed. Arrows / dots / keyboard / swipe change the
+  // active index; the whole track glides via a single translateX transform.
+  document.querySelectorAll('[data-carousel]').forEach((root) => {
+    const viewport = root.querySelector('.cz-viewport');
+    const track    = root.querySelector('.cz-track');
+    const slides   = Array.from(root.querySelectorAll('.cz-slide'));
+    const prevBtn  = root.querySelector('.cz-prev');
+    const nextBtn  = root.querySelector('.cz-next');
+    const dots     = Array.from(root.querySelectorAll('.cz-dot'));
+    if (!viewport || !track || slides.length === 0) return;
+
+    let index = parseInt(root.dataset.start || '0', 10);
+    if (!(index >= 0 && index < slides.length)) index = 0;
+
+    const positionTrack = (animate) => {
+      const active = slides[index];
+      // offsetLeft/offsetWidth are layout values (ignore the scale transform),
+      // so this centres the active slide regardless of its current transition.
+      const target = viewport.clientWidth / 2 - (active.offsetLeft + active.offsetWidth / 2);
+      if (animate) {
+        track.style.transform = `translateX(${target}px)`;
+      } else {
+        const prevTransition = track.style.transition;
+        track.style.transition = 'none';
+        track.style.transform = `translateX(${target}px)`;
+        void track.offsetWidth;                 // flush so the next move animates
+        track.style.transition = prevTransition;
+      }
     };
 
-    if ('IntersectionObserver' in window) {
-      const preloadIO = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const vid = entry.target.querySelector('video');
-          if (vid && vid.preload !== 'auto') { vid.preload = 'auto'; vid.load(); }
-          obs.unobserve(entry.target);
-        });
-      }, { rootMargin: '500px 0px' });
-      const focusIO = new IntersectionObserver(schedule, { threshold: [0, 0.25, 0.5, 0.75, 1] });
-      projMedia.forEach(m => { preloadIO.observe(m); focusIO.observe(m); });
-    }
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule, { passive: true });
-    if (lenis && typeof lenis.on === 'function') lenis.on('scroll', schedule);
-    applyFocus();
-  }
+    const render = (animate) => {
+      slides.forEach((slide, i) => {
+        const active = i === index;
+        slide.classList.toggle('is-active', active);
+        slide.setAttribute('aria-hidden', String(!active));
+        slide.querySelectorAll('a').forEach(a => { a.tabIndex = active ? 0 : -1; });
+      });
+      dots.forEach((dot, i) => {
+        const active = i === index;
+        dot.classList.toggle('is-active', active);
+        dot.setAttribute('aria-current', active ? 'true' : 'false');
+      });
+      if (prevBtn) prevBtn.disabled = index === 0;
+      if (nextBtn) nextBtn.disabled = index === slides.length - 1;
+      positionTrack(animate);
+    };
+
+    const goTo = (i, animate = true) => {
+      index = Math.max(0, Math.min(slides.length - 1, i));
+      render(animate);
+    };
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(index - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(index + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(index - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1); }
+    });
+
+    // Swipe via pointer; suppress the click that follows a real drag so a
+    // swipe doesn't also open the project link under the finger.
+    let startX = 0, startY = 0, tracking = false, swiped = false;
+    viewport.addEventListener('pointerdown', (e) => { startX = e.clientX; startY = e.clientY; tracking = true; swiped = false; });
+    viewport.addEventListener('pointerup', (e) => {
+      if (!tracking) return;
+      tracking = false;
+      const dx = e.clientX - startX, dy = e.clientY - startY;
+      if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy)) { swiped = true; goTo(dx < 0 ? index + 1 : index - 1); }
+    });
+    viewport.addEventListener('pointercancel', () => { tracking = false; });
+    viewport.addEventListener('click', (e) => { if (swiped) { e.preventDefault(); e.stopPropagation(); swiped = false; } }, true);
+
+    let resizeRAF = 0;
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(resizeRAF);
+      resizeRAF = requestAnimationFrame(() => positionTrack(false));
+    }, { passive: true });
+
+    // Image heights can shift slide offsets once they decode — re-center then.
+    slides.forEach((slide) => {
+      const img = slide.querySelector('img');
+      if (img && !img.complete) img.addEventListener('load', () => positionTrack(false), { once: true });
+    });
+
+    render(false);
+  });
 
 })();

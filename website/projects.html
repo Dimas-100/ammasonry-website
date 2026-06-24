@@ -69,12 +69,20 @@
     </a>
     <div class="v2-nav-links" id="v2-nav-links">
       <a href="/services">Services</a>
-      <a href="/projects" class="is-current">Projects</a>
-      <a href="/about">About</a>
-      <div class="v2-nav-mobile-cta">
-        <a href="/contact" class="btn-v2 btn-v2--primary">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle is-current" type="button" aria-expanded="false" aria-controls="v2-nav-dd-menu">
+          Projects
+          <svg class="nav-dd-caret" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dd-menu" id="v2-nav-dd-menu">
+          <a href="/projects">All Projects</a>
+          <a href="/projects#west-point">West Point</a>
+          <a href="/projects#west-pine">West Pine</a>
+          <a href="/projects#douglas">Douglas</a>
+        </div>
+      </div>
+      <a href="/contact">Contact</a>
     </div>
-    <a href="/contact" class="v2-nav-cta">Free Quote</a>
     <button class="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="v2-nav-links" type="button">
       <span class="v2-nav-toggle-bars"><span></span><span></span><span></span></span>
     </button>
@@ -85,9 +93,15 @@
 
 <!-- PAGE HERO -->
 <section class="page-hero-v2">
+  <img class="page-hero-v2-img" src="assets/img/Project/douglas1-hero.jpg" alt="" aria-hidden="true" width="1898" height="1062" fetchpriority="high" />
+  <div class="page-hero-v2-overlay"></div>
   <div class="wrap">
-    <h1 class="reveal" data-delay="0">Work we're <span class="accent">proud of.</span></h1>
-    <p class="reveal" data-delay="100">Named projects with drone footage from the field.</p>
+    <div class="page-hero-v2-inner">
+      <span class="page-hero-v2-eyebrow reveal" data-delay="0">Featured Work</span>
+      <span class="page-hero-v2-rule reveal" data-delay="60" aria-hidden="true"></span>
+      <h1 class="reveal" data-delay="120">Work we're <span class="accent">proud of.</span></h1>
+      <p class="reveal" data-delay="220">Named builds across the Southeast, captured by drone in the field.</p>
+    </div>
   </div>
 </section>
 
@@ -96,77 +110,80 @@
   <div class="wrap">
 
     <!-- ─ West Point ─ -->
-    <article class="fpc reveal" id="west-point">
-      <div class="fpc-video-wrap">
-        <video class="fpc-vid" muted loop playsinline preload="none">
-          <source src="assets/video/West%20Point.MP4.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="fpc-info">
-        <h2 class="fpc-title">West Point</h2>
-        <div class="fpc-trade">Brick masonry · Lawrenceville, GA · 2024</div>
-        <ul class="fpc-list">
+    <article class="pcase reveal" id="west-point">
+      <div class="pcase-head">
+        <span class="pcase-meta">Brick masonry · Lawrenceville, GA · 2024</span>
+        <h2 class="pcase-title">West Point</h2>
+        <ul class="pcase-scope">
           <li>Full exterior brick installation</li>
           <li>Commercial property, Gwinnett County</li>
-          <li>Complete build captured by drone</li>
+          <li>Captured by drone</li>
         </ul>
+      </div>
+      <div class="pshow-media">
+        <img class="pshow-img" src="assets/img/Project/westpoint.jpg" alt="West Point brick masonry build in Lawrenceville, GA" width="1500" height="814" loading="lazy" />
+      </div>
+      <div class="pcase-grid">
+        <div class="pcase-tile"><img src="assets/img/Project/westpoint-hero.jpg" alt="Aerial view of the West Point build" width="1873" height="1016" loading="lazy" /></div>
       </div>
     </article>
 
     <!-- ─ West Pine ─ -->
-    <article class="fpc reveal" id="west-pine">
-      <div class="fpc-video-wrap">
-        <video class="fpc-vid" muted loop playsinline preload="none">
-          <source src="assets/video/West%20pine.MP4.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="fpc-info">
-        <h2 class="fpc-title">West Pine</h2>
-        <div class="fpc-trade">Stone masonry · Buford, GA · 2024</div>
-        <ul class="fpc-list">
+    <article class="pcase reveal" id="west-pine">
+      <div class="pcase-head">
+        <span class="pcase-meta">Stone masonry · Buford, GA · 2024</span>
+        <h2 class="pcase-title">West Pine</h2>
+        <ul class="pcase-scope">
           <li>Stone &amp; CMU block masonry</li>
-          <li>Large residential property in Buford</li>
-          <li>Aerial footage of the finished work</li>
+          <li>Large residential property</li>
+          <li>Captured by drone</li>
         </ul>
+      </div>
+      <div class="pshow-media">
+        <img class="pshow-img" src="assets/img/Project/westpine1.jpg" alt="West Pine stone and block masonry build in Buford, GA" width="1600" height="897" loading="lazy" />
+      </div>
+      <div class="pcase-grid">
+        <div class="pcase-tile"><img src="assets/img/Project/westpine.jpg" alt="West Pine build, side elevation" width="1500" height="841" loading="lazy" /></div>
+        <div class="pcase-tile"><img src="assets/img/Project/westpine2.jpg" alt="West Pine build, front elevation" width="1600" height="896" loading="lazy" /></div>
+        <div class="pcase-tile"><img src="assets/img/Project/westpine-wide.jpg" alt="Aerial overview of the West Pine development" width="1600" height="1200" loading="lazy" /></div>
       </div>
     </article>
 
     <!-- ─ Douglas ─ -->
-    <article class="fpc reveal" id="douglas">
-      <div class="fpc-video-wrap">
-        <video class="fpc-vid" muted loop playsinline preload="none">
-          <source src="assets/video/projects/douglas/Douglas.MP4.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="fpc-info">
-        <h2 class="fpc-title">Douglas</h2>
-        <div class="fpc-trade">Masonry · Georgia · 2025</div>
-        <ul class="fpc-list">
-          <li>Full-scale masonry and construction build</li>
+    <article class="pcase reveal" id="douglas">
+      <div class="pcase-head">
+        <span class="pcase-meta">Masonry · Georgia · 2025</span>
+        <h2 class="pcase-title">Douglas</h2>
+        <ul class="pcase-scope">
+          <li>Full-scale masonry &amp; construction</li>
           <li>Multi-building commercial site</li>
-          <li>Complete project captured by drone</li>
+          <li>Captured by drone</li>
         </ul>
+      </div>
+      <div class="pshow-media">
+        <img class="pshow-img" src="assets/img/Project/douglas.jpg" alt="Douglas multi-building masonry project in Georgia" width="1500" height="928" loading="lazy" />
+      </div>
+      <div class="pcase-grid">
+        <div class="pcase-tile"><img src="assets/img/Project/douglas3.jpg" alt="Douglas development during framing" width="1600" height="932" loading="lazy" /></div>
+        <div class="pcase-tile"><img src="assets/img/Project/pinecrest.jpg" alt="Douglas building during exterior wrap" width="1500" height="804" loading="lazy" /></div>
+        <div class="pcase-tile"><img src="assets/img/Project/pinecrest1.jpg" alt="Douglas building, aerial during construction" width="1600" height="858" loading="lazy" /></div>
       </div>
     </article>
 
-    <!-- ─ Overlook ─ -->
-    <article class="fpc reveal" id="overlook">
-      <div class="fpc-video-wrap">
-        <video class="fpc-vid" muted loop playsinline preload="none">
-          <source src="assets/video/projects/overlook/Overlook%20bld%20200.MP4.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="fpc-info">
-        <h2 class="fpc-title">Overlook</h2>
-        <div class="fpc-trade">Masonry · Georgia · 2025</div>
-        <ul class="fpc-list">
-          <li>Residential community development</li>
-          <li>Stone, block, and brick exterior work</li>
-          <li>Aerial site footage</li>
-        </ul>
-      </div>
-    </article>
+  </div>
+</section>
 
+<!-- CTA STRIP -->
+<section class="ctas-v2">
+  <div class="wrap">
+    <div>
+      <h3>Have a project <span class="it">in mind?</span></h3>
+      <p>Get a free quote. No obligation, just a conversation about what you need.</p>
+    </div>
+    <a href="/contact" class="btn-v2 btn-v2--primary">
+      Free Quote
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arr"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
   </div>
 </section>
 
@@ -180,7 +197,6 @@
       <nav class="sf-nav" aria-label="Footer">
         <a href="/services">Services</a>
         <a href="/projects">Projects</a>
-        <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </nav>
     </div>
@@ -191,7 +207,6 @@
   </div>
 </footer>
 
-<script src="assets/lenis.min.js"></script>
 <script src="v2-common.js"></script>
 </body>
 </html>

@@ -4,6 +4,22 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <script>document.documentElement.classList.add('js');</script>
+<script>
+/* Intro splash gate — runs before first paint so a repeat-visit or
+   reduced-motion load never flashes the overlay. */
+(function(){
+  var d = document.documentElement;
+  try {
+    if (!sessionStorage.getItem('amIntroSeen')) {
+      d.classList.add('intro-armed');
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        d.classList.add('intro-reduced');
+      }
+      sessionStorage.setItem('amIntroSeen','1');
+    }
+  } catch (e) { /* storage blocked: don't arm the intro */ }
+})();
+</script>
 <title>A&amp;M Masonry Inc | Expert Masonry Services in Lawrenceville, GA</title>
 <meta name="description" content="Trusted masonry, siding, and construction services in Lawrenceville, GA. Family-owned and fully insured." />
 <meta property="og:type" content="website" />
@@ -57,7 +73,7 @@
   }
 }
 </script>
-<link rel="preload" as="image" href="assets/img/West%20Pine-web.webp" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/img/Project/overlook-hero-poster.jpg" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -65,21 +81,39 @@
 </head>
 <body>
 
+<!-- INTRO SPLASH (homepage only; armed once per session by the head gate) -->
+<div class="am-intro" aria-hidden="true">
+  <div class="am-intro-stage">
+    <img class="am-intro-brick" src="assets/img/am-intro-brick.png" alt="" width="201" height="156" />
+    <span class="am-intro-rule"></span>
+    <img class="am-intro-word" src="assets/img/am-intro-wordmark.png" alt="" width="239" height="140" />
+  </div>
+  <span class="am-intro-skip">Tap to skip</span>
+</div>
+
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-brand">
-      <img src="assets/img/am-logo-nav-h.png" alt="A&amp;M Masonry" width="462" height="160" />
+      <img class="nav-logo nav-logo-dark" src="assets/img/am-logo-nav-dark.png" alt="A&amp;M Masonry" width="462" height="160" />
+      <img class="nav-logo nav-logo-light" src="assets/img/am-logo-nav-h.png" alt="" aria-hidden="true" width="462" height="160" />
     </a>
     <div class="nav-links" id="nav-links">
       <a href="/services">Services</a>
-      <a href="/projects">Projects</a>
-      <a href="/about">About</a>
-      <div class="nav-mobile-cta">
-        <a href="/contact" class="btn btn--primary">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" type="button" aria-expanded="false" aria-controls="nav-dd-menu">
+          Projects
+          <svg class="nav-dd-caret" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dd-menu" id="nav-dd-menu">
+          <a href="/projects">All Projects</a>
+          <a href="/projects#west-point">West Point</a>
+          <a href="/projects#west-pine">West Pine</a>
+          <a href="/projects#douglas">Douglas</a>
+        </div>
       </div>
+      <a href="/contact">Contact</a>
     </div>
-    <a href="/contact" class="nav-cta">Free Quote</a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links" type="button">
       <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
     </button>
@@ -90,17 +124,14 @@
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <img class="hero-poster" src="assets/img/West%20Pine-web.webp" alt="" aria-hidden="true" fetchpriority="high" decoding="async" />
-  <video id="hero-vid-0" class="hero-bg-img" muted playsinline loop preload="auto" poster="assets/img/West%20Pine-web.webp">
-    <source src="assets/video/West%20Point-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-    <source src="assets/video/West%20Point.MP4.mp4" type="video/mp4" />
-  </video>
-  <video id="hero-vid-1" class="hero-bg-img hero-bg-img--secondary" muted playsinline preload="none">
-    <source src="assets/video/West%20pine.MP4.mp4" type="video/mp4" />
+  <video class="hero-img" autoplay muted loop playsinline preload="auto" poster="assets/img/Project/overlook-hero-poster.jpg" aria-hidden="true">
+    <source src="assets/video/projects/overlook/overlook-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+    <source src="assets/video/projects/overlook/overlook-web.mp4" type="video/mp4" />
   </video>
   <div class="hero-overlay"></div>
   <div class="wrap">
     <div class="hero-center">
+      <span class="hero-rule" aria-hidden="true"></span>
       <div class="hero-eyebrow">Expert Craftsmanship. Timeless Results.</div>
       <h1 class="hero-h">
         <span style="white-space:nowrap">
@@ -119,103 +150,155 @@
   </div>
 </section>
 
+<!-- ABOUT (Who We Are) section removed for now — hero flows straight into Services -->
+
+
 <!-- SERVICES -->
 <section class="section svc" id="services">
   <div class="wrap">
-    <div class="svc-head reveal">
-      <h2>Our <span class="accent">services.</span></h2>
-      <p class="lede" style="margin:14px auto 0">From foundation to finish, expert trades built on years of field experience.</p>
-    </div>
-    <div class="svc-grid">
+    <div class="svc-layout">
 
-      <div class="svc-card reveal" data-delay="0">
-        <div class="svc-card-img">
-          <img src="assets/img/Brick/brick-front-1.jpg" alt="Masonry brickwork on a residential exterior" width="640" height="480" loading="lazy" />
-        </div>
-        <div class="svc-card-info">
-          <h3 class="svc-card-title">Masonry</h3>
-          <p class="svc-card-sub">Brick, stone, and block that age into character.</p>
-        </div>
+      <div class="svc-intro reveal">
+        <span class="eyebrow">Our Services</span>
+        <h2 class="svc-intro-h">From the ground <span class="accent">up.</span></h2>
+        <p class="lede">Expert trades under one roof: masonry, framing, and finishing, built on over a decade of field experience.</p>
+        <a class="btn btn--primary svc-intro-btn" href="/services">View All Services <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
 
-      <div class="svc-card reveal" data-delay="80">
-        <div class="svc-card-img">
-          <img src="assets/img/Framing/framing-ground-2.jpg" alt="Framing work on a residential build" width="640" height="480" loading="lazy" />
-        </div>
-        <div class="svc-card-info">
-          <h3 class="svc-card-title">Framing &amp; Carpentry</h3>
-          <p class="svc-card-sub">Structure built square, plumb, and true.</p>
-        </div>
-      </div>
+      <ul class="svc-list">
 
-      <div class="svc-card reveal" data-delay="160">
-        <div class="svc-card-img">
-          <div class="coming-soon">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Coming Soon</span>
-          </div>
-        </div>
-        <div class="svc-card-info">
-          <h3 class="svc-card-title">Drywall &amp; Sheetrock</h3>
-          <p class="svc-card-sub">Clean walls, ready for the finish coat.</p>
-        </div>
-      </div>
+        <li class="svc-item reveal" data-delay="0">
+          <a class="svc-item-link" href="/services">
+            <div class="svc-item-text">
+              <h3 class="svc-item-title">Masonry</h3>
+              <p class="svc-item-desc">Brick, stone, and block for new builds, additions, and exterior repairs, matched to existing materials.</p>
+            </div>
+            <span class="svc-item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </a>
+        </li>
 
-    </div>
+        <li class="svc-item reveal" data-delay="70">
+          <a class="svc-item-link" href="/services">
+            <div class="svc-item-text">
+              <h3 class="svc-item-title">Framing &amp; Carpentry</h3>
+              <p class="svc-item-desc">Structural framing and rough carpentry for additions, remodels, and build-outs.</p>
+            </div>
+            <span class="svc-item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </a>
+        </li>
 
-    <div class="svc-foot reveal">
-      <a class="btn btn--primary" href="/services">View All Services <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <li class="svc-item reveal" data-delay="140">
+          <a class="svc-item-link" href="/services">
+            <div class="svc-item-text">
+              <h3 class="svc-item-title">Siding Installation</h3>
+              <p class="svc-item-desc">Exterior siding installation and replacement for weather protection, trim detail, and curb appeal.</p>
+            </div>
+            <span class="svc-item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </a>
+        </li>
+
+        <li class="svc-item reveal" data-delay="210">
+          <a class="svc-item-link" href="/services">
+            <div class="svc-item-text">
+              <h3 class="svc-item-title">Drywall &amp; Sheetrock</h3>
+              <p class="svc-item-desc">Hung, taped, mudded, and finished to a clean, paint-ready surface.</p>
+            </div>
+            <span class="svc-item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </a>
+        </li>
+
+        <li class="svc-item reveal" data-delay="280">
+          <a class="svc-item-link" href="/services">
+            <div class="svc-item-text">
+              <h3 class="svc-item-title">Painting &amp; Coatings</h3>
+              <p class="svc-item-desc">Interior and exterior painting for walls, trim, ceilings, and masonry surfaces.</p>
+            </div>
+            <span class="svc-item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </a>
+        </li>
+
+      </ul>
+
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="section proj-rows" id="projects">
+<!-- FEATURED PROJECTS -->
+<section class="section featured" id="projects">
   <div class="wrap">
-    <div class="proj-rows-head reveal">
-      <h2>Our <span class="accent">projects.</span></h2>
-      <p class="lede">Recent work from across the Southeast — straight from the field.</p>
+    <div class="featured-head reveal">
+      <span class="eyebrow">Featured Work</span>
+      <h2>Recent <span class="accent">projects.</span></h2>
+      <p class="lede">Drone-captured builds from across the Southeast — real jobs, real crews, finished right.</p>
     </div>
 
-    <div class="pfrows">
+    <div class="carousel reveal" data-carousel data-start="1">
+      <div class="cz-viewport">
+        <div class="cz-track">
 
-      <article class="pfrow reveal" data-delay="0">
-        <div class="pfrow-media">
-          <video muted loop playsinline preload="none">
-            <source src="assets/video/projects/west-pine-1.MP4.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="pfrow-info">
-          <h3 class="pfrow-title">West Pine</h3>
-          <span class="pfrow-tag">Buford, GA · 2024</span>
-          <ul class="pfrow-list">
-            <li>Stone &amp; block masonry, built ground-up</li>
-            <li>Residential property in Buford, GA</li>
-            <li>Full site captured by drone</li>
-          </ul>
-        </div>
-      </article>
+          <article class="cz-slide">
+            <a class="cz-media" href="/projects#west-pine" aria-label="View the West Pine project">
+              <img src="assets/img/Project/westpine.jpg" alt="West Pine stone and block masonry build in Buford, GA" width="1500" height="841" loading="lazy" />
+            </a>
+            <div class="cz-cap">
+              <h3 class="cz-title">West Pine</h3>
+              <span class="cz-tag">Stone &amp; block · Buford, GA</span>
+              <!-- PLACEHOLDER: project description pending from client -->
+              <p class="cz-desc">Project write-up coming soon.</p>
+              <a class="cz-link" href="/projects#west-pine">View project
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </article>
 
-      <article class="pfrow reveal" data-delay="0">
-        <div class="pfrow-media">
-          <video muted loop playsinline preload="none">
-            <source src="assets/video/projects/overlook/Overlook%20bld%20200.MP4.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="pfrow-info">
-          <h3 class="pfrow-title">Overlook</h3>
-          <span class="pfrow-tag">Georgia · 2025</span>
-          <ul class="pfrow-list">
-            <li>Residential community development</li>
-            <li>Stone, block, and brick exterior work</li>
-            <li>Full site captured by drone</li>
-          </ul>
-        </div>
-      </article>
+          <article class="cz-slide">
+            <a class="cz-media" href="/projects#douglas" aria-label="View the Douglas project">
+              <img src="assets/img/Project/douglas.jpg" alt="Douglas multi-building masonry project in Georgia" width="1500" height="928" loading="lazy" />
+            </a>
+            <div class="cz-cap">
+              <h3 class="cz-title">Douglas</h3>
+              <span class="cz-tag">Masonry · Georgia · 2025</span>
+              <!-- PLACEHOLDER: project description pending from client -->
+              <p class="cz-desc">Project write-up coming soon.</p>
+              <a class="cz-link" href="/projects#douglas">View project
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </article>
 
+          <article class="cz-slide">
+            <a class="cz-media" href="/projects#west-point" aria-label="View the West Point project">
+              <img src="assets/img/Project/westpoint.jpg" alt="West Point brick masonry build in Lawrenceville, GA" width="1500" height="814" loading="lazy" />
+            </a>
+            <div class="cz-cap">
+              <h3 class="cz-title">West Point</h3>
+              <span class="cz-tag">Brick masonry · Lawrenceville, GA · 2024</span>
+              <!-- PLACEHOLDER: project description pending from client -->
+              <p class="cz-desc">Project write-up coming soon.</p>
+              <a class="cz-link" href="/projects#west-point">View project
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <button class="cz-arrow cz-prev" type="button" aria-label="Previous project">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="cz-arrow cz-next" type="button" aria-label="Next project">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+
+      <div class="cz-dots" aria-label="Choose a project">
+        <button class="cz-dot" type="button" aria-label="West Pine"></button>
+        <button class="cz-dot" type="button" aria-label="Douglas"></button>
+        <button class="cz-dot" type="button" aria-label="West Point"></button>
+      </div>
     </div>
 
-    <div class="proj-foot reveal">
+    <div class="featured-foot reveal">
       <a href="/projects" class="btn btn--out">View All Projects <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
 
@@ -223,12 +306,58 @@
 </section>
 
 <!-- CLOSING CTA -->
-<section class="section close-sec">
+<section class="section close-sec" id="quote">
   <div class="wrap">
     <div class="close-inner reveal">
       <h2 class="close-h">Have a project <span class="accent">in mind?</span></h2>
-      <p class="close-p">We'd love to hear about it. Free estimates, honest pricing, and a real person who'll get back to you.</p>
-      <a class="btn btn--primary close-btn" href="/contact">Free Quote <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="close-p">Tell us about it and we'll get back to you within one business day. Free estimates, honest pricing, and a real person.</p>
+
+      <form id="quote-form" class="close-form" action="https://formspree.io/f/xnjwbjjo" method="POST">
+        <input type="hidden" name="_subject" value="New quote request from A&amp;M Masonry website" />
+        <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Full Name <span class="req">*</span></label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="phone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+          <div class="form-field">
+            <label for="service">Service Type <span class="req">*</span></label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option>Masonry</option>
+              <option>Siding Installation</option>
+              <option>Framing &amp; Carpentry</option>
+              <option>Drywall &amp; Sheetrock</option>
+              <option>Painting &amp; Coatings</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field form-field--full">
+          <label for="details">Project Details <span class="req">*</span></label>
+          <textarea id="details" name="details" rows="5" placeholder="Describe your project: what needs doing, approximate size, timeline, or anything that helps us understand the scope." required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">
+          <span class="form-submit-label">Send Request</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 </section>
@@ -243,7 +372,6 @@
       <nav class="sf-nav" aria-label="Footer">
         <a href="/services">Services</a>
         <a href="/projects">Projects</a>
-        <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </nav>
     </div>
@@ -254,7 +382,6 @@
   </div>
 </footer>
 
-<script src="assets/lenis.min.js"></script>
 <script src="homepage.js"></script>
 </body>
 </html>
