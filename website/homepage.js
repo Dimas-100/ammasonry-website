@@ -260,7 +260,7 @@
       resizeRAF = requestAnimationFrame(() => positionTrack(false));
     }, { passive: true });
 
-    // Image heights can shift slide offsets once they decode — re-center then.
+    // Image heights can shift slide offsets once they decode - re-center then.
     slides.forEach((slide) => {
       const img = slide.querySelector('img');
       if (img && !img.complete) img.addEventListener('load', () => positionTrack(false), { once: true });

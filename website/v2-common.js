@@ -1,4 +1,4 @@
-/* A&M Masonry — V2 Inner-page shared JS */
+/* A&M Masonry - V2 Inner-page shared JS */
 
 (function () {
   'use strict';
@@ -166,7 +166,7 @@
   // Videos use preload="none" (nothing downloads until needed); each clip
   // buffers as its row approaches (preloadIO). A clip plays only while it sits
   // in the central band of the viewport (focusIO, negative rootMargin) and
-  // pauses the moment you scroll on to the next — so one plays at a time.
+  // pauses the moment you scroll on to the next - so one plays at a time.
   const projectMedia = Array.from(document.querySelectorAll('.pshow-media'));
   if (projectMedia.length) {
     // Play only the video nearest the viewport center (and overlapping the
@@ -223,7 +223,7 @@
 
   // ── Subtle parallax on service-page spread photos ────────────────
   // Each photo's image drifts a few percent of its height as the row moves
-  // through the viewport — depth that responds continuously to scrolling
+  // through the viewport - depth that responds continuously to scrolling
   // (touch included), replacing the old hover-zoom. Transform-only + rAF,
   // and skipped entirely under reduced motion.
   const parallaxImgs = Array.from(document.querySelectorAll('.svp-photo img, .pshow-media img'));
@@ -287,7 +287,7 @@
     };
     const go = (d) => { if (group.length) { idx = (idx + d + group.length) % group.length; render(); } };
 
-    // Enlarge-on-tap is desktop-only — on phones it looked low-quality, so the
+    // Enlarge-on-tap is desktop-only - on phones it looked low-quality, so the
     // photos just display full-width and don't open.
     const lbDesktop = window.matchMedia('(min-width: 761px)');
     document.querySelectorAll('.pcase').forEach((pc) => {
