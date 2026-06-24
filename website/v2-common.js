@@ -221,4 +221,68 @@
     window.addEventListener('resize', queueParallax, { passive: true });
     drawParallax();
   }
+
+  // ── Project image lightbox ───────────────────────────────────────
+  // Tap any project photo to view it full-screen; arrows / swipe / keyboard
+  // move through that project's images. Esc, the X, or the backdrop close it.
+  const lb = document.querySelector('.lightbox');
+  if (lb) {
+    const lbImg   = lb.querySelector('.lightbox-img');
+    const lbCount = lb.querySelector('.lightbox-count');
+    const prevBtn = lb.querySelector('.lightbox-prev');
+    const nextBtn = lb.querySelector('.lightbox-next');
+    const closeBtn = lb.querySelector('.lightbox-close');
+    let group = [], idx = 0, lastFocus = null;
+
+    const render = () => {
+      const it = group[idx];
+      if (!it) return;
+      lbImg.src = it.src;
+      lbImg.alt = it.alt || '';
+      const multi = group.length > 1;
+      lbCount.textContent = multi ? (idx + 1) + ' / ' + group.length : '';
+      prevBtn.hidden = !multi;
+      nextBtn.hidden = !multi;
+    };
+    const open = (g, i) => {
+      group = g; idx = i;
+      lastFocus = document.activeElement;
+      render();
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    };
+    const close = () => {
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+    const go = (d) => { if (group.length) { idx = (idx + d + group.length) % group.length; render(); } };
+
+    document.querySelectorAll('.pcase').forEach((pc) => {
+      const imgs = Array.from(pc.querySelectorAll('.pshow-img, .pcase-tile img'));
+      const g = imgs.map((im) => ({ src: im.currentSrc || im.src, alt: im.alt }));
+      imgs.forEach((im, i) => im.addEventListener('click', () => open(g, i)));
+    });
+
+    prevBtn.addEventListener('click', () => go(-1));
+    nextBtn.addEventListener('click', () => go(1));
+    closeBtn.addEventListener('click', close);
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === 'ArrowRight') go(1);
+    });
+    let sx = 0, tracking = false;
+    lb.addEventListener('pointerdown', (e) => { sx = e.clientX; tracking = true; });
+    lb.addEventListener('pointerup', (e) => {
+      if (!tracking) return; tracking = false;
+      const dx = e.clientX - sx;
+      if (Math.abs(dx) > 44) go(dx < 0 ? 1 : -1);
+    });
+  }
 })();
