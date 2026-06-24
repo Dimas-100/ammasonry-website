@@ -172,7 +172,7 @@ html.intro-armed.intro-reduced .am-intro.is-lifting {
 @media (max-width: 760px) {
   .nav-inner { gap: 12px; }
   .nav-toggle { display: block; margin-left: auto; }
-  .nav-cta { margin-left: auto; padding: 8px 14px; font-size: 12.5px; }
+  .nav-cta { margin-left: auto; padding: 11px 16px; font-size: 13px; }
   body.nav-open .nav-cta { opacity: 0; pointer-events: none; }
   /* backdrop-filter makes .nav a containing block for fixed children,
      which breaks the fixed menu panel — drop it while the menu is open */
@@ -416,9 +416,9 @@ html.intro-armed.intro-reduced .am-intro.is-lifting {
 .featured-foot { display: flex; justify-content: center; margin-top: clamp(40px,5vw,68px); }
 
 @media (max-width: 760px) {
-  .cz-slide { flex-basis: clamp(250px, 80%, 460px); }
+  .cz-slide { flex-basis: clamp(260px, 84%, 460px); }
   .cz-cap { width: calc(100% - 28px); margin-top: -54px; }
-  .cz-arrow { width: 42px; height: 42px; top: 38%; }
+  .cz-arrow { width: 44px; height: 44px; top: 38%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cz-track, .cz-slide, .cz-cap, .cz-arrow { transition: none; }
@@ -576,4 +576,14 @@ button:focus-visible,
 }
 @media (max-width: 460px) {
   .sf-cols { grid-template-columns: 1fr; gap: 30px; }
+}
+
+/* ── Mobile vertical rhythm ───────────────────────────────────
+   Desktop section padding floors at ~104px on phones (clamp min),
+   leaving huge gaps. Tighten the whole vertical scale on mobile. */
+@media (max-width: 760px) {
+  .section { padding: clamp(56px, 11vw, 84px) 0; }
+  .close-sec { padding: clamp(56px, 11vw, 84px) 0 clamp(72px, 13vw, 104px); }
+  .featured-head { margin-bottom: clamp(32px, 7vw, 46px); }
+  .svc-layout { gap: clamp(34px, 7vw, 48px); }
 }

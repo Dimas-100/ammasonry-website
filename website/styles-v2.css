@@ -246,8 +246,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   .v2-nav-toggle { display: block; margin-left: auto; }
   .v2-nav-cta {
     margin-left: auto;
-    padding: 8px 14px;
-    font-size: 12.5px;
+    padding: 11px 16px;
+    font-size: 13px;
   }
   .v2-nav-links {
     position: fixed;
@@ -1668,5 +1668,21 @@ button:focus-visible,
 @media (prefers-reduced-motion: reduce) {
   .faq-a { transition: none; }
   .faq-icon::before, .faq-icon::after { transition: none; }
+}
+
+/* ── Mobile vertical rhythm ───────────────────────────────────
+   Tighten the desktop-scale section padding / gaps on phones so the
+   pages don't read as endless sparse scrolling. */
+@media (max-width: 760px) {
+  .section { padding: clamp(56px, 11vw, 84px) 0; }
+  .ctas-v2 { padding: clamp(60px, 12vw, 88px) 0; }
+  .proj-featured { padding: clamp(48px, 10vw, 72px) 0 clamp(72px, 13vw, 104px); }
+  .contact-page { padding: clamp(48px, 10vw, 72px) 0; }
+  .sec-head { margin-bottom: clamp(36px, 8vw, 52px); }
+  .svp-rows { gap: clamp(52px, 12vw, 72px); }
+  .svp-also { margin-top: clamp(52px, 12vw, 72px); }
+  .pcase + .pcase { margin-top: clamp(60px, 13vw, 88px); }
+  .contact-steps { margin-top: clamp(40px, 9vw, 60px); padding-top: clamp(32px, 7vw, 48px); }
+  .contact-area { margin-top: clamp(36px, 8vw, 56px); }
 }
 
