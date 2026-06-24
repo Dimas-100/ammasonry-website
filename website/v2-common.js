@@ -261,10 +261,13 @@
     };
     const go = (d) => { if (group.length) { idx = (idx + d + group.length) % group.length; render(); } };
 
+    // Enlarge-on-tap is desktop-only — on phones it looked low-quality, so the
+    // photos just display full-width and don't open.
+    const lbDesktop = window.matchMedia('(min-width: 761px)');
     document.querySelectorAll('.pcase').forEach((pc) => {
       const imgs = Array.from(pc.querySelectorAll('.pshow-img, .pcase-tile img'));
       const g = imgs.map((im) => ({ src: im.currentSrc || im.src, alt: im.alt }));
-      imgs.forEach((im, i) => im.addEventListener('click', () => open(g, i)));
+      imgs.forEach((im, i) => im.addEventListener('click', () => { if (lbDesktop.matches) open(g, i); }));
     });
 
     prevBtn.addEventListener('click', () => go(-1));

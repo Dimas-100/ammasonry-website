@@ -1419,12 +1419,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   .v2-nav-toggle { width: 44px; height: 44px; }
 }
 
-/* ── Project gallery: 2-up thumbnails on mobile + tap-to-enlarge ── */
-.pshow-img, .pcase-tile img { cursor: zoom-in; }
-@media (max-width: 760px) {
-  .pcase-grid { grid-template-columns: 1fr 1fr; }
-  /* a lone/odd last thumbnail spans full width instead of sitting half-empty */
-  .pcase-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+/* ── Project gallery: click a photo to enlarge (desktop only; on mobile
+   the photos show full-width and don't open) ─────────────────────────── */
+@media (min-width: 761px) {
+  .pshow-img, .pcase-tile img { cursor: zoom-in; }
 }
 
 /* Lightbox (tap any project photo to view it full-screen) */
