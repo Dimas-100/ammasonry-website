@@ -161,7 +161,7 @@ html.intro-armed.intro-reduced .am-intro.is-lifting {
 
 @media (max-width: 760px) {
   .nav-inner { gap: 12px; }
-  .nav-toggle { display: block; }
+  .nav-toggle { display: block; margin-left: auto; }
   .nav-cta { margin-left: auto; padding: 8px 14px; font-size: 12.5px; }
   body.nav-open .nav-cta { opacity: 0; pointer-events: none; }
   /* backdrop-filter makes .nav a containing block for fixed children,

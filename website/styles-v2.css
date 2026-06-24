@@ -227,7 +227,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 @media (max-width: 760px) {
   .v2-nav-inner { gap: 12px; }
-  .v2-nav-toggle { display: block; }
+  .v2-nav-toggle { display: block; margin-left: auto; }
   .v2-nav-cta {
     margin-left: auto;
     padding: 8px 14px;
